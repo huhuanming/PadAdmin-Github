@@ -14,6 +14,7 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.metisMenu
 //= require jquery.tablesorter
 //= require tables
 //= require morris.min
