@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623081401) do
+ActiveRecord::Schema.define(version: 20140703170139) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140623081401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.integer  "company_id"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
@@ -39,6 +40,40 @@ ActiveRecord::Schema.define(version: 20140623081401) do
   end
 
   add_index "admin_users_roles", ["admin_user_id", "role_id"], name: "index_admin_users_roles_on_admin_user_id_and_role_id"
+
+  create_table "companies", force: true do |t|
+    t.string   "company_name"
+    t.string   "company_address"
+    t.string   "company_tel"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "informs", force: true do |t|
+    t.integer  "company_id"
+    t.string   "title"
+    t.string   "author"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news", force: true do |t|
+    t.integer  "company_id"
+    t.string   "title"
+    t.string   "author"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.integer  "company_id"
+    t.string   "product_name"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

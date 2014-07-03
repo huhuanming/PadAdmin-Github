@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @inform.company_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @inform.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @inform.author %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @inform.context %>
+</p>
+
+<%= link_to 'Edit', edit_inform_path(@inform) %> |
+<%= link_to 'Back', informs_path %>

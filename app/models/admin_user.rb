@@ -6,6 +6,8 @@ class AdminUser < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
 
+  belongs_to :company
+
   def login=(login)
   	@login = login
   end

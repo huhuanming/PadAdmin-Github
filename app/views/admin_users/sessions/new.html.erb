@@ -1,17 +1,89 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :login %><br />
-  <%= f.text_field :login %></div>
+<!DOCTYPE html>
+<html>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+<head>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    <title>PadAdmin 登录</title>
 
-<%= render "admin_users/shared/links" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PadAdmin 登录</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{:role=>"form"}) do |f| %>  
+                        
+                        <% if alert || flash[:alert] || flash[:error] %>
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <%= flash[:alert] %>
+                            </div>
+                        <% end %>                     
+						<fieldset>
+								<div class="form-group">
+                                    <%= f.text_field :login, autofocus: true, class:"form-control", placeholder:"邮箱或用户名", type:"email" %>
+                                </div>
+                                
+								<div class="form-group">
+                                    <%= f.text_field :password, autofocus: true, class:"form-control", placeholder:"密码", type:"password" %>
+                                </div>
+							  <% if devise_mapping.rememberable? -%>
+                           <!--          <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Remember Me">记住我
+                                        </label>
+                                    </div> -->
+							    <div class="checkbox">
+                                    <label>
+                                        <%= f.check_box :remember_me %>记住我
+                                    </label>
+                                </div>
+							  <% end -%>
+
+							  <div><%= f.submit "登录", class:"btn btn-lg btn-success btn-block"%></div>
+						<% end %>
+						</fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script type="text/javascript">
+      $(function() {
+
+    $('#side-menu').metisMenu();
+
+});
+
+//Loads the correct sidebar on window load,
+//collapses the sidebar on window resize.
+$(function() {
+    $(window).bind("load resize", function() {
+        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+        if (width < 768) {
+            $('div.sidebar-collapse').addClass('collapse')
+        } else {
+            $('div.sidebar-collapse').removeClass('collapse')
+        }
+    })
+})
+  </script>
+
+
+</body>
+
+</html>

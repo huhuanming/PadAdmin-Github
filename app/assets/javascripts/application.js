@@ -14,9 +14,12 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.metisMenu
-//= require jquery.tablesorter
-//= require tables
-//= require morris.min
-//= require raphael-min
-//= require chart-data-morris
+//= require plugins/metisMenu/jquery.metisMenu
+
+//= require plugins/morris/raphael-2.1.0.min
+//= require plugins/morris/morris
+
+//= require demo/dashboard-demo
+
+
+

@@ -1,0 +1,33 @@
+<%= form_for(@inform) do |f| %>
+  <% if @inform.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inform.errors.count, "error") %> prohibited this inform from being saved:</h2>
+
+      <ul>
+      <% @inform.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_id %><br>
+    <%= f.text_field :company_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+  </div>
+  <div class="field">
+    <%= f.label :context %><br>
+    <%= f.text_field :context %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
