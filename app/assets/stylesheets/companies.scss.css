@@ -1,0 +1,36 @@
+/* index css */
+.btn-primary.btn-outline{
+    margin: 10px;   
+    float: left;
+
+}
+.show{
+	width: 60%;
+	color:#544946;
+	font-size: 20x;
+	border: 1px solid #D9D6CF;
+	margin-bottom: 20px;
+	font-weight: normal;	
+	padding: 10px;
+}
+strong{
+		color:#426ab3;
+		font-weight: normal;
+	}
+.alert-successp{
+	width: 100%;
+	height:50px;
+}
+.alert-success{
+	text-align: center;
+}
+/* index end*/
+/* from  css*/
+.field{
+	margin: 20px;
+	width: 60%;
+	
+}
+label{
+		margin-bottom: 15px;
+}

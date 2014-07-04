@@ -2,7 +2,6 @@
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
-
       <ul>
       <% @company.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,18 +11,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :company_name %><br>
-    <%= f.text_field :company_name %>
+    <label>公司名字:</label>
+    <%= f.text_field :company_name,class:"form-control",type:"text"%>
   </div>
   <div class="field">
-    <%= f.label :company_address %><br>
-    <%= f.text_field :company_address %>
+     <label>公司地址:</label>
+    <%= f.text_field :company_address,class:"form-control",type:"text"%>
   </div>
   <div class="field">
-    <%= f.label :company_tel %><br>
-    <%= f.text_field :company_tel %>
+    <label>公司电话:</label>
+    <%= f.text_field :company_tel, class:"form-control", type:"text"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+   <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
   </div>
 <% end %>
