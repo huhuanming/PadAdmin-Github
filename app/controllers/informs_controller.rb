@@ -4,12 +4,13 @@ class InformsController < ApplicationController
   # GET /informs
   # GET /informs.json
   def index
-    @informs = Inform.all
+    @informs = current_admin_user.company.informs
   end
 
   # GET /informs/1
   # GET /informs/1.json
   def show
+
   end
 
   # GET /informs/new
@@ -25,10 +26,10 @@ class InformsController < ApplicationController
   # POST /informs.json
   def create
     @inform = Inform.new(inform_params)
-
+    @inform.company_id = current_admin_user.company.id
     respond_to do |format|
       if @inform.save
-        format.html { redirect_to @inform, notice: 'Inform was successfully created.' }
+        format.html { redirect_to @inform, notice: '创建成功!' }
         format.json { render :show, status: :created, location: @inform }
       else
         format.html { render :new }
@@ -64,7 +65,10 @@ class InformsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inform
-      @inform = Inform.find(params[:id])
+      @inform = Inform.find_by_id(params[:id]) 
+      if @inform.nil? || ( @inform.company_id != current_admin_user.company.id )
+          redirect_to informs_path  
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
