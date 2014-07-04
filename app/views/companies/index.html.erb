@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Admin user</th>
       <th>Company name</th>
       <th>Company address</th>
       <th>Company tel</th>
@@ -12,17 +11,14 @@
   </thead>
 
   <tbody>
-    <% @companies.each do |company| %>
       <tr>
-        <td><%= company.admin_user_id %></td>
-        <td><%= company.company_name %></td>
-        <td><%= company.company_address %></td>
-        <td><%= company.company_tel %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= @companies.company_name %></td>
+        <td><%= @companies.company_address %></td>
+        <td><%= @companies.company_tel %></td>
+        <td><%= link_to 'Show', @companies %></td>
+        <td><%= link_to 'Edit', edit_company_path(@companies) %></td>
+        <td><%= link_to 'Destroy', @companies, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
   </tbody>
 </table>
 
