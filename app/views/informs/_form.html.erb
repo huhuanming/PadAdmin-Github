@@ -11,23 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :company_id %><br>
-    <%= f.text_field :company_id %>
-  </div>
+
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class:"form-control"%>
   </div>
   <div class="field">
     <%= f.label :author %><br>
-    <%= f.text_field :author %>
+    <%= f.text_field :author , class:"form-control"%>
   </div>
   <div class="field">
     <%= f.label :context %><br>
-    <%= f.text_field :context %>
+    <%= f.text_field :context , class:"form-control"%>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class:"btn btn-outline btn-primary", role:"button"%>
   </div>
 <% end %>

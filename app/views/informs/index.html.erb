@@ -1,31 +1,73 @@
-<h1>Listing informs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Context</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      产品管理
+    </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+         <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th class="textstyle">标题</th>
+                  <th class="textstyle">作者</th>
+                  <th class="textstyle">内容</th>
+                  <th class="textstyle">操作</th>
+                  </tr>
+              </thead>
+              <tbody>
+               <% @informs.each do |inform| %>
+                  <tr>
+                    
+                      <td class="textstyle">
+                      <% if inform.title.to_s.length >=10 %>
+                        <%= inform.title.to_s[0,10]+'  ...' %>
+                      <% else %>
+                        <%= inform.title%>
+                        <% end %>
+                      </td>
+                    
 
-  <tbody>
-    <% @informs.each do |inform| %>
-      <tr>
-        <td><%= inform.company_id %></td>
-        <td><%= inform.title %></td>
-        <td><%= inform.author %></td>
-        <td><%= inform.context %></td>
-        <td><%= link_to 'Show', inform %></td>
-        <td><%= link_to 'Edit', edit_inform_path(inform) %></td>
-        <td><%= link_to 'Destroy', inform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                      
+                      <td class="textstyle">
+                      <% if inform.author.to_s.length >=10 %>
+                        <%= inform.author.to_s[0,10]+'  ...' %>
+                      <% else %>
+                        <%= inform.author%>
+                      <% end %>
+                      </td>
+                    
 
-<br>
+                    <td class="textwidth">
+                        <% if inform.context.to_s.length >= 50 %>
+                          <%= inform.context.to_s[0,40]+' ...' %>
+                        <% else %>
+                          <%= inform.context%>
+                        <% end %>
+                    </td>
+                    <td class="textstyle"><%= link_to '查看', inform %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <%= link_to '编辑', edit_inform_path(inform) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <%= link_to '删除', inform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    
+                  </tr>
+         
+                  <% end %>
+               </tbody>
 
-<%= link_to 'New Inform', new_inform_path %>
+            </table>
+
+          </div>
+          <!-- /.table-responsive -->
+         </div>
+
+          <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        
+     </div>
+     
+</div>
+<%= link_to '新建', new_inform_path ,class:"btn btn-outline btn-primary", role:"button"%>
