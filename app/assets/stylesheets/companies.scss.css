@@ -2,8 +2,10 @@
 .btn-primary.btn-outline{
     margin: 10px;   
     float: left;
+
 }
 .show{
+	width: 60%;
 	color:#544946;
 	font-size: 20x;
 	border: 1px solid #D9D6CF;
@@ -23,3 +25,12 @@ strong{
 	text-align: center;
 }
 /* index end*/
+/* from  css*/
+.field{
+	margin: 20px;
+	width: 60%;
+	
+}
+label{
+		margin-bottom: 15px;
+}
