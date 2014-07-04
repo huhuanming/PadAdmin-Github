@@ -1,6 +1,4 @@
-<h1>Editing company</h1>
-
+<% provide(:title, '修改公司信息') %>
+<h1>修改公司信息</h1>
 <%= render 'form' %>
-
-<%= link_to 'Show', @company %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to '返回', companies_path, class:"btn btn-outline btn-primary" %>

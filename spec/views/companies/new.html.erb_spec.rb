@@ -14,11 +14,11 @@ RSpec.describe "companies/new", :type => :view do
 
     assert_select "form[action=?][method=?]", companies_path, "post" do
 
-      assert_select "input#company_company_name[name=?]", "company[company_name]"
+    assert_select "input#company_company_name[name=?]", "company[company_name]"
 
-      assert_select "input#company_company_address[name=?]", "company[company_address]"
+    assert_select "input#company_company_address[name=?]", "company[company_address]"
 
-      assert_select "input#company_company_tel[name=?]", "company[company_tel]"
+    assert_select "input#company_company_tel[name=?]", "company[company_tel]"
     end
   end
 end
