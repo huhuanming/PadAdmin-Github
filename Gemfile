@@ -12,6 +12,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+gem 'rb-readline'
 
 
 group :development, :test do
@@ -23,7 +24,7 @@ end
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara', '2.1.0'
+  gem 'capybara', '2.2.0'
 end
 group :doc do
   gem 'sdoc', '0.4', require: false
