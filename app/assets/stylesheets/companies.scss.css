@@ -24,8 +24,10 @@ strong{
 .alert-success{
 	text-align: center;
 }
-/* index end*/
+/* index css end*/
+
 /* from  css*/
+
 .field{
 	margin: 20px;
 	width: 60%;
@@ -34,3 +36,4 @@ strong{
 label{
 		margin-bottom: 15px;
 }
+/* from css end*/
