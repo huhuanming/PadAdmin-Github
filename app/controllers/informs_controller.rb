@@ -43,7 +43,7 @@ class InformsController < ApplicationController
   def update
     respond_to do |format|
       if @inform.update(inform_params)
-        format.html { redirect_to @inform, notice: 'Inform was successfully updated.' }
+        format.html { redirect_to @inform, notice: '更新成功!' }
         format.json { render :show, status: :ok, location: @inform }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class InformsController < ApplicationController
   def destroy
     @inform.destroy
     respond_to do |format|
-      format.html { redirect_to informs_url, notice: 'Inform was successfully destroyed.' }
+      format.html { redirect_to informs_url, notice: '删除成功!' }
       format.json { head :no_content }
     end
   end
