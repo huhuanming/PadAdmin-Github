@@ -20,6 +20,7 @@
 //= require plugins/morris/morris
 
 //= require demo/dashboard-demo
+//= require plugins/jquery/jquery.slimscroll.min.js
 
 
 
