@@ -328,4 +328,20 @@ table.dataTable thead .sorting:after {
     margin: 15px 0;
 }
 
+/*
+    Document   : scrollToTop
+    Created on : 3 juil. 2012, 14:50:46
+    Author     : Jeremy D Noe
+*/
+
+.backtotopinstance{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background: #eee;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px 3px 3px 3px;
+    padding: 15px 25px;
+    cursor:pointer
+}
 

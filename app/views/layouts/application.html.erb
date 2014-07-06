@@ -16,7 +16,8 @@
 
   <div id="wrapper">
 
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <nav >
+    <div class="navbar navbar-default navbar-fixed-top">
       
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -163,8 +164,8 @@
     </div>
       
 
-      <div class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse aaaa">
+      <div class="navbar-default navbar-static-side" role="navigation"  style="margin-top: 0px;">
+        <div class="sidebar-collapse">
           <ul class="nav" id="side-menu">
             <li class="sidebar-search">
               <div class="input-group custom-search-form">
@@ -269,9 +270,13 @@
     <!-- /#wrapper -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript">
-    $('.aaaa').slimScroll({
-        height: '100%'
-    });
+  jQuery(document).ready(function($){
+    $('#page-wrapper').backtotop({
+      topOffset: 500,
+      animationSpeed: 2000,
+      bckTopLinkTitle: '回顶部'
+    }); 
+  });
       $(function() {
 
     $('#side-menu').metisMenu();
