@@ -12,7 +12,7 @@
 		font-weight: normal;
 		float: left;
 		list-style-type: none;
-		width: 205px;
+		width: 200px;
 		height: 30px;
 		font-size: 15px;
 		line-height: 30px;
@@ -39,7 +39,7 @@
 	li{
 		float: left;
 		list-style-type: none;
-		width: 205px;
+		width: 200px;
 		height: 80px;
 		line-height: 80px;
 		text-align: center;
@@ -60,3 +60,14 @@
 	text-align: center;
 }
 /*index css end*/
+
+/*show css*/
+.check_product{
+	width: 60%;
+	color:#544946;
+	font-size: 20x;
+	border: 1px solid #D9D6CF;
+	margin-bottom: 20px;
+	font-weight: normal;	
+	padding: 10px;
+}

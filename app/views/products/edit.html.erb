@@ -1,3 +1,12 @@
+<% provide(:title, '产品编辑')  %>
+
+<% if !notice.nil? %>
+  <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= notice %> 
+  </div>
+<% end%>
+
 <h1>修改产品信息</h1>
 
 <%= render 'form' %>
