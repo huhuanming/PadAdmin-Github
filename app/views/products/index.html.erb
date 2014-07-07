@@ -10,7 +10,13 @@
 <div class="product_manage">
     <ul>
         <li>产品名称</li>
-        <li>产品描述</li>
+        <li>产品描述
+        <% if inform.context.to_s.length >=10 %>
+              <%= inform.context.to_s[0,10]+'  ...' %>
+         <% else %>
+              <%= inform.context%>
+        <% end %>
+        </li>
         <li>添加时间</li>
         <li>修改时间</li>
         <li class="product_time">操作</li>
