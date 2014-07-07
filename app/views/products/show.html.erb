@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, '产品展示')  %>
+<% if !notice.nil? %>
+  <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= notice %> 
+  </div>
+<% end%>
 
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
 
-<p>
-  <strong>Context:</strong>
+<h2>产品信息</h2>
+<div class="check_product">
+    <strong>产品名字:</strong>
+    <%= @product.product_name %>
+</div>
+<div class="check_product">
+  <strong>产品描述:</strong>
   <%= @product.context %>
-</p>
-
-<p>
-  <strong>Create at:</strong>
+</div>
+<div class="check_product">
+  <strong>添加时间:</strong>
   <%= @product.created_at %>
-</p>
-
-<p>
-  <strong>Update at:</strong>
+</div>
+<div class="check_product">
+  <strong>修改时间:</strong>
   <%= @product.updated_at %>
-</p>
-
-<%= link_to '编辑', edit_product_path(@product) %> |
-<%= link_to '返回', products_path %>
+</div>
+<%= link_to '编辑', edit_product_path(@product), class:"btn btn-outline btn-primary" %> 
+<%= link_to '返回', products_path, class:"btn btn-outline btn-primary" %>

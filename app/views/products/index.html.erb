@@ -13,22 +13,20 @@
         <li>产品描述</li>
         <li>添加时间</li>
         <li>修改时间</li>
+        <li class="product_time">操作</li>
     </ul>
 </div>
-  <table>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.product_name %></td>
-        <td><%= product.context %></td>
-        <td><%= product.created_at %></td>
-        <td><%= product.updated_at %></td>
-        <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline btn-primary" %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' },
-                                class:"btn btn-outline btn-primary" %></td>
-        <%= link_to 'New Product', new_product_path, class:"btn btn-outline btn-primary"%>
-      </tr>
+ <% @products.each do |product| %>
+  <div class="product_inform">
+      <ul>
+        <li><%= product.product_name %></li>
+        <li><%= product.context %></li>
+        <li><%= product.created_at %></li>
+        <li><%= product.updated_at %></li>
+        <li class="option"><%= link_to '查看', product %> 
+            <%= link_to '编辑', edit_product_path(product) %>
+            <%= link_to '删除', product, method: :delete %>
+        </ul>
+        </div>
     <% end %>
-</table>
-
-<br>
-
+    <%= link_to '新建', new_product_path , class:"btn btn-outline btn-primary"%></li>
