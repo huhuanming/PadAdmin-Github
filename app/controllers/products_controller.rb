@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = current_admin_user.product
+    @products = current_admin_user.company.products
   end
 
   # GET /products/1
@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    @product.company_id = current_admin_user.company.id
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: '成功添加商品信息！' }
@@ -36,9 +36,9 @@ class ProductsController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
+
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -65,7 +65,11 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+      if @product.nil? || ( @product.company_id != current_admin_user.company.id )
+          redirect_to informs_path  
+      end
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
