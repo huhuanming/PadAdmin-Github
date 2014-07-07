@@ -1,29 +1,34 @@
-<h1>Listing products</h1>
+<% provide(:title, '产品管理')  %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Product name</th>
-      <th>Context</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if !notice.nil? %>
+  <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= notice %> 
+  </div>
+<% end%>
 
-  <tbody>
+<div class="product_manage">
+    <ul>
+        <li>产品名称</li>
+        <li>产品描述</li>
+        <li>添加时间</li>
+        <li>修改时间</li>
+    </ul>
+</div>
+  <table>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.company_id %></td>
         <td><%= product.product_name %></td>
         <td><%= product.context %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= product.created_at %></td>
+        <td><%= product.updated_at %></td>
+        <td><%= link_to 'Edit', edit_product_path(product), class:"btn btn-outline btn-primary" %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' },
+                                class:"btn btn-outline btn-primary" %></td>
+        <%= link_to 'New Product', new_product_path, class:"btn btn-outline btn-primary"%>
       </tr>
     <% end %>
-  </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>

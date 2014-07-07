@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Company:</strong>
-  <%= @product.company_id %>
-</p>
-
-<p>
   <strong>Product name:</strong>
   <%= @product.product_name %>
 </p>
@@ -15,5 +10,15 @@
   <%= @product.context %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<p>
+  <strong>Create at:</strong>
+  <%= @product.created_at %>
+</p>
+
+<p>
+  <strong>Update at:</strong>
+  <%= @product.updated_at %>
+</p>
+
+<%= link_to '编辑', edit_product_path(@product) %> |
+<%= link_to '返回', products_path %>
