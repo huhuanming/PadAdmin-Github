@@ -15,10 +15,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require plugins/metisMenu/jquery.metisMenu
-
 //= require plugins/morris/raphael-2.1.0.min
 //= require plugins/morris/morris
-
 //= require demo/dashboard-demo
 
 

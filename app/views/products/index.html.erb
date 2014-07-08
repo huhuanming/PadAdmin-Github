@@ -7,34 +7,51 @@
   </div>
 <% end%>
 
-<div class="product_manage">
-    <ul>
-        <li>产品名称</li>
+<div class="panel panel-default">
+<div class="panel-heading">产品管理</div>
+  <!-- /.panel-heading -->
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                      <td>产品名称</td>
+                      <td>产品描述</td>
+                      <td>添加时间</td>
+                      <td>修改时间</td>
+                      <td>操作</td>
+                  </tr>
+              </thead>
+                  <% @products.each do |product| %>
+             <tbody>
+                  <tr>
+                      <td><%= product.product_name %></td>
+                      <td>
+                            <% if product.context.to_s.length >=10 %>
+                                   <%= product.context.to_s[0,10]+'  ...' %>
+                            <% else %>
+                                   <%= product.context%>
+                            <% end %>
+                      </td>
+                      <td><%= product.created_at %></td>
+                      <td><%= product.updated_at %></td>
+                      <td><%= link_to '查看', product %> 
+                          <%= link_to '编辑', edit_product_path(product) %>
+                          <%= link_to '删除', product, method: :delete %>
+                      </td>
+                  </tr>
+
+
+             </tbody>
+                      <% end %>
+          </table>
        
-        <li>产品描述
-        </li>
-        <li>添加时间</li>
-        <li>修改时间</li>
-        <li class="product_time">操作</li>
-    </ul>
+             <%= link_to '新建', new_product_path , class:"btn btn-outline btn-primary"%></li>
+      </div>
+      <!-- /.table-responsive -->
+  </div>
+ <!-- /.panel-body -->
 </div>
- <% @products.each do |product| %>
-  <div class="product_inform">
-      <ul>
-        <li><%= product.product_name %></li>
-        <li>
-              <% if product.context.to_s.length >=10 %>
-                     <%= product.context.to_s[0,10]+'  ...' %>
-              <% else %>
-                     <%= product.context%>
-              <% end %>
-        </li>
-        <li><%= product.created_at %></li>
-        <li><%= product.updated_at %></li>
-        <li class="option"><%= link_to '查看', product %> 
-            <%= link_to '编辑', edit_product_path(product) %>
-            <%= link_to '删除', product, method: :delete %>
-        </ul>
-        </div>
-    <% end %>
-    <%= link_to '新建', new_product_path , class:"btn btn-outline btn-primary"%></li>
+
+
+                  

@@ -1,29 +1,6 @@
 /* index css */
-.product_manage{
-	border: 1px solid #fff;
-	margin: auto;
-	ul{
-		padding: 0px;
-		margin:0px;
-		
-		}
-	li{
-		color:#4D4959;
-		font-weight: normal;
-		float: left;
-		list-style-type: none;
-		width: 200px;
-		height: 30px;
-		font-size: 15px;
-		line-height: 30px;
-		text-align: center;
-		border-top: 1px solid #C0B6DB;
-		border-bottom: 1px solid #C0B6DB;
-		border-left: 1px solid #C0B6DB;
-    }
-    .product_time{
-    	border-right:  1px solid #C0B6DB;
-    }
+.table{
+	background-color: #E8E8E5;
 }
 .product_describle{
     	overflow: hidden;
@@ -31,28 +8,6 @@
 .btn-primary.btn-outline{
     margin: 10px;   
     float: left;
-}
-.product_inform{
-	border: 1px solid #fff;
-	margin: auto;
-	ul{
-		padding: 0px;
-		margin:0px;
-		}
-	li{
-		float: left;
-		list-style-type: none;
-		width: 200px;
-		height: 80px;
-		line-height: 80px;
-		text-align: center;
-		border-bottom: 1px solid #C0B6DB;
-		border-left: 1px solid #C0B6DB;
-		}
-	 .option{
-    	border-right:  1px solid #C0B6DB;
-    }
-	
 }
 
 .alert-successp{
