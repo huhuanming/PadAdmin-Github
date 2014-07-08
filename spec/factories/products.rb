@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :product do
-    company_id "MyString"
+    company_id 1
     product_name "MyString"
     context "MyString"
   end

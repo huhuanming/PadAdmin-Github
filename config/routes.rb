@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   match '/', to: 'home#index', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
 
-  resources :companies
+  resources :companies, :except => [:new, :destroy, :create]
   resources :informs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

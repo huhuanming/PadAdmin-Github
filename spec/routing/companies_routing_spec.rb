@@ -8,7 +8,7 @@ RSpec.describe CompaniesController, :type => :routing do
     end
 
     it "routes to #new" do
-      expect(:get => "/companies/new").to route_to("companies#new")
+      expect(:get => "/companies/new").to route_to("companies#show",:id=>"new")
     end
 
     it "routes to #show" do
@@ -20,7 +20,7 @@ RSpec.describe CompaniesController, :type => :routing do
     end
 
     it "routes to #create" do
-      expect(:post => "/companies").to route_to("companies#create")
+      expect(:post => "/companies").not_to be_routable
     end
 
     it "routes to #update" do
@@ -28,7 +28,7 @@ RSpec.describe CompaniesController, :type => :routing do
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/companies/1").to route_to("companies#destroy", :id => "1")
+      expect(:delete => "/companies/1").not_to be_routable
     end
 
   end
