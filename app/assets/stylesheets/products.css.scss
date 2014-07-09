@@ -1,4 +1,5 @@
 /* index css */
+<<<<<<< HEAD
 .product_manage{
 	border: 1px solid #fff;
 	margin: auto;
@@ -25,10 +26,20 @@
     	border-right:  1px solid #C0B6DB;
     }
 }
+=======
+.table{
+	background-color: #E8E8E5;
+}
+.table-striped>tbody>tr:nth-child(odd)>td{
+		height: 40px;
+		line-height: 40px;
+	}
+>>>>>>> FETCH_HEAD
 .product_describle{
     	overflow: hidden;
     }
 .btn-primary.btn-outline{
+<<<<<<< HEAD
     margin: 10px;   
     float: left;
 }
@@ -53,6 +64,11 @@
     	border-right:  1px solid #C0B6DB;
     }
 	
+=======
+    margin: 10px;
+    float: left;
+    width: 150px;
+>>>>>>> FETCH_HEAD
 }
 
 .alert-successp{
@@ -62,10 +78,17 @@
 .alert-success{
 	text-align: center;
 }
+<<<<<<< HEAD
+=======
+.panel-heading{
+	font-size: 20px;
+}
+>>>>>>> FETCH_HEAD
 /*index css end*/
 
 /*show css*/
 .check_product{
+<<<<<<< HEAD
 	width: 60%;
 	color:#544946;
 	font-size: 20x;
@@ -74,3 +97,40 @@
 	font-weight: normal;	
 	padding: 10px;
 }
+=======
+	width: 70%;
+	line-height: 25px;
+	color:#544946;
+	font-size: 20x;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	font-weight: normal;	
+	float: left;
+
+}
+.button{
+	width: 400px;
+	float: left;
+}
+.time{
+	margin: 10px;
+	float: right;
+	font-size: 5px;
+	strong{
+		font-weight: normal;;
+		font-size: 10px;
+
+	}
+}
+/*show css end*/
+
+/*form css*/
+.field{
+	margin-bottom: 15px;
+	width: 70%;
+}
+label{
+	margin-bottom: 15px;
+}
+/*form  end css*/
+>>>>>>> FETCH_HEAD
