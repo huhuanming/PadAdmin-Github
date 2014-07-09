@@ -7,37 +7,6 @@
   </div>
 <% end%>
 
-<<<<<<< HEAD
-<div class="product_manage">
-    <ul>
-        <li>产品名称</li>
-        <li>产品描述
-        <% if inform.context.to_s.length >=10 %>
-              <%= inform.context.to_s[0,10]+'  ...' %>
-         <% else %>
-              <%= inform.context%>
-        <% end %>
-        </li>
-        <li>添加时间</li>
-        <li>修改时间</li>
-        <li class="product_time">操作</li>
-    </ul>
-</div>
- <% @products.each do |product| %>
-  <div class="product_inform">
-      <ul>
-        <li><%= product.product_name %></li>
-        <li><%= product.context %></li>
-        <li><%= product.created_at %></li>
-        <li><%= product.updated_at %></li>
-        <li class="option"><%= link_to '查看', product %> 
-            <%= link_to '编辑', edit_product_path(product) %>
-            <%= link_to '删除', product, method: :delete %>
-        </ul>
-        </div>
-    <% end %>
-    <%= link_to '新建', new_product_path , class:"btn btn-outline btn-primary"%></li>
-=======
 <div class="panel panel-default">
 <div class="panel-heading">产品管理</div>
   <!-- /.panel-heading -->
@@ -90,7 +59,3 @@
   </div>
  <!-- /.panel-body -->
 </div>
-
-
-                  
->>>>>>> FETCH_HEAD
