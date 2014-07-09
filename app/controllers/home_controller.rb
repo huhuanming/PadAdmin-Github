@@ -6,4 +6,8 @@ class HomeController < ApplicationController
 			current_admin_user.save
   		end
 	end
+
+	def editor
+
+	end
 end
