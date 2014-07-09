@@ -2,12 +2,17 @@
 .table{
 	background-color: #E8E8E5;
 }
+.table-striped>tbody>tr:nth-child(odd)>td{
+		height: 40px;
+		line-height: 40px;
+	}
 .product_describle{
     	overflow: hidden;
     }
 .btn-primary.btn-outline{
-    margin: 10px;   
+    margin: 10px;
     float: left;
+    width: 150px;
 }
 
 .alert-successp{
@@ -17,15 +22,45 @@
 .alert-success{
 	text-align: center;
 }
+.panel-heading{
+	font-size: 20px;
+}
 /*index css end*/
 
 /*show css*/
 .check_product{
-	width: 60%;
+	width: 70%;
+	line-height: 25px;
 	color:#544946;
 	font-size: 20x;
-	border: 1px solid #D9D6CF;
-	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-bottom: 10px;
 	font-weight: normal;	
-	padding: 10px;
+	float: left;
+
 }
+.button{
+	width: 400px;
+	float: left;
+}
+.time{
+	margin: 10px;
+	float: right;
+	font-size: 5px;
+	strong{
+		font-weight: normal;;
+		font-size: 10px;
+
+	}
+}
+/*show css end*/
+
+/*form css*/
+.field{
+	margin-bottom: 15px;
+	width: 70%;
+}
+label{
+	margin-bottom: 15px;
+}
+/*form  end css*/

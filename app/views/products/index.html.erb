@@ -25,7 +25,13 @@
                   <% @products.each do |product| %>
              <tbody>
                   <tr>
-                      <td><%= product.product_name %></td>
+                      <td>
+                      <% if product.product_name.to_s.length >=10 %>
+                                   <%= product.product_name.to_s[0,10]+'  ...' %>
+                            <% else %>
+                                   <%= product.product_name %>
+                            <% end %>
+                      </td>
                       <td>
                             <% if product.context.to_s.length >=10 %>
                                    <%= product.context.to_s[0,10]+'  ...' %>
@@ -40,6 +46,7 @@
                           <%= link_to '删除', product, method: :delete %>
                       </td>
                   </tr>
+
 
 
              </tbody>

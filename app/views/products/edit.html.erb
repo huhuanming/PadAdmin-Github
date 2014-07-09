@@ -7,9 +7,15 @@
   </div>
 <% end%>
 
-<h1>修改产品信息</h1>
 
-<%= render 'form' %>
-
-<%= link_to '查看', @product , class:"btn btn-outline btn-primary"%> 
-<%= link_to '返回', products_path , class:"btn btn-outline btn-primary"%>
+<div class="panel panel-default">
+<div class="panel-heading">修改产品信息</div>
+  <!-- /.panel-heading -->
+	<div class="panel-body">
+			<div class="table-responsive">
+			<%= render 'form' %>
+			<%= link_to '查看', @product , class:"btn btn-outline btn-primary"%> 
+			<%= link_to '返回', products_path , class:"btn btn-outline btn-primary"%>
+			</div>
+	</div>
+</div>
