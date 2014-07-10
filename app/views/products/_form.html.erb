@@ -26,32 +26,55 @@
         <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
       </div>-->
       <div class="field">
-      <button id="edit_button" class="btn btn-outline btn-primary">提交</button>
       </div>
+<% end %>
+<button id="edit_button" class="btn btn-outline btn-primary">提交</button>
 
  <script type="text/javascript">
+
     var formdata = new FormData();
     formdata.append($("#product_product_name").attr("name"),$("#product_product_name").attr("value"));
-    formdata.append("product[context]",$("#ueditor_0").attr("context"));
     formdata.append("authenticity_token",$("authenticity_token").attr("value"));
     formdata.append("utf8",$("utf8").attr("value"));
-
+    formdata.append("product[context]",$("#ueditor_0").context);
+    console.log($("#ueditor_0").context);
     $("#edit_button").click(function () {
-      alert(formdata);
+                // $.post('/products/3',{
+                //   "product[context]" :"fadf",
+                //   "product[product_name]" :"1231313",
+                //   "authenticity_token" :"c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
+                //   "utf8":"&#x2713;"
+                // }, function(data, textStatus, xhr) {
+                //   console.log(textStatus+formdata)
+                // });
+
                 $.ajax({
-                    cache: true,
-                    type: "POST",
-                    url: '/products/48',//提交的URL
-                    data: formdata, // 要提交的表单,必须使用name属性
-                    async: false,                    
-                    success: function (data) {
-                      alert(data);
-                    },
-                    error: function (request) {
-                      cosole.log(request);
-                      alert(request);
-                    }
-                });
+                  url: '/products/3',
+                  dataType: "json",
+                  type: 'put',
+                  data: {
+                    // product{
+                    //   product_name : $("#product_product_name").val(),
+                    //   context : UE.getEditor('editor').getAllHtml()
+                    // },
+                    // authenticity_token : "c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
+                    "product[product_name]" :$("#product_product_name").val(),
+                    "product[context]" : UE.getEditor('editor').getAllHtml(),
+                    "authenticity_token" : "c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
+                    "utf8":"&#x2713;"
+                  },
+                })
+                .done(function( data) {
+                  console.log( "done: " + data.status );
+                })
+                .fail(function ( jqXHR, textStatus, errorThrown ) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                })
+                .always(function( msg ) {
+                  console.log( "always: " + msg );
+                })
+                
             });
 </script>
-<% end %>
