@@ -65,15 +65,15 @@
                   },
                 })
                 .done(function( data) {
-                  console.log( "done: " + data.status );
+                  console.log( "done: " + jQuery.parseJSON(data));
                 })
                 .fail(function ( jqXHR, textStatus, errorThrown ) {
                     console.log(jqXHR);
                     console.log(textStatus);
                     console.log(errorThrown);
                 })
-                .always(function( msg ) {
-                  console.log( "always: " + msg );
+                .always(function( data ) {
+                  console.log( "always: " +data );
                 })
                 
             });
