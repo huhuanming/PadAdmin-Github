@@ -1,6 +1,8 @@
 /* index css */
 .btn-primary.btn-outline{
-    margin: 10px;   
+    margin-top: 20px;   
+    margin-right: 10px;
+    width: 150px;
     float: left;
 
 }
@@ -8,8 +10,6 @@
 	width: 60%;
 	color:#544946;
 	font-size: 20x;
-	border: 1px solid #D9D6CF;
-	margin-bottom: 20px;
 	font-weight: normal;	
 	padding: 10px;
 }
@@ -29,11 +29,11 @@ strong{
 /* from  css*/
 
 .field{
-	margin: 20px;
-	width: 60%;
-	
+	width: 70%;
 }
 label{
-		margin-bottom: 15px;
+	margin-bottom:10px;
+	margin-top: 10px;
+
 }
 /* from css end*/

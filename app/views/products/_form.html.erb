@@ -11,17 +11,47 @@
           </ul>
           </div>
       <% end %>
+        <div class="field">
+            <label>产品名字:</label>
+          <%= f.text_field :product_name,class:"form-control",type:"text" %>
+        </div>
+        <div class="field">
+        <%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
+         <label>产品描述:</label>
+        <script id="editor" type="text/plain" style="width:1010px; height:500px;"></script>
+        </div>
+        <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>   
+       <!-- <div class="actions">
+        <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
+      </div>-->
       <div class="field">
-          <label>产品名字:</label>
-        <%= f.text_field :product_name,class:"form-control",type:"text" %>
+      <button id="edit_button" class="btn btn-outline btn-primary">提交</button>
       </div>
 
-      <div class="field">
-        <label>产品描述:</label>
-        <%= f.text_field :context,class:"form-control",type:"text"%>
-      </div>
-      
-      <div class="actions">
-        <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
-      </div>
+ <script type="text/javascript">
+    var formdata = new FormData();
+    formdata.append($("#product_product_name").attr("name"),$("#product_product_name").attr("value"));
+    formdata.append("product[context]",$("#ueditor_0").attr("context"));
+    formdata.append("authenticity_token",$("authenticity_token").attr("value"));
+    formdata.append("utf8",$("utf8").attr("value"));
+
+    $("#edit_button").click(function () {
+      alert(formdata);
+                $.ajax({
+                    cache: true,
+                    type: "POST",
+                    url: '/products/48',//提交的URL
+                    data: formdata, // 要提交的表单,必须使用name属性
+                    async: false,                    
+                    success: function (data) {
+                      alert(data);
+                    },
+                    error: function (request) {
+                      cosole.log(request);
+                      alert(request);
+                    }
+                });
+            });
+</script>
 <% end %>
