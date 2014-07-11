@@ -25,23 +25,24 @@
               </div>
               <div id="log"  class="check_product">
                 <strong>产品描述:</strong>
+                <br>
 
               </div>
 
 
               <script type="text/javascript">
-                   var $log = $( "#log" );
-                    str = "<%= @product.context.to_json %>";
-                    html = $.parseHTML( str );
+                   
 
-                  a = jQuery('<iframe/>', {
+                  a = $('<iframe/>', {
                       id: 'foo',
-                      rel: 'external',
-                  }).append(str);
+                  })
 
-
+                  a.appendTo('#log');
+                  a.css('width', '100%');
+                  a.css('height', '900px');
+                    html = unescape("<%= @product.context%>");
+                    $('#foo').contents().find('body').append(html);
               </script>
-
 
               <div class="button">
                       <%= link_to '编辑', edit_product_path(@product), class:"btn btn-outline btn-primary" %> 

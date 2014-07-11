@@ -30,8 +30,13 @@
 <% end %>
 <button id="edit_button" class="btn btn-outline btn-primary">提交</button>
 
-
-
+<script type="text/javascript">
+  var ue = UE.getEditor('editor');
+  ue.ready(function() {
+     html = unescape("<%= @product.context%>");  
+    $('#ueditor_0').contents().find('body').append(html);
+  });
+</script>
 
 <script type="text/javascript">
   function form_send (url, request_type) {
@@ -42,7 +47,7 @@
                   type: request_type,
                   data: {
                     "product[product_name]" :$("#product_product_name").val(),
-                    "product[context]" : UE.getEditor('editor').getAllHtml(),
+                    "product[context]" : escape(UE.getEditor('editor').getAllHtml()),
                     "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
                     "utf8": $("input[name='utf8']").attr("value")
                   },
