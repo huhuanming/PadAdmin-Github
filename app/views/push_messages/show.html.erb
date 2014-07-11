@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @push_message.message %>
+</p>
+
+<%= link_to 'Edit', edit_push_message_path(@push_message) %> |
+<%= link_to 'Back', push_messages_path %>
