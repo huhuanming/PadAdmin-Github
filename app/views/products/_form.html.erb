@@ -30,42 +30,24 @@
 <% end %>
 <button id="edit_button" class="btn btn-outline btn-primary">提交</button>
 
- <script type="text/javascript">
 
-    var formdata = new FormData();
-    formdata.append($("#product_product_name").attr("name"),$("#product_product_name").attr("value"));
-    formdata.append("authenticity_token",$("authenticity_token").attr("value"));
-    formdata.append("utf8",$("utf8").attr("value"));
-    formdata.append("product[context]",$("#ueditor_0").context);
-    console.log($("#ueditor_0").context);
-    $("#edit_button").click(function () {
-                // $.post('/products/3',{
-                //   "product[context]" :"fadf",
-                //   "product[product_name]" :"1231313",
-                //   "authenticity_token" :"c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
-                //   "utf8":"&#x2713;"
-                // }, function(data, textStatus, xhr) {
-                //   console.log(textStatus+formdata)
-                // });
 
+
+<script type="text/javascript">
+  function form_send (url, request_type) {
+      $("#edit_button").click(function () {
                 $.ajax({
-                  url: '/products/3',
+                  url: url,
                   dataType: "json",
-                  type: 'put',
+                  type: request_type,
                   data: {
-                    // product{
-                    //   product_name : $("#product_product_name").val(),
-                    //   context : UE.getEditor('editor').getAllHtml()
-                    // },
-                    // authenticity_token : "c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
                     "product[product_name]" :$("#product_product_name").val(),
                     "product[context]" : UE.getEditor('editor').getAllHtml(),
-                    "authenticity_token" : "c2BkLHLyLy8Mqjfsc/JwMruo4mLYS7BoQgl65qdqFJY=",
-                    "utf8":"&#x2713;"
+                    "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
+                    "utf8": $("input[name='utf8']").attr("value")
                   },
                 })
                 .done(function( data) {
-                  console.log( "done: " + jQuery.parseJSON(data));
                 })
                 .fail(function ( jqXHR, textStatus, errorThrown ) {
                     console.log(jqXHR);
@@ -73,8 +55,10 @@
                     console.log(errorThrown);
                 })
                 .always(function( data ) {
-                  console.log( "always: " +data );
+                  alert("success")
+                   location.href = url
                 })
                 
             });
+  }
 </script>

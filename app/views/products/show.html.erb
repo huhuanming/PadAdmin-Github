@@ -23,11 +23,24 @@
                   <strong>产品名字:</strong>
                   <%= @product.product_name %>
               </div>
-              <div class="check_product">
+              <div id="log"  class="check_product">
                 <strong>产品描述:</strong>
-                <%= @product.context %>
+
               </div>
 
+
+              <script type="text/javascript">
+                   var $log = $( "#log" );
+                    str = "<%= @product.context.to_json %>";
+                    html = $.parseHTML( str );
+
+                  a = jQuery('<iframe/>', {
+                      id: 'foo',
+                      rel: 'external',
+                  }).append(str);
+
+
+              </script>
 
 
               <div class="button">
