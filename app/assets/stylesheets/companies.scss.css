@@ -1,7 +1,7 @@
 /* index css */
 .btn-primary.btn-outline{
     margin-top: 20px;   
-    margin-right: 10px;
+    margin-right:15px;
     width: 150px;
     float: left;
 
@@ -10,8 +10,8 @@
 	width: 60%;
 	color:#544946;
 	font-size: 20x;
-	font-weight: normal;	
-	padding: 10px;
+	font-weight: normal;
+	margin-top: 20px;	
 }
 strong{
 		color:#426ab3;
