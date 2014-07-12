@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        push_message:
+          attributes:
+            message: 
+              blank: "不能为空"
+              too_long: "超过字数限制"
