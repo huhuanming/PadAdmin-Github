@@ -1,0 +1,20 @@
+<% provide(:title, '修改')  %>
+
+<% if !notice.nil? %>
+  <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= notice %> 
+  </div>
+<% end%>
+
+<div class="panel panel-default">
+<div class="panel-heading">修改推送信息</div>
+  <!-- /.panel-heading -->
+	<div class="panel-body">
+			<div class="table-responsive">
+			<%= render 'form' %>
+			<%= link_to '查看', @push_message , class:"btn btn-outline btn-primary"%> 
+			<%= link_to '返回', push_messages_path , class:"btn btn-outline btn-primary"%>
+			</div>
+	</div>
+</div>

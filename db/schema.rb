@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703170139) do
+ActiveRecord::Schema.define(version: 20140711101046) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 20140703170139) do
     t.integer  "company_id"
     t.string   "product_name"
     t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "push_messages", force: true do |t|
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+  end
+
+  create_table "push_targets", force: true do |t|
+    t.integer  "push_message_id"
+    t.integer  "pad_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

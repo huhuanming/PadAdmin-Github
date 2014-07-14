@@ -1,0 +1,21 @@
+<% provide(:title, '推送信息')  %>
+<%= form_for(@push_message) do |f| %>
+
+      <% if @push_message.errors.any? %>
+          <div id="error_explanation">
+          <h2>发生了错误！</h2>
+          <ul>
+              <% @push_message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+          </div>
+      <% end %>
+      <div class="field">
+          <label>推送信息:</label>
+        <%= f.text_field :message,class:"form-control",type:"text" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
+      </div>
+<% end %>
