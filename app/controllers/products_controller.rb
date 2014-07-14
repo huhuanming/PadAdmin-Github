@@ -42,8 +42,8 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: '成功修改商品信息！' }
-        format.json { render :show, status: :ok, location: @product }
+        format.html { redirect_to  @product, notice: '成功修改商品信息！' }
+        format.json { render json: @product, :status => "ok"}
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }

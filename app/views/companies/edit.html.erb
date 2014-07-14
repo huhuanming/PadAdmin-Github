@@ -1,4 +1,12 @@
 <% provide(:title, '修改公司信息') %>
-<h1>修改公司信息</h1>
-<%= render 'form' %>
-<%= link_to '返回', companies_path, class:"btn btn-outline btn-primary" %>
+
+<div class="panel panel-default">
+<div class="panel-heading">修改公司信息</div>
+  <!-- /.panel-heading -->
+	<div class="panel-body">
+			<div class="table-responsive">
+			<%= render 'form' %>
+			<%= link_to '返回', companies_path, class:"btn btn-outline btn-primary" %>
+			</div>
+	</div>
+</div>

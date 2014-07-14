@@ -11,17 +11,59 @@
           </ul>
           </div>
       <% end %>
-      <div class="field">
-          <label>产品名字:</label>
-        <%= f.text_field :product_name,class:"form-control",type:"text" %>
-      </div>
-
-      <div class="field">
-        <label>产品描述:</label>
-        <%= f.text_field :context,class:"form-control",type:"text"%>
-      </div>
-      
-      <div class="actions">
+        <div class="field">
+            <label>产品名字:</label>
+          <%= f.text_field :product_name,class:"form-control",type:"text" %>
+        </div>
+        <div class="field">
+        <%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
+         <label>产品描述:</label>
+        <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
+        </div>
+        <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>   
+       <!-- <div class="actions">
         <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
+      </div>-->
+      <div class="field">
       </div>
 <% end %>
+<button id="edit_button" class="btn btn-outline btn-primary">提交</button>
+
+<script type="text/javascript">
+  var ue = UE.getEditor('editor');
+  ue.ready(function() {
+     html = unescape("<%= @product.context%>");  
+    $('#ueditor_0').contents().find('body').append(html);
+  });
+</script>
+
+<script type="text/javascript">
+  function form_send (url, request_type) {
+      $("#edit_button").click(function () {
+                $.ajax({
+                  url: url,
+                  dataType: "json",
+                  type: request_type,
+                  data: {
+                    "product[product_name]" :$("#product_product_name").val(),
+                    "product[context]" : escape(UE.getEditor('editor').getAllHtml()),
+                    "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
+                    "utf8": $("input[name='utf8']").attr("value")
+                  },
+                })
+                .done(function( data) {
+                })
+                .fail(function ( jqXHR, textStatus, errorThrown ) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                })
+                .always(function( data ) {
+                  alert("success")
+                   location.href = url
+                })
+                
+            });
+  }
+</script>
