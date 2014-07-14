@@ -28,3 +28,8 @@ en:
             message: 
               blank: "不能为空"
               too_long: "超过字数限制"
+    models:
+      push_message: "推送消息"
+    attributes:
+      push_message:
+        message: "推送消息内容"
