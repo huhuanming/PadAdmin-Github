@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
+
   match '/', to: 'home#index', via: 'get'
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
   resources :companies, :except => [:new, :destroy, :create]
   resources :informs
   resources :products
+<<<<<<< HEAD
   resources :push_messages
+=======
+  resources :pads
+>>>>>>> 平板管理—PadModel
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

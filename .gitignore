@@ -15,3 +15,5 @@
 /log/*.log
 /tmp
 /.project
+
+db/schema.rb
