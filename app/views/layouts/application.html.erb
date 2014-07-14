@@ -10,14 +10,8 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'application', params[:controller], :media => 'all' %>
-<<<<<<< HEAD
   <%= csrf_meta_tags %>  
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-=======
-
-  <%= csrf_meta_tags %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
->>>>>>> 平板管理—PadModel
 
 </head>
 
@@ -206,6 +200,15 @@
               <a href="/informs"><i class="fa fa-file-text fa-fw"></i> 新闻管理</a>
             </li>
             <li>
+              <a href="/products"><i class="fa fa-file-text fa-fw"></i> 产品管理</a>
+            </li>
+            <li>
+              <a href="/pads"><i class="fa fa-tablet fa-fw"></i> 平板管理</a>
+            </li>
+            <li>
+              <a href="/push_messages"><i class="fa fa-archive fa-fw"></i> 推送消息管理</a>
+            </li>
+            <li>
               <a href=""><i class="fa fa-edit fa-fw"></i> Forms</a>
             </li>
             <li>
@@ -220,48 +223,7 @@
               </ul>
               <!-- /.nav-second-level -->
             </li>
-            <li>
-              <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="#">Second Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Second Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Third Level <span class="fa arrow"></span></a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                    <li>
-                      <a href="#">Third Level Item</a>
-                    </li>
-                  </ul>
-                  <!-- /.nav-third-level -->
-                </li>
-              </ul>
-              <!-- /.nav-second-level -->
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="blank.html">Blank Page</a>
-                </li>
-                <li>
-                  <a href="login.html">Login Page</a>
-                </li>
-              </ul>
-              <!-- /.nav-second-level -->
-            </li>
+           
           </ul>
           <!-- /#side-menu -->
         </div>

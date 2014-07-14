@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711101046) do
+ActiveRecord::Schema.define(version: 20140712073515) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -57,6 +57,24 @@ ActiveRecord::Schema.define(version: 20140711101046) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "news", force: true do |t|
+    t.integer  "company_id"
+    t.string   "title"
+    t.string   "author"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pads", force: true do |t|
+    t.string   "Mac_address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+  end
+
+  add_index "pads", ["Mac_address"], name: "index_pads_on_Mac_address", unique: true
 
   create_table "products", force: true do |t|
     t.integer  "company_id"
