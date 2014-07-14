@@ -4,7 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = current_admin_user.company.products
+    @products = current_admin_user.company.products.paginate(:page => params[:page], :per_page => 10)
+
   end
 
   # GET /products/1
@@ -76,3 +77,8 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:product_id, :product_name, :context, :created_at, :updated_at)
     end
 end
+
+    def self.search(search, page)
+      paginate :per_page => 5, :page => page,
+               :conditions => ['name like ?', "%#{search}%"], :order => 'name'
+    end
