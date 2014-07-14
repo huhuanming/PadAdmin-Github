@@ -1,63 +1,12 @@
-<!--  <form id="fadfa" method="post" class="form-horizontal">
-    <div class="form-group">
-        <label class="col-lg-3 control-label">Review title</label>
-        <div class="col-lg-5">
-            <input type="text" class="form-control" name="title" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-lg-3 control-label">Your review</label>
-        <div class="col-lg-5">
-            <textarea rows="5" class="form-control" name="content"></textarea>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5 col-lg-offset-3">
-            <button type="submit" class="btn btn-primary">Validate</button>
-        </div>
-    </div>
-</form> -->
+<% provide(:title, '新建')  %>
 <br>
-  <%= form_for(@pad) do |f| %>
-  <% if @pad.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@pad.errors.count, "error") %> prohibited this pad from being saved:</h2>
-    <ul>
-      <% @pad.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="panel panel-default">
+   <div class="panel-heading">新建平板</div>
+      <div class="panel-body">
+        <div class="table-responsive">
+    <%= render 'form' %>
+    <br>
+    <%= link_to '返回', pads_path, class:"btn btn-outline btn-primary" %>
+    </div>
   </div>
-  <% end %>
-  <div class="field">
-    Mac address<br>
-    <%= f.text_field :Mac_address, class:"form-control"%>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit '新建平板' ,class:"btn btn-outline btn-primary", role:"button"%>
-  </div>
-  <% end %>
-  <br>
-  <%= link_to '返回', pads_path, class:"btn btn-outline btn-primary"%>
-  <script>
-
-    $('#new_pad')
-        .bootstrapValidator({
-            excluded: ':disabled',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                pad[Mac_address]: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The review title is required'
-                        }
-                    }
-                }
-            }
-        });
-</script>
+</div>

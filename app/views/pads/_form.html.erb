@@ -1,20 +1,28 @@
 <%= form_for(@pad) do |f| %>
-  <% if @pad.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pad.errors.count, "error") %> prohibited this pad from being saved:</h2>
+<% if @pad.errors.any? %>
+<div class="alert alert-block alert-error">
+	<a class="close" data-dismiss="alert" href="#">×</a>
+	<p><strong>有 <%= @pad.errors.count %> 处问题导致无法提交:</strong></p>
+	<ul>
+		<% @pad.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
 
-      <ul>
-      <% @pad.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :MAC_address %><br>
-    <%= f.text_field :MAC_address %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div><% end %>
+<div class="field">
+	<% if @pad.errors.any? %>
+	<label class="string required control-label error" > MAC地址</label>
+	<br>
+	<%= f.text_field :Mac_address, class:"form-control  error"  %>
+	<% else %>
+	<label class="string required control-label" > MAC地址</label>
+	<%= f.text_field :Mac_address, class:"form-control"  %>
+	<% end %>
+</div>
+<br>
+<div class="actions">
+	<%= f.submit '提交' ,class:"btn btn-outline btn-primary", role:"button"%>
+</div>
+<% end %>

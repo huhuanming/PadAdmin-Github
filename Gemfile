@@ -13,21 +13,22 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'rb-readline'
+gem "rails-i18n","0.1.8"	
 
 
 group :development, :test do
-  gem 'sqlite3', '1.3.8'
-  gem 'rspec-rails'
-  gem 'spring'
-  gem 'factory_girl_rails'
+	gem 'sqlite3', '1.3.8'
+	gem 'rspec-rails'
+	gem 'spring'
+	gem 'factory_girl_rails'
 end
 
 group :test do
-  gem 'selenium-webdriver', '2.35.1'
-  gem 'capybara', '2.2.0'
+	gem 'selenium-webdriver', '2.35.1'
+	gem 'capybara', '2.2.0'
 end
 group :doc do
-  gem 'sdoc', '0.4', require: false
+	gem 'sdoc', '0.4', require: false
 end
 
 
