@@ -10,9 +10,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">产品管理</div>
       <!-- /.panel-heading -->
+        
+
       <div class="checkbox">
-          <label><input type="checkbox">全选</label>
+          <label><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }">全选</label>
+          <label><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }">反选</label>
       </div>
+      <button type="button" class="btn btn-default delete" id="del">删除</button>
       <div class="search">
       <div class="search-p">搜索:</div>
       <div class="search-in">
@@ -38,7 +42,7 @@
                         <% @products.each do |product| %>
                    <tbody>
                         <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="test" value="<%= product.id%>"></td>
                             <td>
                             <% if product.product_name.to_s.length >=10 %>
                                          <%= product.product_name.to_s[0,10]+'  ...' %>
@@ -77,3 +81,51 @@
       </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {  
+ /* 批量删除 */    
+      $("#del_model").click(function() {    
+          // 判断是否至少选择一项    
+          var checkedNum = $("input[name='subChk']:checked").length;    
+          if(checkedNum == 0) {    
+              alert("请选择至少一项！");    
+              return;    
+          }    
+</script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+        function checkAll(name)
+        {
+          var el = document.getElementsByTagName('input');
+          var len = el.length;
+          for(var i=0; i<len; i++)
+          {
+            if((el[i].type=="checkbox") && (el[i].name==name))
+            {
+              el[i].checked = true;
+            }
+          }
+        }
+        function clearAll(name)
+        {
+          var el = document.getElementsByTagName('input');
+          var len = el.length;
+          for(var i=0; i<len; i++)
+          {
+            if((el[i].type=="checkbox") && (el[i].name==name))
+            {
+              el[i].checked = false;
+            }
+          }
+        }
+        </script>
