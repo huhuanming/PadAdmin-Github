@@ -62,13 +62,13 @@ class ProductsController < ApplicationController
     end
   end 
 
-  # POST /product/destroy_ids
-  # POST /product/destroy_ids.json
+  # POST /products/destroy_ids
+  # POST /products/destroy_ids.json
   def destroy_ids
-    Product.destroy(product_params[:ids])
+    Product.destroy(params[:ids].split(","))
     respond_to do |format|
       format.html { redirect_to products_url, notice: '成功删除产品信息！' }
-      format.json { head :no_content }
+      format.json { render json: params, status: :ok }
     end
   end
 

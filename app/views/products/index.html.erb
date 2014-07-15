@@ -12,10 +12,10 @@
       <!-- /.panel-heading --> 
 
       <div class="checkbox">
-          <label><input type="checkbox" name="chckBox"  id="ckb" onclick="selectAll()">全选</label>
-          <label><input type="checkbox" name="not-all" id="ckb1" onclick="switchAll()" >反选</label>
+          <label><input type="radio"   id="allSelected">全选</label>
+          <label><input type="radio"   id="inverSelected">反选</label>
       </div>
-      <button type="button" class="btn btn-default delete" id="del" onclick="deleteCheck();">删除</button>
+      <button type="button" class="btn btn-default delete" id="deleteIds">删除</button>
       <div class="search">
       <div class="search-p">搜索:</div>
       <div class="search-in">
@@ -41,7 +41,7 @@
                         <% @products.each do |product| %>
                    <tbody>
                         <tr>
-                        <td><input type="checkbox" name="chckBox" value="<%= product.id%>"></td>
+                        <td><input type="checkbox" id="chckBox" name="<%= product.id%>"></td>
                             <td>
                             <% if product.product_name.to_s.length >=10 %>
                                          <%= product.product_name.to_s[0,10]+'  ...' %>
@@ -78,52 +78,32 @@
 <a data-method="delete" href="/products/85" rel="nofollow">删除</a>
 
 
-
-
-
-
-
 <script type="text/javascript">
+         $("#allSelected").change(function(event) {
+           var checked = $(this).get(0).checked;
+           $("#inverSelected").get(0).checked = false;
+           $("input[id = chckBox]").each(function(index, checkBox) {
+                    checkBox.checked = checked;
+                  });
+         });
+
+         $("#inverSelected").change(function(event) {
+           $("#allSelected").get(0).checked = false;
+           $("input[id = chckBox]").each(function(index, checkBox) {
+                    checkBox.checked = !checkBox.checked;
+                  });
+         });
  
-        function selectAll()  
-            {    
-                var chckBoxSign = document.getElementById("ckb");       //ckb 全选/反选的选择框id    
-                var chckBox = document.getElementsByName("chckBox");  
-                var num = chckBox.length;    
-                if(chckBoxSign.checked)  
-                {    
-                    for(var index =0 ; index<num;index++)  
-                        chckBox[index].checked = true;    
-                }  
-                else{    
-                    for(var index =0 ; index<num;index++)  
-                        chckBox[index].checked = false;    
-                }    
-             }
-        function deleteCheck(){    
-                var chckBox = document.getElementsByName("chckBox");   
-                var num = chckBox.length;    
-                var ids = "";    
-                for(var index =0 ; index<num;index++)  
-                {  
-                    if(chckBox[index].checked){    
-                        ids += chckBox[index].value + ",";                  
-                    }    
-                }    
-                if(ids!="")  
-                {    
-                    if(window.confirm("确定删除所选记录？"))  
-                    {    
-                        //ids为数组里面存有选中的记录的id  
-                        location="deleteSelect.vid?ids="+ids;  
-                    }    
-                }  
-               else 
-               {    
-                    alert("请选择要删除的记录");    
-               }    
-            } 
-
-
-
-        </script>
+         $("#deleteIds").click(function(event) {
+           var ids = new Array();
+           $("input[id = chckBox]").each(function(index, checkBox) {
+                    if (checkBox.checked) {
+                      ids = ids + checkBox.name + ",";
+                    };
+                  });
+           console.log(ids);
+           $.post('/products/destroy_ids', { ids: ids}, function(data) {
+              
+            }, "json");
+         });
+</script>
