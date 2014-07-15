@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Pad, :type => :model do
-	before { @pad = Pad.new(Mac_address: "12:23:aa:12:11:21" ) }
+	before { @pad = Pad.new(Mac_address: "12:23:aa:12:11:21" , pad_user_name: "abc") }
 
 	subject { @pad }
 
@@ -26,5 +26,18 @@ RSpec.describe Pad, :type => :model do
 			pad_with_same_MAC.save 
 		end
 		it { should_not be_valid }
+	end
+	describe "when pad_user_name is not present" do 
+		before do 
+			@pad.pad_user_name = ""
+			@pad.save
+		end
+		it { should be_valid}
+	end
+	describe "when pad_user_name is present" do 
+		before do
+			@pad.save
+		end
+		it { should be_valid}
 	end
 end
