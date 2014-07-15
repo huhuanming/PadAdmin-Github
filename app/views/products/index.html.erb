@@ -9,14 +9,13 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">产品管理</div>
-      <!-- /.panel-heading -->
-        
+      <!-- /.panel-heading --> 
 
       <div class="checkbox">
-          <label><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }">全选</label>
-          <label><input type="checkbox" name="test" value="" onclick="if(this.checked==true) { checkAll('test'); } else { clearAll('test'); }">反选</label>
+          <label><input type="checkbox" name="chckBox"  id="ckb" onclick="selectAll()">全选</label>
+          <label><input type="checkbox" name="not-all" id="ckb1" onclick="switchAll()" >反选</label>
       </div>
-      <button type="button" class="btn btn-default delete" id="del">删除</button>
+      <button type="button" class="btn btn-default delete" id="del" onclick="deleteCheck();">删除</button>
       <div class="search">
       <div class="search-p">搜索:</div>
       <div class="search-in">
@@ -42,7 +41,7 @@
                         <% @products.each do |product| %>
                    <tbody>
                         <tr>
-                        <td><input type="checkbox" name="test" value="<%= product.id%>"></td>
+                        <td><input type="checkbox" name="chckBox" value="<%= product.id%>"></td>
                             <td>
                             <% if product.product_name.to_s.length >=10 %>
                                          <%= product.product_name.to_s[0,10]+'  ...' %>
@@ -72,29 +71,11 @@
             </div>
             <!-- /.table-responsive -->
 
-            <div class="digg_pagination">
-            <div class="page_info">
-            </div>
-            </div>
       </div>
-      <%= paginate @products, :outer_window => 3 %>
   </div>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function() {  
- /* 批量删除 */    
-      $("#del_model").click(function() {    
-          // 判断是否至少选择一项    
-          var checkedNum = $("input[name='subChk']:checked").length;    
-          if(checkedNum == 0) {    
-              alert("请选择至少一项！");    
-              return;    
-          }    
-</script>
-
-
-
+<a data-method="delete" href="/products/85" rel="nofollow">删除</a>
 
 
 
@@ -103,28 +84,46 @@
 
 
 <script type="text/javascript">
-        function checkAll(name)
-        {
-          var el = document.getElementsByTagName('input');
-          var len = el.length;
-          for(var i=0; i<len; i++)
-          {
-            if((el[i].type=="checkbox") && (el[i].name==name))
-            {
-              el[i].checked = true;
-            }
-          }
-        }
-        function clearAll(name)
-        {
-          var el = document.getElementsByTagName('input');
-          var len = el.length;
-          for(var i=0; i<len; i++)
-          {
-            if((el[i].type=="checkbox") && (el[i].name==name))
-            {
-              el[i].checked = false;
-            }
-          }
-        }
+ 
+        function selectAll()  
+            {    
+                var chckBoxSign = document.getElementById("ckb");       //ckb 全选/反选的选择框id    
+                var chckBox = document.getElementsByName("chckBox");  
+                var num = chckBox.length;    
+                if(chckBoxSign.checked)  
+                {    
+                    for(var index =0 ; index<num;index++)  
+                        chckBox[index].checked = true;    
+                }  
+                else{    
+                    for(var index =0 ; index<num;index++)  
+                        chckBox[index].checked = false;    
+                }    
+             }
+        function deleteCheck(){    
+                var chckBox = document.getElementsByName("chckBox");   
+                var num = chckBox.length;    
+                var ids = "";    
+                for(var index =0 ; index<num;index++)  
+                {  
+                    if(chckBox[index].checked){    
+                        ids += chckBox[index].value + ",";                  
+                    }    
+                }    
+                if(ids!="")  
+                {    
+                    if(window.confirm("确定删除所选记录？"))  
+                    {    
+                        //ids为数组里面存有选中的记录的id  
+                        location="deleteSelect.vid?ids="+ids;  
+                    }    
+                }  
+               else 
+               {    
+                    alert("请选择要删除的记录");    
+               }    
+            } 
+
+
+
         </script>
