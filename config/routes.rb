@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   match '/', to: 'home#index', via: 'get'
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
+
+  post "product/destroy_ids"
+
   resources :companies, :except => [:new, :destroy, :create]
   resources :informs
   resources :products

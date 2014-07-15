@@ -57,7 +57,17 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: '成功删除商品信息！' }
+      format.html { redirect_to products_url, notice: '成功删除产品信息！' }
+      format.json { head :no_content }
+    end
+  end 
+
+  # POST /product/destroy_ids
+  # POST /product/destroy_ids.json
+  def destroy_ids
+    Product.destroy(product_params[:ids])
+    respond_to do |format|
+      format.html { redirect_to products_url, notice: '成功删除产品信息！' }
       format.json { head :no_content }
     end
   end
