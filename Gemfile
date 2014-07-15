@@ -13,7 +13,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'rb-readline'
-gem 'will_paginate', '~> 3.0'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

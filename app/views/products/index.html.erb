@@ -74,11 +74,10 @@
 
             <div class="digg_pagination">
             <div class="page_info">
-            <%= page_entries_info @products %>
             </div>
-            <%= will_paginate @products %>
             </div>
       </div>
+      <%= paginate @products, :outer_window => 3 %>
   </div>
 </div>
 
