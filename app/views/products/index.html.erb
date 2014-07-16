@@ -18,10 +18,10 @@
       <button type="button" class="btn btn-default delete" id="deleteIds">删除</button>
       <div class="search">
           <div class="search-in">
-              <input class="form-control" type="text" id="search-in">
+              <input class="form-control" type="text" id="search-in" value="<%=params[:search] %>">
           </div>
           <div class="search-p">
-              <button type="button" class="btn btn-default delete" id="search">搜索:</button>
+              <button type="button" class="btn btn-default delete" id="search">搜索</button>
           </div>
       </div>
 
@@ -109,9 +109,9 @@
               
             }, "json");
          });
-         // $("#search").click(function(event) {
-         //  var SreachContent = new String();
-         //   $("#search-in").val()       
-         // }
-         // $post()
+
+         $("#search").click(function(event) {
+            location.href="?search="+$("#search-in").val();   
+          });
+        
 </script>

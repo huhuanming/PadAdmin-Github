@@ -7,9 +7,11 @@ Rails.application.routes.draw do
 
   resources :companies, :except => [:new, :destroy, :create]
   resources :informs
+
   resources :products  do
     post 'destroy_ids', on: :collection
   end
+
   resources :push_messages
   resources :pads
   # The priority is based upon order of creation: first created -> highest priority.

@@ -4,8 +4,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = current_admin_user.company.products.page(params[:page])
-
+    if params[:search].nil?
+      @products = current_admin_user.company.products.page(params[:page])
+    else
+      @products = current_admin_user.company.products.where('product_name LIKE ?',"%#{params[:search]}%").page(params[:page])
+    end
   end
 
   # GET /products/1
@@ -27,7 +30,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    @product.company_id = current_admin_user.company.id
+    @product.company_id = current_admin_user.company_id
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: '成功添加商品信息！' }
@@ -66,30 +69,24 @@ class ProductsController < ApplicationController
   # POST /products/destroy_ids
   # POST /products/destroy_ids.json
   def destroy_ids
-    Product.destroy(params[:ids].split(","))
+    params[:ids].split(",").each do | id |
+        product = Product.find_by_id(id)
+        if !product.nil? && (product.company_id == current_admin_user.company_id)
+            product.destroy
+        end
+    end
+
     respond_to do |format|
       format.html { redirect_to products_url, notice: '成功删除产品信息！' }
       format.json { render json: params, status: :ok }
     end
   end
-  # def search
-  #     @products = Product.report(params[:SreachContent])
-  #    respond_to do |format|
-  #        format.html do
-  #          @products = @products.paginate(:per_page => params[:per_page] || 10, :page => params[:page]).order('incident_number ASC')
-  #        end
-  #        format.csv { send_data @calls.to_csv }
-  #        format.xls  { send_data @calls.to_csv(col_sep: "\t") }
-  #      end
-
-    
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
-      if @product.nil? || ( @product.company_id != current_admin_user.company.id )
+      if @product.nil? || ( @product.company_id != current_admin_user.company_id )
           redirect_to informs_path  
       end
     end
