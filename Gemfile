@@ -14,6 +14,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'rb-readline'
 gem 'kaminari'
+gem 'fuzzily'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

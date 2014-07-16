@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+
   # GET /products/1/edit
   def edit
   end
@@ -71,6 +72,18 @@ class ProductsController < ApplicationController
       format.json { render json: params, status: :ok }
     end
   end
+  # def search
+  #     @products = Product.report(params[:SreachContent])
+  #    respond_to do |format|
+  #        format.html do
+  #          @products = @products.paginate(:per_page => params[:per_page] || 10, :page => params[:page]).order('incident_number ASC')
+  #        end
+  #        format.csv { send_data @calls.to_csv }
+  #        format.xls  { send_data @calls.to_csv(col_sep: "\t") }
+  #      end
+
+    
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -92,3 +105,4 @@ end
       paginate :per_page => 5, :page => page,
                :conditions => ['name like ?', "%#{search}%"], :order => 'name'
     end
+

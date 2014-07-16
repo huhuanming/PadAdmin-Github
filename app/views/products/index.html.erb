@@ -12,16 +12,17 @@
       <!-- /.panel-heading --> 
 
       <div class="checkbox">
-          <label><input type="radio"   id="allSelected">全选</label>
-          <label><input type="radio"   id="inverSelected">反选</label>
+          <label><input type="checkbox"   id="allSelected">全选</label>
+          <label><input type="checkbox"   id="inverSelected">反选</label>
       </div>
       <button type="button" class="btn btn-default delete" id="deleteIds">删除</button>
       <div class="search">
-      <div class="search-p">搜索:</div>
-      <div class="search-in">
-      <input class="form-control" type="text">
-
-      </div>
+          <div class="search-in">
+              <input class="form-control" type="text" id="search-in">
+          </div>
+          <div class="search-p">
+              <button type="button" class="btn btn-default delete" id="search">搜索:</button>
+          </div>
       </div>
 
           <div class="panel-body">
@@ -70,12 +71,13 @@
             <%= link_to '新建', new_product_path , class:"btn btn-outline btn-primary"%></li>
             </div>
             <!-- /.table-responsive -->
-
+  <%= paginate @products, :outer_window => 3 %> 
       </div>
   </div>
 </div>
 
-<a data-method="delete" href="/products/85" rel="nofollow">删除</a>
+
+<!-- <a data-method="delete" href="/products/85" rel="nofollow">删除</a> -->
 
 
 <script type="text/javascript">
@@ -95,15 +97,21 @@
          });
  
          $("#deleteIds").click(function(event) {
-           var ids = new Array();
+           var ids = new String();
            $("input[id = chckBox]").each(function(index, checkBox) {
                     if (checkBox.checked) {
                       ids = ids + checkBox.name + ",";
                     };
                   });
-           console.log(ids);
+          
            $.post('/products/destroy_ids', { ids: ids}, function(data) {
+                  location.reload();
               
             }, "json");
          });
+         // $("#search").click(function(event) {
+         //  var SreachContent = new String();
+         //   $("#search-in").val()       
+         // }
+         // $post()
 </script>
