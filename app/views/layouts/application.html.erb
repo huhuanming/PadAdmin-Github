@@ -9,9 +9,10 @@
   <title> <%= yield(:title) %></title>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'application', params[:controller], :media => 'all' %>
-  <%= csrf_meta_tags %>  
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= yield :header_js %>
+  <%= csrf_meta_tags %>  
 
 </head>
 
@@ -267,7 +268,7 @@ $(function() {
     })
 })
 </script>
-
+  <%= yield :footer_js %>
 </body>
 
 </html>

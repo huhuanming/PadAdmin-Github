@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   match '/', to: 'home#index', via: 'get'
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
+
+
   resources :companies, :except => [:new, :destroy, :create]
   resources :informs
-  resources :products
+
+  resources :products  do
+    post 'destroy_ids', on: :collection
+  end
+
   resources :push_messages
   resources :pads
   # The priority is based upon order of creation: first created -> highest priority.

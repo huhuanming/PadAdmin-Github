@@ -345,3 +345,33 @@ table.dataTable thead .sorting:after {
     cursor:pointer
 }
 
+/*
+Document :paging
+Created on:15 july .2014,17:41
+*/
+.pagination{
+    padding-top: 10px;
+ .pages a{
+    border:1px solid #428bca;
+    padding-bottom:7px;
+    padding-top: 7px;
+    padding-right: 12px;
+    padding-left: 12px;
+    text-decoration: none;
+    &:hover{
+    background-color:#428bca;
+    color: #fff; 
+    }
+}
+ .current{
+    border:1px solid #428bca;
+    background-color: #428bca;
+    margin-right: 3px;
+    padding-bottom:7px;
+    padding-top: 7px;
+    padding-right: 12px;
+    padding-left: 12px;
+    color: #fff;
+}
+}
+ 

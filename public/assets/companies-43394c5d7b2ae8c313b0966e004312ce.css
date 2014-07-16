@@ -1,0 +1,47 @@
+/* index css */
+/* line 3, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.btn-primary.btn-outline {
+  margin-top: 20px;
+  margin-right: 15px;
+  width: 150px;
+  float: left;
+}
+
+/* line 10, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.show {
+  width: 60%;
+  color: #544946;
+  font-size: 20x;
+  font-weight: normal;
+  margin-top: 20px;
+}
+/* line 16, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.show strong {
+  color: #426ab3;
+  font-weight: normal;
+}
+
+/* line 22, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.alert-successp {
+  width: 100%;
+  height: 50px;
+}
+
+/* line 26, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.alert-success {
+  text-align: center;
+}
+
+/* index css end*/
+/* from  css*/
+/* line 33, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.field {
+  width: 70%;
+}
+/* line 35, /Users/hu/Documents/RailsProjects/PadAdmin-Github/app/assets/stylesheets/companies.css.scss */
+.field label {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+/* from css end*/

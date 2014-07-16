@@ -28,3 +28,10 @@ en:
             message: 
               blank: "不能为空"
               too_long: "超过字数限制"
+en:
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
