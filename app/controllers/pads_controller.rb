@@ -15,7 +15,6 @@ class PadsController < ApplicationController
   # GET /pads/new
   def new
     @pad = Pad.new
-    @pad_user = PadUser.new
   end
 
   # GET /pads/1/edit
@@ -27,11 +26,11 @@ class PadsController < ApplicationController
   def create
     @pad = Pad.new(pad_params)
     @pad.company_id = current_admin_user.company.id
- 
+
     respond_to do |format|
       if @pad.save
-          format.html { redirect_to @pad, notice: '新建成功！' }
-          format.json { render :show, status: :created, location: @pad }
+        format.html { redirect_to @pad, notice: '新建成功！' }
+        format.json { render :show, status: :created, location: @pad }
       else
         format.html { render :new}
         format.json { render json: @pad.errors, status: :unprocessable_entity }

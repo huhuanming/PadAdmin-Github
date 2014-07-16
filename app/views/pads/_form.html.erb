@@ -13,21 +13,21 @@
 
 <div class="field">
 	<% if @pad.errors.any? %>
-	<label class="string required control-label error" > MAC地址</label>
+	<label class="string required control-label error" >MAC地址</label>
 	<br>
 	<%= f.text_field :Mac_address, class:"form-control error"  %>
 	<br>
-	<label class="string required control-label" > 用户名</label>
+	<label class="string required control-label" >用户名</label>
 	<br>
-	<%= f.text_field :pad_user_name, class:"form-control", value:@pad.pad_user.name  %>
+	<%= f.text_field :pad_user_name, class:"form-control error", value: (@pad.pad_user.nil?)? "" : @pad.pad_user.name  %>
 	<% else %>
-	<label class="string required control-label" > MAC地址</label>
+	<label class="string required control-label" >MAC地址</label>
 	<br>
 	<%= f.text_field :Mac_address, class:"form-control"  %>
 	<br>
-	<label class="string required control-label" > 用户名</label>
+	<label class="string required control-label" >用户名</label>
 	<br>
-	<%= f.text_field :pad_user_name, class:"form-control",  value:@pad.pad_user.name %>
+	<%= f.text_field :pad_user_name, class:"form-control",  value: (@pad.pad_user.nil?)? "" : @pad.pad_user.name %>
 	<% end %>
 </div>
 <br>

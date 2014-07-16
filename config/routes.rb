@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
   resources :companies, :except => [:new, :destroy, :create]
+  resources :admins, controller: 'admin_users'
   resources :informs
   resources :products
   resources :push_messages
