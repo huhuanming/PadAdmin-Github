@@ -1,4 +1,13 @@
 <% provide(:title, '产品展示')  %>
+
+<%= content_for :header_js do %>
+   <%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
+<% end %>
+
+<%= content_for :footer_js do %>
+   <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>
+<% end %>
 <%= form_for(@product) do |f| %>
 
       <% if @product.errors.any? %>
@@ -30,6 +39,7 @@
 
 <script type="text/javascript">
   var ue = UE.getEditor('editor');
+
   ue.ready(function() {
      html = unescape("<%= @product.context%>");  
     $('#ueditor_0').contents().find('body').append(html);

@@ -10,6 +10,8 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= yield :header_js %>
   <%= csrf_meta_tags %>  
 
 </head>
@@ -266,10 +268,7 @@ $(function() {
     })
 })
 </script>
-<%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>   
-
+  <%= yield :footer_js %>
 </body>
 
 </html>

@@ -19,4 +19,3 @@
 //= require plugins/morris/morris
 //= require demo/dashboard-demo
 //= require plugins/jquery/scrollToTop.min
-//= require plugins/validation/bootstrapValidator.min
