@@ -16,7 +16,6 @@
 				</ul>
 			</div>
 			<% end %>
-
 			<div class="field">
 				<% if @admin.errors.any? %>
 				<label class="string required control-label error" >用户名</label>
@@ -29,11 +28,11 @@
 				<br>
 				<label class="string required control-label error" >密码</label>
 				<br>
-				<%= f.text_field :password, class:"form-control error" %>
+				<%= f.password_field :password, class:"form-control error" %>
 				<br>
 				<label class="string required control-label error" >确认密码</label>
 				<br>
-				<%= f.text_field :password_confirmation, class:"form-control error" %>
+				<%= f.password_field :password_confirmation, class:"form-control error" %>
 				<% else %>
 				<label class="string required control-label" >用户名</label>
 				<br>
@@ -45,11 +44,11 @@
 				<br>
 				<label class="string required control-label" >密码</label>
 				<br>
-				<%= f.text_field :password, class:"form-control" %>
+				<%= f.password_field :password, class:"form-control" %>
 				<br>
 				<label class="string required control-label" >确认密码</label>
 				<br>
-				<%= f.text_field :password_confirmation, class:"form-control" %>
+				<%= f.password_field :password_confirmation, class:"form-control" %>
 				<% end %>
 			</div>
 			<br>

@@ -28,6 +28,7 @@ en:
       admin_user:
         username: "用户名"
         email: "邮箱"
+        current_password: "管理员密码"
         password: "密码"
         password_confirmation: "确认密码"
       pad:

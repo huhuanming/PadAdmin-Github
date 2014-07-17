@@ -23,23 +23,25 @@
             <tr>
               <td class="textstyle"><%= admin_user.username %></td>
               <td class="textstyle"><%= admin_user.email%></td>
-              <td class="textstyle"><%= link_to '查看', admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to '编辑', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to '删除', admin_path(admin_user), method: :delete, data: { confirm: '您确定要删除?' } %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-
+              <td class="textstyle">
+                <%= link_to '查看', admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '更改密码', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '删除', admin_path(admin_user), method: :delete, data: { confirm: '您确定要删除?' } %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
         </table>
 
-      </div>
-      <!-- /.table-responsive -->
-    </div>
+      </table>
 
-    <!-- /.panel-body -->
+    </div>
+    <!-- /.table-responsive -->
   </div>
-  <!-- /.panel -->
+
+  <!-- /.panel-body -->
+</div>
+<!-- /.panel -->
 
 </div>
 

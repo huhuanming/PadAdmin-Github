@@ -10,6 +10,7 @@ class AdminUser < ActiveRecord::Base
 
   validates :username, :presence => { :message => "不能为空字符" }, uniqueness: { case_sensitive: false }
 
+ 
   def login=(login)
   	@login = login
   end

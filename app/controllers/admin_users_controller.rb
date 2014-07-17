@@ -1,6 +1,6 @@
 class AdminUsersController < ApplicationController
 	before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource except: [:create]
   # GET /admin_users
   # GET /admin_users.json
   def index
@@ -14,8 +14,7 @@ class AdminUsersController < ApplicationController
 
   # GET /admin_users/new
   def new
-  	@admin = AdminUser.new
-        @actionUrl = admins_path
+    @admin = AdminUser.new
   end
 
   # GET /admin_users/1/edit
@@ -25,6 +24,7 @@ class AdminUsersController < ApplicationController
   # POST /admin_users
   # POST /admin_users.json
   def create
+        authorize! :create, AdminUser
   	@admin = AdminUser.new(admin_params)
   	@admin.company_id = current_admin_user.company.id
 
@@ -43,7 +43,7 @@ class AdminUsersController < ApplicationController
   # PATCH/PUT /admin_users/1.json
   def update
   	respond_to do |format|
-  		if @admin.update(admin_params)
+  		if  @admin.update(admin_params) && current_admin_user.valid_password?(params[:admin_user][:current_password])
   			format.html { redirect_to admin_path(@admin), notice: '编辑成功！' }
   			format.json { render :show, status: :ok, location: @admin }
   		else
@@ -74,7 +74,15 @@ class AdminUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-    	params.require(:admin_user).permit(:username, :email, :password, :password_confirmation)
+    	params.require(:admin_user).permit(:username, :email, :password, :password_confirmation, :company_id)
+    end
+
+    def current_user
+      return current_admin_user
+    end
+
+    def root_url
+      return root_path
     end
   end
 
