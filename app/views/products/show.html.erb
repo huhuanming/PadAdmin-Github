@@ -1,4 +1,5 @@
 <% provide(:title, '产品展示')  %>
+
 <% if !notice.nil? %>
   <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -25,20 +26,17 @@
               </div>
               <div id="log"  class="check_product">
                 <strong>产品描述:</strong>
-                <br>
 
               </div>
 
 
               <script type="text/javascript">
-                   
-
                   a = $('<iframe/>', {
                       id: 'foo',
                   })
                   a.appendTo('#log');
                   a.css('width', '100%');
-                  a.css('height', '500px');
+                  a.css('height', '100%');
                   a.css('border','0 none');
 
 
