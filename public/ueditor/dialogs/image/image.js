@@ -351,15 +351,30 @@
                 imageMaxSize = editor.getOpt('imageMaxSize'),
                 imageCompressBorder = editor.getOpt('imageCompressBorder');
 
-            if (!WebUploader.Uploader.support()) {
-                $('#filePickerReady').after($('<div>').html(lang.errorNotSupport)).hide();
-                return;
-            } else if (!editor.getOpt('imageActionName')) {
-                $('#filePickerReady').after($('<div>').html(lang.errorLoadConfig)).hide();
-                return;
-            }
-
+            // if (!WebUploader.Uploader.support()) {
+            //     $('#filePickerReady').after($('<div>').html(lang.errorNotSupport)).hide();
+            //     return;
+            // } else if (!editor.getOpt('imageActionName')) {
+            //     $('#filePickerReady').after($('<div>').html(lang.errorLoadConfig)).hide();
+            //     return;
+            // }
+            actionUrl = "http://up.qiniu.com/"
+            var token = new String;
+            $.ajax({
+                url : '../../../api/uploadToken',
+                cache : false, 
+                async : false,
+                type : "get",
+                dataType : 'json',
+                success : function (data){
+                    token = data.token;
+                    console.log(token);
+                }
+            });
             uploader = _this.uploader = WebUploader.create({
+                 formData: {
+                     token: token
+                },
                 pick: {
                     id: '#filePickerReady',
                     label: lang.uploadSelectFile
@@ -457,10 +472,10 @@
                     file.rotation = 0;
 
                     /* 检查文件格式 */
-                    if (!file.ext || acceptExtensions.indexOf(file.ext.toLowerCase()) == -1) {
-                        showError('not_allow_type');
-                        uploader.removeFile(file);
-                    }
+                    // if (!file.ext || acceptExtensions.indexOf(file.ext.toLowerCase()) == -1) {
+                    //     showError('not_allow_type');
+                    //     uploader.removeFile(file);
+                    // }
                 }
 
                 file.on('statuschange', function (cur, prev) {
@@ -717,8 +732,12 @@
                 try {
                     var responseText = (ret._raw || ret),
                         json = utils.str2json(responseText);
-                    if (json.state == 'SUCCESS') {
-                        _this.imageList.push(json);
+                    if (json.hasOwnProperty("hash")) {
+                        data = new Array();
+                        data['title'] = file.name;
+                        data['url'] = json.hash;
+                        data['original'] = json.hash;
+                        _this.imageList.push(data);
                         $file.append('<span class="success"></span>');
                     } else {
                         $file.find('.error').text(json.state).show();
@@ -776,7 +795,7 @@
                     src: prefix + data.url,
                     _src: prefix + data.url,
                     title: data.title,
-                    alt: data.original,
+                    alt: data.title, 
                     floatStyle: align
                 });
             }

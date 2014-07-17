@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  match '/', to: 'home#index', via: 'get'
+  root 'home#index'
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
 
@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :push_messages
   resources :pads
+  
+  mount API::Root => '/'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

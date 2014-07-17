@@ -30,8 +30,10 @@
         UEDITOR_HOME_URL: URL
 
         // 服务器统一请求接口路径
-        , serverUrl: URL + "/upload"
-
+        ,imageUrl:"http://up.qiniu.com/" 
+        ,imagePath:"http://motor.qiniudn.com/"
+        ,imageUrlPrefix:"http://motor.qiniudn.com/"
+        ,imageFieldName:"file"
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         
         , toolbars: [["fullscreen","source","undo","redo","insertunorderedlist","insertorderedlist","unlink","link","cleardoc","selectall","searchreplace","preview","|","print","template","background","pagebreak","simpleupload","insertimage","date","time","wordimage","map","horizontal","anchor","blockquote","pasteplain","bold","italic","underline","fontborder","strikethrough","forecolor","backcolor","superscript","subscript","justifyleft","justifycenter","justifyright","justifyjustify","indent","removeformat","formatmatch","autotypeset","customstyle","paragraph","rowspacingbottom","rowspacingtop","lineheight","fontfamily","fontsize","imagenone","imageleft","imageright","imagecenter","inserttable","deletetable","mergeright","mergedown","splittorows","splittocols","splittocells","mergecells","insertcol","insertrow","deletecol","deleterow","insertparagraphbeforetable","charts"]]
