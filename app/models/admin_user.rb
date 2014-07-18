@@ -8,6 +8,9 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :company
 
+  validates :username, :presence => { :message => "不能为空字符" }, uniqueness: { case_sensitive: false }
+
+ 
   def login=(login)
   	@login = login
   end

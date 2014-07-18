@@ -26,12 +26,13 @@ class PadsController < ApplicationController
   def create
     @pad = Pad.new(pad_params)
     @pad.company_id = current_admin_user.company.id
+
     respond_to do |format|
       if @pad.save
         format.html { redirect_to @pad, notice: '新建成功！' }
         format.json { render :show, status: :created, location: @pad }
       else
-        format.html { render :new }
+        format.html { render :new}
         format.json { render json: @pad.errors, status: :unprocessable_entity }
       end
     end
@@ -66,12 +67,13 @@ class PadsController < ApplicationController
     def set_pad
       @pad = Pad.find(params[:id])
       if @pad.nil? || ( @pad.company_id != current_admin_user.company.id )
-          redirect_to pads_path  
+        redirect_to pads_path  
       end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pad_params
-      params.require(:pad).permit(:Mac_address, :company_id,)
+      params.require(:pad).permit(:Mac_address, :company_id, :pad_user_name)
     end
-end
+
+  end

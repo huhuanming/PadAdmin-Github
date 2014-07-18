@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
   root 'home#index'
+<<<<<<< HEAD
+=======
+  match '/', to: 'home#index', via: 'get'
+>>>>>>> origin/新建平板验证
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
 
 
   resources :companies, :except => [:new, :destroy, :create]
+  resources :admins, controller: 'admin_users'
   resources :informs
 
   resources :products  do

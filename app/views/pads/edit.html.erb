@@ -1,27 +1,9 @@
   <br>
-  <%= form_for(@pad) do |f| %>
-  <% if @pad.errors.any? %>
-  <div id="error_explanation">
-  	<h2><%= pluralize(@pad.errors.count, "error") %> prohibited this pad from being saved:</h2>
-  	<ul>
-  		<% @pad.errors.full_messages.each do |message| %>
-  		<li><%= message %></li>
-  		<% end %>
-  	</ul>
-  </div>
-  <% end %>
-  <div class="field">
-  	Mac address<br>
-  	<%= f.text_field :Mac_address, class:"form-control"%>
-  </div>
-  <br>
-  <div class="actions">
-  	<%= f.submit '编辑平板' ,class:"btn btn-outline btn-primary", role:"button"%>
-  </div>
-  <% end %>
+  <div class="panel panel-default">
+   <div class="panel-heading">编辑平板</div>
+      <div class="panel-body">
+        <div class="table-responsive">
+    <%= render 'form' %>
   <br>
   <%= link_to '查看', @pad, class:"btn btn-outline btn-primary" %> 
   <%= link_to '返回', pads_path, class:"btn btn-outline btn-primary"%>
-
-
-

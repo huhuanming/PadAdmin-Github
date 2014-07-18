@@ -16,7 +16,7 @@ class Errors
   
 :empty => "can't be empty",  
   
-:blank => "can't be lank",  
+:blank => "can't be blank",  
   
 :too_long => "is too long (maximum is %d characters)",  
   
