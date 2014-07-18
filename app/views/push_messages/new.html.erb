@@ -1,11 +1,62 @@
 <% provide(:title, '新建')  %>
 
 <div class="panel panel-default">
-   <div class="panel-heading">新增推送信息</div>
-      <div class="panel-body">
-        <div class="table-responsive">
-		<%= render 'form' %>
-		<%= link_to '返回', push_messages_path, class:"btn btn-outline btn-primary" %>
-		</div>
-	</div>
+ <div class="panel-heading">新增推送信息</div>
+ <div class="panel-body">
+  <div class="table-responsive">
+    <%= render 'form' %>
+    <%= link_to '返回', push_messages_path, class:"btn btn-outline btn-primary" %>
+  </div>
 </div>
+<div class="checkbox">
+  <label><input type="checkbox"   id="allSelected">全选</label>
+  <label><input type="checkbox"   id="inverSelected">反选</label>
+</div>
+<div class="panel-body">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <td class="checkBox"></td>
+          <td>用户姓名</td>
+          <td>MAC地址</td>
+        </tr>
+      </thead>
+      <% @pad.each do |pad| %>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" id="chckBox" name="<%= pad.id%>"></td>
+          <td>
+            <% if pad.pad_user.name.length >=10 %>
+            <%= pad.pad_user.name.to_s[0,10]+'  ...' %>
+            <% else %>
+            <%= pad.pad_user.name %>
+            <% end %>
+          </td>
+          <td>
+            <%= pad.Mac_address %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+  console.log("fuck");
+   $("#allSelected").change(function(event) {
+    var checked = $(this).get(0).checked;
+    $("#inverSelected").get(0).checked = false;
+    $("input[id = chckBox]").each(function(index, checkBox) {
+      checkBox.checked = checked;
+    });
+  });
+
+   $("#inverSelected").change(function(event) {
+     $("#allSelected").get(0).checked = false;
+     $("input[id = chckBox]").each(function(index, checkBox) {
+      checkBox.checked = !checkBox.checked;
+    });
+   });
+
+</script>

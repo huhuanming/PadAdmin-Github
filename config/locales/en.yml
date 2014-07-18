@@ -30,6 +30,7 @@ en:
   activerecord:
     models:
       pad: "平板"
+      push_message: "推送消息"
     attributes:
       admin_user:
         username: "用户名"
@@ -39,6 +40,8 @@ en:
         password_confirmation: "确认密码"
       pad:
         Mac_address: "MAC地址"
+      push_message:
+        message: "推送消息"
   errors:
     models:
       admin_user: 管理员
