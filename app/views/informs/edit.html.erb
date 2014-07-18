@@ -1,4 +1,4 @@
-<br>
+<% provide(:title, '新闻编辑')  %>
 
 <%= form_for(@inform) do |f| %>
   <% if @inform.errors.any? %>
@@ -12,26 +12,19 @@
     </div>
 <% end %>
 
+<div class="panel panel-default">
+    <div class="panel-heading">新闻编辑</div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+          <div class="table-responsive">
+            <%= render 'form' %>
+              <%= link_to '查看', @inform ,class:"btn btn-outline btn-primary"%>
 
-  <div class="field">
-    标题<br>
-    <%= f.text_field :title, class:"form-control"%>
-  </div>
-  <div class="field">
-    作者<br>
-    <%= f.text_field :author , class:"form-control"%>
-  </div>
-  <div class="field">
-    内容<br>
-    <%= f.text_field :context , class:"form-control"%>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit '编辑新闻' ,class:"btn btn-outline btn-primary", role:"button"%>
-  </div>
-<% end %>
-
-<br>
-<%= link_to '查看', @inform ,class:"btn btn-outline btn-primary"%>
-
-<%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
+              <%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
+          <% end %>
+          </div>
+      </div>
+</div>
+<script type="text/javascript">
+    form_send($(".edit_inform").attr('action'), 'put');
+</script>

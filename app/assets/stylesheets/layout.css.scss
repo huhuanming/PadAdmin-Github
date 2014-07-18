@@ -351,6 +351,7 @@ Created on:15 july .2014,17:41
 */
 .pagination{
     padding-top: 10px;
+    float:right;
  .pages a{
     border:1px solid #428bca;
     padding-bottom:7px;
@@ -374,4 +375,138 @@ Created on:15 july .2014,17:41
     color: #fff;
 }
 }
- 
+/*
+Document :table
+Created on:17 july .2014,10,17
+*/
+.btn-primary.btn-outline{
+    margin-top: 20px;   
+    margin-right:15px;
+    width: 150px;
+    float: left;
+
+}
+.alert-successp{
+    width: 100%;
+    height:50px;
+}
+.alert-success{
+    text-align: center;
+}
+.table{
+    background-color: #E8E8E5;
+}
+.table-striped>tbody>tr>td{
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
+.table-striped>thead>tr>td{
+    text-align: center;
+}
+.panel-heading{
+    font-size: 20px;
+}
+/*
+Document :company.css
+Created on:17 july .2014,10,47
+*/
+.show{
+    width: 60%;
+    color:#544946;
+    font-size: 20x;
+    font-weight: normal;
+    margin-top: 20px;   
+    strong{
+        color:#426ab3;
+        font-weight: normal;
+    }
+}
+.field{
+    width: 60%;
+    label{
+    margin-bottom:10px;
+    margin-top: 10px;
+
+}
+}
+.run-off{
+    float:left;
+    border-color:#cccccc;
+    background-color: #fff;
+    border-radius:7px;
+    height:33px;
+    margin-top: 18px;
+    margin-left: 8px;
+    &:hover{
+        background-color: #cccccc;
+    }
+    &:hover{
+        background-color: #cccccc;
+    }
+    &:active{
+        border:none;
+    }
+    &:visited{
+        border:none;
+        border-radius: 7px;
+    }
+
+}
+.checkbox{
+    float: left;
+    margin: 26px;
+    label{
+        margin-left: 14px;
+    }
+}
+.search{
+    float: right;   
+    margin-right:30px; 
+    .search-p{
+        float: left;
+        margin-left:10px; 
+    }
+    .search-in{
+        float: left;
+        margin-top:18px; 
+    }
+}
+.delete{
+    padding:5px;
+    margin-top: 18px;
+}
+#foo{
+    height: 100%;
+}
+.check_product{
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+    color:#544946;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-weight: normal;    
+    float: left;
+    font-size: 16px;
+
+}
+.button{
+    width: 400px;
+    float: left;
+}
+.time{
+    margin: 10px;
+    float: right;
+    font-size:14px;
+    strong{
+        font-weight: normal;;
+
+
+    }
+}
+
+    
+    
+
+

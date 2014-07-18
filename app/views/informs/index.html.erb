@@ -1,70 +1,119 @@
+<% provide(:title, '新闻管理')  %>
+
+
+<% if !notice.nil? %>
+  <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%= notice %> 
+  </div>
+<% end%>
 
 <!-- /.row -->
-<div class="row">
-  <div class="col-lg-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      新闻管理
-    </div>
-      <!-- /.panel-heading -->
-      <div class="panel-body">
-         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th class="textstyle">标题</th>
-                  <th class="textstyle">作者</th>
-                  <th class="textstyle">内容</th>
-                  <th class="textstyle">操作</th>
-                  </tr>
-              </thead>
-              <tbody>
-               <% @informs.each do |inform| %>
-                  <tr>
-                    
-                      <td class="textstyle">
-                      <% if inform.title.to_s.length >=10 %>
-                        <%= inform.title.to_s[0,10]+'  ...' %>
-                      <% else %>
-                        <%= inform.title%>
-                        <% end %>
-                      </td>
-                      <td class="textstyle">
-                      <% if inform.author.to_s.length >=10 %>
-                        <%= inform.author.to_s[0,10]+'  ...' %>
-                      <% else %>
-                        <%= inform.author%>
-                      <% end %>
-                      </td>
-                    
-
-                    <td class="textwidth">
-                        <% if inform.context.to_s.length >= 50 %>
-                          <%= inform.context.to_s[0,40]+' ...' %>
-                        <% else %>
-                          <%= inform.context%>
-                        <% end %>
-                    </td>
-                    <td class="textstyle"><%= link_to '查看', inform %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <%= link_to '编辑', edit_inform_path(inform) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <%= link_to '删除', inform, method: :delete, data: { confirm: '你确定要删除?' } %></td>
-                    
-                  </tr>
-         
-                  <% end %>
-               </tbody>
-
-            </table>
-
+<div class="panel panel-default">
+          <div class="panel-heading"> 新闻管理</div>
+            <!-- /.panel-heading -->
+            <div class="checkbox">
+          <label><input type="checkbox"   id="allSelected">全选</label>
+          <label><input type="checkbox"   id="inverSelected">反选</label>
+      </div>
+      <button type="button" class="btn btn-default delete" id="deleteIds">删除</button>
+      <div class="search">
+          <div class="search-in">
+              <input class="form-control" type="text" id="search-in" value="<%=params[:search] %>">
           </div>
-          <!-- /.table-responsive -->
-         </div>
-
-          <!-- /.panel-body -->
-        </div>
-        <!-- /.panel -->
-        
-     </div>
-     
+          <select class="run-off">
+              <option>标题</option>
+              <option>内容</option>
+              </select>
+          <div class="search-p">
+              <button type="button" class="btn btn-default delete" id="search">搜索</button>
+          </div>
+      </div>
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                          <tr>
+                          <td></td>
+                          <td>标题</td>
+                          <td>作者</td>
+                          <td>内容</td>
+                          <td>操作</td>
+                          </tr>
+                    </thead>
+                    <tbody>
+                          <% @informs.each do |inform| %>
+                          <tr>
+                           <td><input type="checkbox" id="chckBox" name="<%= inform.id%>"></td>
+                            <td>
+                                <% if inform.title.to_s.length >=10 %>
+                                <%= inform.title.to_s[0,10]+'  ...' %>
+                                <% else %>
+                                <%= inform.title%>
+                                <% end %>
+                            </td>
+                            <td>
+                                <% if inform.author.to_s.length >=10 %>
+                                <%= inform.author.to_s[0,10]+'  ...' %>
+                                <% else %>
+                                <%= inform.author%>
+                                <% end %>
+                            </td>
+                            <td>
+                                <% if inform.context.to_s.length >= 50 %>
+                                <%= inform.context.to_s[0,40]+' ...' %>
+                                <% else %>
+                                <%= inform.context%>
+                                <% end %>
+                            </td>
+                            <td>
+                                <%= link_to '查看', inform %>
+                                <%= link_to '编辑', edit_inform_path(inform) %>
+                                <%= link_to '删除', inform, method: :delete, data: { confirm: '你确定要删除?' } %>
+                            </td>            
+                          </tr>
+                          <% end %>
+                  </tbody>
+              </table>
+              <%= link_to '新建', new_inform_path ,class:"btn btn-outline btn-primary", role:"button"%>
+     <%= paginate @informs, :outer_window => 3 %> 
+          </div>
+   <!-- /.panel-body -->
+      </div> 
+<!-- /.panel -->      
 </div>
-<%= link_to '新建', new_inform_path ,class:"btn btn-outline btn-primary", role:"button"%>
+<script type="text/javascript">
+         $("#allSelected").change(function(event) {
+               var checked = $(this).get(0).checked;
+               $("#inverSelected").get(0).checked = false;
+                   $("input[id = chckBox]").each(function(index, checkBox) {
+                            checkBox.checked = checked;
+                          });
+         });
+
+         $("#inverSelected").change(function(event) {
+           $("#allSelected").get(0).checked = false;
+           $("input[id = chckBox]").each(function(index, checkBox) {
+                    checkBox.checked = !checkBox.checked;
+                  });
+         });
+ 
+         $("#deleteIds").click(function(event) {
+           var ids = new String();
+           $("input[id = chckBox]").each(function(index, checkBox) {
+                    if (checkBox.checked) {
+                      ids = ids + checkBox.name + ",";
+                    };
+                  });
+          
+           $.post('/informs/destroy_ids', { ids: ids}, function(data) {
+                  location.reload();
+              
+            }, "json");
+         });
+
+         $("#search").click(function(event) {
+            location.href="?search="+$("#search-in").val();   
+          });
+        
+</script>

@@ -4,8 +4,12 @@ class InformsController < ApplicationController
   # GET /informs
   # GET /informs.json
   def index
-    @informs = current_admin_user.company.informs
+    if params[:search].nil?
+    @informs = current_admin_user.company.informs.page(params[:page])
+    else
+    @informs = current_admin_user.company.informs.where('title LIKE ?',"%#{params[:search]}%").page(params[:page])
   end
+end
 
   # GET /informs/1
   # GET /informs/1.json
@@ -62,6 +66,20 @@ class InformsController < ApplicationController
     end
   end
 
+  # POST /inform/destroy_ids
+  # POST /inform/destroy_ids.json
+  def destroy_ids
+    params[:ids].split(",").each do | id |
+        inform = Inform.find_by_id(id)
+        if !inform.nil? && (inform.company_id == current_admin_user.company_id)
+            inform.destroy
+        end
+    end
+     respond_to do |format|
+      format.html { redirect_to products_url, notice: '成功删除产品信息！' }
+      format.json { render json: params, status: :ok }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inform

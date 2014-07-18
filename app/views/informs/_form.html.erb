@@ -1,3 +1,14 @@
+<% provide(:title, '新闻展示')  %>
+
+<%= content_for :header_js do %>
+   <%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
+<% end %>
+
+<%= content_for :footer_js do %>
+   <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>
+<% end %>
+
 <%= form_for(@inform) do |f| %>
   <% if @inform.errors.any? %>
     <div id="error_explanation">
@@ -11,20 +22,60 @@
 <% end %>
 
 
-  <div class="field">
-    标题<br>
-    <%= f.text_field :title, class:"form-control"%>
-  </div>
-  <div class="field">
-    作者<br>
-    <%= f.text_field :author , class:"form-control"%>
-  </div>
-  <div class="field">
-    内容<br>
-    <%= f.text_field :context , class:"form-control"%>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit class:"btn btn-outline btn-primary", role:"button"%>
-  </div>
-<% end %>
+      <div class="field">
+        <label>标题</label> 
+        <%= f.text_field :title, class:"form-control",type:"text" %>
+      </div>
+      <div class="field">
+        <label>作者</label>
+        <%= f.text_field :author , class:"form-control",type:"text"%>
+      </div>
+
+      <div class="field">
+        <label>内容</label>
+         <script id="editor1" type="text/plain" style="width:100%; height:500px;"></script>
+          </div>   
+    <% end %>
+
+
+<button id="edit_button" class="btn btn-outline btn-primary">提交</button>
+
+
+
+<script type="text/javascript">
+  var ue = UE.getEditor('editor1');
+  ue.ready(function() {
+     html = unescape("<%=@inform.context%>");  
+    $('#ueditor_0').contents().find('body').append(html);
+  });
+</script>
+
+<script type="text/javascript">
+  function form_send (url, request_type) {
+      $("#edit_button").click(function () {
+                $.ajax({
+                  url: url,
+                  dataType: "json",
+                  type: request_type,
+                  data: {
+                    "inform[title]" :$("#inform_title").val(),
+                    "inform[author]":$("#inform_author").val(),
+                    "inform[context]" : escape(UE.getEditor('editor1').getAllHtml()),
+                    "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
+                    "utf8": $("input[name='utf8']").attr("value")
+                  },
+                })
+                .done(function( data) {
+                })
+                .fail(function ( jqXHR, textStatus, errorThrown ) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                })
+                .always(function( data ) {
+                   location.href = url
+                })
+                
+            });
+  }
+</script>

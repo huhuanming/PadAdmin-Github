@@ -1,37 +1,15 @@
-
-<br>
-<%= form_for(@inform) do |f| %>
-  <% if @inform.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@inform.errors.count, "error") %> prohibited this inform from being saved:</h2>
-      <ul>
-      <% @inform.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<% provide(:title, '新建新闻')  %>
+<div class="panel panel-default">
+    <div class="panel-heading">新建新闻</div>
+      <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="table-responsive">
+                <%= render 'form' %>
+          <%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary" %>
+      </div>
     </div>
-<% end %>
-
-
-  <div class="field">
-    标题<br>
-    <%= f.text_field :title, class:"form-control"%>
-  </div>
-  <div class="field">
-    作者<br>
-    <%= f.text_field :author , class:"form-control"%>
-  </div>
-  <div class="field">
-    内容<br>
-    <%= f.text_field :context , class:"form-control"%>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit '新建新闻' ,class:"btn btn-outline btn-primary", role:"button"%>
-  </div>
-<% end %>
-
-
-<br>
-<%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
+</div>
+<script type="text/javascript">
+     form_send($(".new_inform").attr('action'), 'post');
+</script>
 
