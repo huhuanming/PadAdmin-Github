@@ -11,7 +11,7 @@
   <% end %>
   <div class="field">
     <label>公司名字:</label>
-    <%= f.text_field :company_name,class:"form-control",type:"text"%>
+    <%= f.text_field :company_name,class:"form-control",id:"name",type:"text" %>
   </div>
   <div class="field">
      <label>公司地址:</label>
@@ -25,3 +25,10 @@
    <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
   </div>
 <% end %>
+
+<script type="text/javascript">  
+    $(function(){  
+        var nameInput = document.getElementById("name")  
+        nameInput.setCustomValidity("用户名不能为空");  
+    });  
+</script>  
