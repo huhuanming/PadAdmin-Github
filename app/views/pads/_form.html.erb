@@ -1,4 +1,5 @@
 <%= form_for(@pad) do |f| %>
+
 <% if @pad.errors.any? %>
 <div class="alert alert-block alert-error">
 	<a class="close" data-dismiss="alert" href="#">×</a>
@@ -12,26 +13,24 @@
 <% end %>
 
 <div class="field">
-	<% if @pad.errors.any? %>
-	<label class="string required control-label error" >MAC地址</label>
+
+ <% if@pad.errors.any?%>
+            <label class="string required control-label error">MAC地址:</label>
+            <% else %>
+            <label>MAC地址:</label>
+            <% end %>
 	<br>
-	<%= f.text_field :Mac_address, class:"form-control error"  %>
+	<%= f.text_field :Mac_address, class:(@pad.errors.any?) ? "form-control error" : "form-control" %>
 	<br>
-	<label class="string required control-label" >用户名</label>
+
+
+	 <% if@pad.errors.any?%>
+            <label class="string required control-label error">用户名:</label>
+            <% else %>
+            <label>用户名:</label>
+            <% end %>
 	<br>
-	<%= f.text_field :pad_user_name, class:"form-control error", value: (@pad.pad_user.nil?)? "" : @pad.pad_user.name  %>
-	<% else %>
-	<label class="string required control-label" >MAC地址</label>
-	<br>
-	<%= f.text_field :Mac_address, class:"form-control"  %>
-	<br>
-	<label class="string required control-label" >用户名</label>
-	<br>
-	<%= f.text_field :pad_user_name, class:"form-control",  value: (@pad.pad_user.nil?)? "" : @pad.pad_user.name %>
-	<% end %>
+	<%= f.text_field :pad_user_name, class:(@pad.errors.any?) ? "form-control error" : "form-control", value: (@pad.pad_user.nil?)? "" : @pad.pad_user.name  %>
 </div>
-<br>
-<div class="actions">
 	<%= f.submit '提交' ,class:"btn btn-outline btn-primary", role:"button"%>
-</div>
 <% end %>

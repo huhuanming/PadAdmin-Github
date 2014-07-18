@@ -1,34 +1,42 @@
 <%= form_for(@company) do |f| %>
   <% if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
-      <ul>
-      <% @company.errors.full_messages.each do |message| %>
+    <div class="alert alert-block alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p><strong>有 <%= @company.errors.count %> 处问题导致无法提交:</strong></p>
+        <ul>
+        <% @company.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+        <% end %>
+        </ul>
+</div>
   <% end %>
-  <div class="field">
-    <label>公司名字:</label>
-    <%= f.text_field :company_name,class:"form-control",id:"name",type:"text" %>
+   <div class="field">
+
+   <% if@company.errors.any?%>
+            <label class="string required control-label error">公司名字:</label>
+            <% else %>
+            <label>公司名字:</label>
+            <% end %>
+   <%= f.text_field :company_name, class:(@company.errors.any?) ? "form-control error" : "form-control",value: (@company.company_name.nil?)? "" : @company.company_name %>
   </div>
   <div class="field">
-     <label>公司地址:</label>
-    <%= f.text_field :company_address,class:"form-control",type:"text"%>
+   <% if@company.errors.any?%>
+            <label class="string required control-label error">公司地址:</label>
+            <% else %>
+            <label>公司地址:</label>
+            <% end %>
+    <%= f.text_field :company_address, class:(@company.errors.any?) ? "form-control error" : "form-control", value: (@company.company_address.nil?)? "" : @company.company_address %>
   </div>
   <div class="field">
-    <label>公司电话:</label>
-    <%= f.text_field :company_tel, class:"form-control", type:"text"%>
+
+  <% if@company.errors.any?%>
+            <label class="string required control-label error">公司电话:</label>
+            <% else %>
+            <label>公司电话:</label>
+            <% end %>
+    <%= f.text_field :company_tel, class:(@company.errors.any?) ? "form-control error" : "form-control", value: (@company.company_tel.nil?)? "" : @company.company_tel%>
   </div>
   <div class="actions">
    <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
   </div>
 <% end %>
-
-<script type="text/javascript">  
-    $(function(){  
-        var nameInput = document.getElementById("name")  
-        nameInput.setCustomValidity("用户名不能为空");  
-    });  
-</script>  

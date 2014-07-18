@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715082550) do
+ActiveRecord::Schema.define(version: 20140718131240) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -56,15 +56,7 @@ ActiveRecord::Schema.define(version: 20140715082550) do
     t.text     "context"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "news", force: true do |t|
-    t.integer  "company_id"
-    t.string   "title"
-    t.string   "author"
-    t.text     "context"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "brief"
   end
 
   create_table "pad_users", force: true do |t|
@@ -89,6 +81,7 @@ ActiveRecord::Schema.define(version: 20140715082550) do
     t.text     "context"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "brief"
   end
 
   create_table "push_messages", force: true do |t|

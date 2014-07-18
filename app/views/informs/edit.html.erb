@@ -1,5 +1,5 @@
 <% provide(:title, '新闻编辑')  %>
-
+<!-- 
 <%= form_for(@inform) do |f| %>
   <% if @inform.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +10,7 @@
       <% end %>
       </ul>
     </div>
-<% end %>
+<% end %> -->
 
 <div class="panel panel-default">
     <div class="panel-heading">新闻编辑</div>
@@ -19,9 +19,8 @@
           <div class="table-responsive">
             <%= render 'form' %>
               <%= link_to '查看', @inform ,class:"btn btn-outline btn-primary"%>
-
               <%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
-          <% end %>
+      <!--     <% end %> -->
           </div>
       </div>
 </div>

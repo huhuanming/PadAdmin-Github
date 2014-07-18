@@ -21,9 +21,9 @@
           <div class="search-in">
               <input class="form-control" type="text" id="search-in" value="<%=params[:search] %>">
           </div>
-          <select class="run-off">
-              <option>标题</option>
-              <option>内容</option>
+          <select class="run-off" id="select-inform">
+              <option value="title">标题</option>
+              <option value="author">作者</option>
               </select>
           <div class="search-p">
               <button type="button" class="btn btn-default delete" id="search">搜索</button>
@@ -37,7 +37,7 @@
                           <td></td>
                           <td>标题</td>
                           <td>作者</td>
-                          <td>内容</td>
+                          <td>摘要</td>
                           <td>操作</td>
                           </tr>
                     </thead>
@@ -58,12 +58,12 @@
                                 <% else %>
                                 <%= inform.author%>
                                 <% end %>
-                            </td>
+                            </td> 
                             <td>
-                                <% if inform.context.to_s.length >= 50 %>
-                                <%= inform.context.to_s[0,40]+' ...' %>
+                                <% if inform.brief.to_s.length >= 20 %>
+                                <%= inform.brief.to_s[0,20]+' ...' %>
                                 <% else %>
-                                <%= inform.context%>
+                                <%= inform.brief%>
                                 <% end %>
                             </td>
                             <td>
@@ -112,8 +112,11 @@
             }, "json");
          });
 
-         $("#search").click(function(event) {
-            location.href="?search="+$("#search-in").val();   
-          });
-        
+         // $("#search").click(function(event) {
+         //    location.href="?search="+$("#search-in").val();   
+         //  });
+         $("#search").click(function(event) {
+         $("#select-inform").get(0).value;
+            location.href="?type="+$("#select-inform").get(0).value+"&&search="+$("#search-in").val();  
+        });
 </script>

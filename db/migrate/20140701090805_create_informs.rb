@@ -5,7 +5,6 @@ class CreateInforms < ActiveRecord::Migration
       t.string :title
       t.string :author
       t.text :context
-
       t.timestamps
     end
   end
