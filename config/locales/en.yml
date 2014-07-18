@@ -21,23 +21,13 @@
 
 
 en:
-  activerecord:
-<<<<<<< HEAD
-    errors:
-      models:
-        push_message:
-          attributes:
-            message: 
-              blank: "不能为空"
-              too_long: "超过字数限制"
-en:
   views:
     pagination:
       first: "<<"
       last: ">>"
       previous: "<"
       next: ">"
-=======
+  activerecord:
     models:
       pad: "平板"
     attributes:
@@ -74,4 +64,3 @@ en:
       odd: "必须为单数"
       even: "必须为双数"
       record_invalid: "校验失败: %{errors}"
->>>>>>> origin/新建平板验证
