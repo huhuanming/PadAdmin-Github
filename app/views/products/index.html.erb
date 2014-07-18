@@ -32,7 +32,7 @@
                           <tr>
                             <td></td>
                             <td>产品名称</td>
-                            <td>产品描述</td>
+                            <td>产品摘要</td>
                             <td>添加时间</td>
                             <td>修改时间</td>
                             <td>操作</td>
@@ -51,10 +51,10 @@
                                   <% end %>
                             </td>
                             <td>
-                                  <% if product.context.to_s.length >=10 %>
-                                         <%= product.context.to_s[0,10]+'  ...' %>
+                                  <% if product.brief.to_s.length >=10 %>
+                                         <%= product.brief.to_s[0,10]+'  ...' %>
                                   <% else %>
-                                         <%= product.context%>
+                                         <%= product.brief%>
                                   <% end %>
                             </td>
                             <td><%= product.created_at %></td>

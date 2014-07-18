@@ -40,10 +40,20 @@ div {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
-  display: table;
-}
+  width: 100%;
+  display:inline-block;
+  text-align: center;
 
+}
+.alert-error{
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+li{
+  list-style-type: none;
+  padding: 10px;
+}
+}
 #error_explanation {
   width: 450px;
   border: 2px solid red;

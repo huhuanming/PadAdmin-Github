@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'inform/new'
+
   root 'home#index'
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }

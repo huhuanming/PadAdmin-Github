@@ -4,10 +4,10 @@ class InformsController < ApplicationController
   # GET /informs
   # GET /informs.json
   def index
-    if params[:search].nil?
-    @informs = current_admin_user.company.informs.page(params[:page])
+    if params[:search].nil? || (!['title','author'].include? params[:type])
+     @informs = current_admin_user.company.informs.page(params[:page])
     else
-    @informs = current_admin_user.company.informs.where('title LIKE ?',"%#{params[:search]}%").page(params[:page])
+    @informs = current_admin_user.company.informs.where(params[:type]+' LIKE ?',"%#{params[:search]}%").page(params[:page])
   end
 end
 
@@ -91,6 +91,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inform_params
-      params.require(:inform).permit(:company_id, :title, :author, :context)
+      params.require(:inform).permit(:company_id, :title, :brief ,:author, :context)
     end
 end

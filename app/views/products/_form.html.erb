@@ -9,31 +9,45 @@
    <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>
 <% end %>
 <%= form_for(@product) do |f| %>
-
       <% if @product.errors.any? %>
-          <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-          <ul>
-              <% @product.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-          </div>
+      <div class="alert alert-block alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p><strong>有 <%= @product.errors.count %> 处问题导致无法提交:</strong></p>
+        <ul>
+        <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+        </ul>
+</div>
       <% end %>
 
         <div class="field">
-            <label>产品名字:</label>
-          <%= f.text_field :product_name,class:"form-control",type:"text" %>
+        <% if@product.errors.any?%>
+            <label class="string required control-label error">产品名字:</label>
+            <% else %>
+            <label>产品名字</label>
+            <% end %>
+          <%= f.text_field :product_name, class:(@product.errors.any?) ? "form-control error" : "form-control",value: (@product.product_name.nil?)? "" : @product.product_name %>
         </div>
         
+         <div class="field">
+         <% if@product.errors.any?%>
+            <label class="string required control-label error">摘要:</label>
+            <% else %>
+            <label>摘要</label>
+            <% end %>
+            <%= f.text_field :brief,  class:(@product.errors.any?) ? "form-control error" : "form-control",value: (@product.brief.nil?)? "" : @product.brief %>
+        </div>
         <div class="field">
          <label>产品描述:</label>
         <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
         </div>
 
-      <% end %>
+ 
 
-<button id="edit_button" class="btn btn-outline btn-primary">提交</button>
+<%= f.submit "提交", class:"btn btn-outline btn-primary ", id:"edit_button" %>
+     <% end %>
+
 
 <script type="text/javascript">
   var ue = UE.getEditor('editor');
@@ -53,6 +67,7 @@
                   type: request_type,
                   data: {
                     "product[product_name]" :$("#product_product_name").val(),
+                    "product[brief]" :$("#product_brief").val(),
                     "product[context]" : escape(UE.getEditor('editor').getAllHtml()),
                     "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
                     "utf8": $("input[name='utf8']").attr("value")

@@ -11,35 +11,55 @@
 
 <%= form_for(@inform) do |f| %>
   <% if @inform.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@inform.errors.count, "error") %> prohibited this inform from being saved:</h2>
-      <ul>
-      <% @inform.errors.full_messages.each do |message| %>
+    <div class="alert alert-block alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p><strong>有 <%= @inform.errors.count %> 处问题导致无法提交:</strong></p>
+        <ul>
+        <% @inform.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+        <% end %>
+        </ul>
+</div>
 <% end %>
 
 
       <div class="field">
-        <label>标题</label> 
-        <%= f.text_field :title, class:"form-control",type:"text" %>
+
+      <% if@inform.errors.any?%>
+            <label class="string required control-label error">标题:</label>
+            <% else %>
+           <label>标题</label> 
+            <% end %>
+        <%= f.text_field :title, class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.title.nil?)? "" : @inform.title %>
       </div>
       <div class="field">
-        <label>作者</label>
-        <%= f.text_field :author , class:"form-control",type:"text"%>
-      </div>
+        <% if@inform.errors.any?%>
+            <label class="string required control-label error">作者:</label>
+            <% else %>
+            <label>作者</label>
+            <% end %>
 
+        <%= f.text_field :author ,class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.author.nil?)? "" : @inform.author %>
+      </div>
+      <div class="field">
+       <% if@inform.errors.any?%>
+            <label class="string required control-label error">摘要:</label>
+            <% else %>
+              <label>摘要</label>
+            <% end %>
+    
+      <%= f.text_field :brief,  class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.brief.nil?)? "" : @inform.brief %>
+      </div>
+      
       <div class="field">
         <label>内容</label>
          <script id="editor1" type="text/plain" style="width:100%; height:500px;"></script>
           </div>   
-    <% end %>
+  
 
-
-<button id="edit_button" class="btn btn-outline btn-primary">提交</button>
-
+<%= f.submit "提交", class:"btn btn-outline btn-primary ", id:"edit_button" %>
+<!-- <button id="edit_button" class="btn btn-outline btn-primary">提交</button> -->
+  <% end %>
 
 
 <script type="text/javascript">
@@ -60,6 +80,7 @@
                   data: {
                     "inform[title]" :$("#inform_title").val(),
                     "inform[author]":$("#inform_author").val(),
+                    "inform[brief]":$("#inform_brief").val(),
                     "inform[context]" : escape(UE.getEditor('editor1').getAllHtml()),
                     "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
                     "utf8": $("input[name='utf8']").attr("value")

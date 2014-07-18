@@ -20,10 +20,16 @@
                         <strong>作者</strong>
                         <p> <%= @inform.author %></p>
                     </div>
+                    <div class="check_product">
+                        <strong>摘要</strong>
+                        <p> <%= @inform.brief %></p>
+                    </div>
                 <!-- /.col-lg-4 -->
                     <div class="check_product" id="log">
                         <strong>内容</strong>
                     </div>
+             <%= link_to '编辑', edit_inform_path(@inform) ,class:"btn btn-outline btn-primary"%> 
+<%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
         </div>
      </div>
 </div>
@@ -40,5 +46,4 @@
                     $('#foo').contents().find('body').append(html);
               </script>
 
-<%= link_to '编辑', edit_inform_path(@inform) ,class:"btn btn-outline btn-primary"%> 
-<%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
+
