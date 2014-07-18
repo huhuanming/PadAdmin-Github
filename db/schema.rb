@@ -58,8 +58,15 @@ ActiveRecord::Schema.define(version: 20140715082550) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
+  create_table "news", force: true do |t|
+    t.integer  "company_id"
+    t.string   "title"
+    t.string   "author"
+    t.text     "context"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pad_users", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -67,7 +74,6 @@ ActiveRecord::Schema.define(version: 20140715082550) do
     t.integer  "pad_id"
   end
 
->>>>>>> origin/新建平板验证
   create_table "pads", force: true do |t|
     t.string   "Mac_address"
     t.datetime "created_at"

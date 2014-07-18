@@ -13,15 +13,11 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'rb-readline'
-<<<<<<< HEAD
 gem 'kaminari'
 gem 'fuzzily'
 gem 'grape'
 gem 'qiniu'
-=======
 gem "rails-i18n","0.1.8"	
-
->>>>>>> origin/新建平板验证
 
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
