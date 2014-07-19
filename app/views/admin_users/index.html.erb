@@ -1,5 +1,8 @@
 <!-- /.row -->
 <br>
+<% if !notice.nil?  %>
+<p id="notice" class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= notice %></p>
+<% end %>
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -25,7 +28,7 @@
               <td class="textstyle"><%= admin_user.email%></td>
               <td class="textstyle">
                 <%= link_to '查看', admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to '更改密码', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '编辑', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <%= link_to '删除', admin_path(admin_user), method: :delete, data: { confirm: '您确定要删除?' } %>
               </td>
             </tr>

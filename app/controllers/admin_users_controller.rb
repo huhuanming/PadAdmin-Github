@@ -1,10 +1,10 @@
 class AdminUsersController < ApplicationController
 	before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource except: [:create]
+  before_filter :check_role
   # GET /admin_users
   # GET /admin_users.json
   def index
-  	@admins = current_admin_user.company.admin_users
+  	@admins =  current_admin_user.company.admin_users
   end
 
   # GET /admin_users/1
@@ -24,20 +24,19 @@ class AdminUsersController < ApplicationController
   # POST /admin_users
   # POST /admin_users.json
   def create
-        authorize! :create, AdminUser
-  	@admin = AdminUser.new(admin_params)
-  	@admin.company_id = current_admin_user.company.id
+    @admin = AdminUser.new(admin_params)
+    @admin.company_id = current_admin_user.company.id
 
-  	respond_to do |format|
-  		if @admin.save
-  			format.html { redirect_to admin_path(@admin), notice: '新建成功！' }
-  			format.json { render :show, status: :created, location: @admin }
-  		else
-  			format.html { render :new}
-  			format.json { render json: @admin.errors, status: :unprocessable_entity }
-  		end
-  	end
-  end
+    respond_to do |format|
+      if @admin.save
+       format.html { redirect_to admin_path(@admin), notice: '新建成功！' }
+       format.json { render :show, status: :created, location: @admin }
+     else
+       format.html { render :new}
+       format.json { render json: @admin.errors, status: :unprocessable_entity }
+     end
+   end
+ end
 
   # PATCH/PUT /admin_users/1
   # PATCH/PUT /admin_users/1.json
@@ -56,11 +55,17 @@ class AdminUsersController < ApplicationController
   # DELETE /admin_users/1
   # DELETE /admin_users/1.json
   def destroy
-  	@admin.destroy
-  	respond_to do |format|
-  		format.html { redirect_to admins_url, notice: '删除成功！' }
-  		format.json { head :no_content }
-  	end
+    if !@admin.has_role? :admin	
+      @admin.destroy
+      respond_to do |format|
+        format.html { redirect_to admins_url, notice: '删除成功！' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to admins_url, notice: '你不能删除根管理员！' }
+      end
+    end
   end
 
   private
@@ -77,12 +82,14 @@ class AdminUsersController < ApplicationController
     	params.require(:admin_user).permit(:username, :email, :password, :password_confirmation, :company_id)
     end
 
-    def current_user
-      return current_admin_user
-    end
-
     def root_url
       return root_path
+    end
+
+    def check_role
+      if !current_admin_user.has_role? :admin
+        redirect_to root_path
+      end
     end
   end
 

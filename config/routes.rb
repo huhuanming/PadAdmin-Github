@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   match '/editor', to: 'home#editor', via: 'get'
   devise_for :admin_users, controllers: { sessions: "sessions" }
 
-
+  resources :admin_companies
   resources :companies, :except => [:new, :destroy, :create]
   resources :admins, controller: 'admin_users'
   resources :informs
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     post 'destroy_ids', on: :collection
   end
 
-   resources :informs  do
+  resources :informs  do
     post 'destroy_ids', on: :collection
   end
 
