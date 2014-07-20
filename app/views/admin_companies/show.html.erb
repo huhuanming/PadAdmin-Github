@@ -1,0 +1,28 @@
+<br>
+<% if !notice.nil?  %>
+<p id="notice" class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><%= notice %></p>
+<% end %>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-4">
+		<div class="well">
+			<h4>公司名称</h4>
+			<p><%= @admin_company.company_name%></p>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="well">
+			<h4>公司地址</h4>
+			<p><%= @admin_company.company_address%></p>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="well">
+			<h4>公司电话</h4>
+			<p><%= @admin_company.company_tel%></p>
+		</div>
+	</div>
+</div>
+<!-- /.row -->                
+<%= link_to '编辑', edit_admin_company_path(@admin_company), class:"btn btn-outline btn-primary" %> 
+<%= link_to '返回', admin_companies_path, class:"btn btn-outline btn-primary" %>
