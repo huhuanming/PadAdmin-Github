@@ -27,7 +27,6 @@ class AdminUsersController < ApplicationController
         authorize! :create, AdminUser
   	@admin = AdminUser.new(admin_params)
   	@admin.company_id = current_admin_user.company.id
-
   	respond_to do |format|
   		if @admin.save
   			format.html { redirect_to admin_path(@admin), notice: '新建成功！' }

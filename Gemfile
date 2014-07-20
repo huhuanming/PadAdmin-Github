@@ -16,6 +16,7 @@ gem 'rb-readline'
 gem 'kaminari'
 gem 'fuzzily'
 gem 'grape'
+gem "grape-entity"
 gem 'qiniu'
 gem "rails-i18n","0.1.8"	
 
