@@ -27,8 +27,13 @@ class PushMessagesController < ApplicationController
   def create
     @push_message = PushMessage.new(push_message_params)
     @push_message.company_id = current_admin_user.company.id
+
     respond_to do |format|
       if @push_message.save
+        params[:ids].split(",").each do | id |
+          PushTarget.create(pad_id: id, push_message_id: @push_message.id);
+        end
+        
         format.html { redirect_to @push_message, notice: '推送消息创建成功' }
         format.json { render :show, status: :created, location: @push_message }
       else
@@ -67,7 +72,7 @@ class PushMessagesController < ApplicationController
     def set_push_message
       @push_message = PushMessage.find(params[:id])
       if @push_message.nil? || ( @push_message.company_id != current_admin_user.company.id )
-          redirect_to push_messages_path  
+        redirect_to push_messages_path  
       end
     end
 
@@ -75,4 +80,4 @@ class PushMessagesController < ApplicationController
     def push_message_params
       params.require(:push_message).permit(:message)
     end
-end
+  end

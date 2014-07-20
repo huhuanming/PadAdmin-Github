@@ -10,6 +10,10 @@ module PadAdmin
   class Application < Rails::Application
     
     config.autoload_paths += %W(#{config.root}/app/grape)
+
+    
+    config.paths.add "lib/modules/*", glob: "**/*.rb"
+    config.autoload_paths += Dir["#{Rails.root}/lib/modules/*"]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
