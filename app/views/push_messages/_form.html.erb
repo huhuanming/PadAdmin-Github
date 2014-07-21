@@ -1,21 +1,17 @@
 <% provide(:title, '推送信息')  %>
 <%= form_for(@push_message) do |f| %>
 
-<% if @push_message.errors.any? %>
-<div id="error_explanation">
-  <h2>发生了错误！</h2>
+<div class="alert alert-block alert-error" id="error-div", style="display:none">
+  <a class="close" data-dismiss="alert" href="#">×</a>
+  <p id="error-p"></p>
   <ul>
-    <% @push_message.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
   </ul>
 </div>
-<% end %>
 <div class="field">
   <label>推送信息:</label>
   <%= f.text_field :message,class:"form-control",type:"text" %>
 </div>
-<% end %>
+<%end%>
 
 <div class="actions">
   <button class="btn btn-outline btn-primary" id="send">推送到平板</button>
@@ -34,15 +30,56 @@
       };
     });
     console.log(ids);
-    $.post('/push_messages',
-     { 
-      ids: ids,
-      push_message:{message:message}
-     },
-      function(data) {
-      console.log(data);
-    }, "json");
-  });
+    // $.post('/push_messages',
+    //  { 
+    //   ids: ids,
+    //   push_message:{message:message}
+    //  },
+    //   function(data) {
+    //   console.log(data);
+    // }, "json");
+$.ajax({
+  url: "/push_messages",
+  beforeSend: function(data){
+    $('#error-div').css("display","none");
+    $('#error-div').children().filter('li').remove();
+  },
+  dataType: "json",
+  type: "POST",
+  data: {
+    "push_message[message]" :$("#push_message_message").val(),
+    "ids" : ids,
+    "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
+    "utf8": $("input[name='utf8']").attr("value")
+  },
+})
+.done(function( data) {
+  console.log("done");
+
+})
+.fail(function ( jqXHR, textStatus, errorThrown ) {
+  console.log(jqXHR.responseText);
+  $("#error-div").css("display","block");
+    // for(error in JSON.parse(jqXHR.responseText).message){
+    //   console.log(error);
+    //   $('<li />').html(error).appendTo('#error-div');
+    // }
+    $("#error-p").html("<strong>发生了" + JSON.parse(jqXHR.responseText).message.length + "个错误</strong>");
+    for (var i = 0; i < JSON.parse(jqXHR.responseText).message.length; i++) {
+      $('<li />').html(JSON.parse(jqXHR.responseText).message[i]).appendTo('#error-div');
+    };
+    console.log(JSON.parse(jqXHR.responseText).message);
+  })
+.always(function( data ) {
+
+})
+
+});
+  // $('<input />').attr('type', 'hidden')
+  // .attr('name', "ids")
+  // .attr('value', ids)
+  // .appendTo('#new_push_message');
+  // $("#new_push_message").submit();
 
 
 </script>

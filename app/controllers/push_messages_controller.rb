@@ -15,7 +15,7 @@ class PushMessagesController < ApplicationController
   # GET /push_messages/new
   def new
     @push_message = PushMessage.new
-    @pad = current_admin_user.company.pads
+    @pads = current_admin_user.company.pads
   end
 
   # GET /push_messages/1/edit
