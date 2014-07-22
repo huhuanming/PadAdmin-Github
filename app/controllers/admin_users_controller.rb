@@ -24,38 +24,41 @@ class AdminUsersController < ApplicationController
   # POST /admin_users
   # POST /admin_users.json
   def create
-    authorize! :create, AdminUser
-  	@admin = AdminUser.new(admin_params)
-  	@admin.company_id = current_admin_user.company.id
-  	respond_to do |format|
-  		if @admin.save
-  			format.html { redirect_to admin_path(@admin), notice: '新建成功！' }
-  			format.json { render :show, status: :created, location: @admin }
-  		else
-  			format.html { render :new}
-  			format.json { render json: @admin.errors, status: :unprocessable_entity }
-  		end
-  	end
-  end
-  
+    @admin = AdminUser.new(admin_params)
+    @admin.company_id = current_admin_user.company.id
+    respond_to do |format|
+      if @admin.save
+        @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "新建管理员", :description => "#{current_admin_user.username}新建了名字为#{@admin.username}的管理员")
+        format.html { redirect_to admin_path(@admin), notice: '新建成功！' }
+        format.json { render :show, status: :created, location: @admin }
+      else
+       format.html { render :new}
+       format.json { render json: @admin.errors, status: :unprocessable_entity }
+     end
+   end
+ end
+
   # PATCH/PUT /admin_users/1
   # PATCH/PUT /admin_users/1.json
   def update
-  	respond_to do |format|
-  		if  @admin.update(admin_params) && current_admin_user.valid_password?(params[:admin_user][:current_password])
-  			format.html { redirect_to admin_path(@admin), notice: '编辑成功！' }
-  			format.json { render :show, status: :ok, location: @admin }
-  		else
-  			format.html { render :edit }
-  			format.json { render json: @admin.errors, status: :unprocessable_entity }
-  		end
-  	end
-  end
+    @tmp = AdminUser.new(:username => @admin.username)
+    respond_to do |format|
+      if  @admin.update(admin_params) && current_admin_user.valid_password?(params[:admin_user][:current_password])
+        @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "编辑管理员", :description => "#{current_admin_user.username}将名字#{@tmp.username}更新为#{@admin.username}")
+       format.html { redirect_to admin_path(@admin), notice: '编辑成功！' }
+       format.json { render :show, status: :ok, location: @admin }
+     else
+       format.html { render :edit }
+       format.json { render json: @admin.errors, status: :unprocessable_entity }
+     end
+   end
+ end
 
   # DELETE /admin_users/1
   # DELETE /admin_users/1.json
   def destroy
     if !@admin.has_role? :admin	
+      @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "删除管理员", :description => "#{current_admin_user.username}删除了名字为#{@admin.username}的管理员")
       @admin.destroy
       respond_to do |format|
         format.html { redirect_to admins_url, notice: '删除成功！' }

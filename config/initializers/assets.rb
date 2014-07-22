@@ -2,3 +2,4 @@ Rails.application.config.assets.precompile += %w( plugins/ueditor/ueditor.config
 Rails.application.config.assets.precompile += %w( plugins/ueditor/ueditor.all.min.js )
 Rails.application.config.assets.precompile += %w( plugins/ueditor/ueditor.js )
 Rails.application.config.assets.precompile += %w( plugins/ueditor/parse.js )
+Rails.application.config.assets.precompile += %w( plugins/jquery/jquery.wookmark.min.js )
