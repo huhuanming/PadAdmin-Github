@@ -29,6 +29,7 @@ class PadsController < ApplicationController
 
     respond_to do |format|
       if @pad.save
+        @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "新建平板", :description => "#{current_admin_user.username}新建了MAC地址为#{@pad.Mac_address}的平板")
         format.html { redirect_to @pad, notice: '新建成功！' }
         format.json { render :show, status: :created, location: @pad }
       else
@@ -41,20 +42,23 @@ class PadsController < ApplicationController
   # PATCH/PUT /pads/1
   # PATCH/PUT /pads/1.json
   def update
+      @tmp = Pad.new(:Mac_address => @pad.Mac_address)
     respond_to do |format|
       if @pad.update(pad_params)
-        format.html { redirect_to @pad, notice: '编辑成功！' }
-        format.json { render :show, status: :ok, location: @pad }
-      else
-        format.html { render :edit }
-        format.json { render json: @pad.errors, status: :unprocessable_entity }
-      end
+       @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "编辑平板", :description => "#{current_admin_user.username}将MAC地址#{@tmp.Mac_address}更新为#{@pad.Mac_address}")
+       format.html { redirect_to @pad, notice: '编辑成功！' }
+       format.json { render :show, status: :ok, location: @pad }
+     else
+      format.html { render :edit }
+      format.json { render json: @pad.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # DELETE /pads/1
   # DELETE /pads/1.json
   def destroy
+    @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "删除平板", :description => "#{current_admin_user.username}删除了MAC地址为#{@pad.Mac_address}的平板")
     @pad.destroy
     respond_to do |format|
       format.html { redirect_to pads_url, notice: '删除成功！' }

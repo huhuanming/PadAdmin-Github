@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :companies, :except => [:new, :destroy, :create]
   resources :admins, controller: 'admin_users'
   resources :informs
+  resources :plugins, :only => [:index, :create, :destroy]
+  resources :logs, :only => [:index]
 
   resources :products  do
     post 'destroy_ids', on: :collection

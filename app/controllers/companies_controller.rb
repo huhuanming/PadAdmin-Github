@@ -43,6 +43,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
+        @log = Log.create(:admin_user_id => current_admin_user.id, :company_id => current_admin_user.company.id, :event => "更新公司信息", :description => "#{current_admin_user.username}更新了公司信息")
         format.html { redirect_to companies_path, notice: '公司信息更新成功！' }
         format.json { render :show, status: :ok, location: @company }
       else

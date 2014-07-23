@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718131240) do
+ActiveRecord::Schema.define(version: 20140722013359) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 20140718131240) do
     t.datetime "updated_at"
   end
 
+  create_table "company_plugins", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "plugin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "informs", force: true do |t|
     t.integer  "company_id"
     t.string   "title"
@@ -57,6 +64,15 @@ ActiveRecord::Schema.define(version: 20140718131240) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "brief"
+  end
+
+  create_table "logs", force: true do |t|
+    t.integer  "admin_user_id"
+    t.integer  "company_id"
+    t.string   "event"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pad_users", force: true do |t|
@@ -74,6 +90,14 @@ ActiveRecord::Schema.define(version: 20140718131240) do
   end
 
   add_index "pads", ["Mac_address"], name: "index_pads_on_Mac_address", unique: true
+
+  create_table "plugins", force: true do |t|
+    t.string   "name"
+    t.string   "brief"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.integer  "company_id"

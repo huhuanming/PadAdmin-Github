@@ -1,0 +1,25 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-clock-o fa-fw"></i> 日志
+    </div>
+    <% @logs.each do |log| %>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <ul class="timeline">
+            <li>
+                <div class="timeline-badge"><i class="fa fa-check"></i>
+                </div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4 class="timeline-title"><%= log.event %></h4>
+                        <p>
+                            <small class="text-muted"><i class="fa fa-time"></i><%= log.created_at %></small>
+                        </p>
+                    </div>
+                    <div class="timeline-body">
+                        <p><%= log.description %></p>
+                    </div>
+                </div>
+            </li>
+            <% end %>
