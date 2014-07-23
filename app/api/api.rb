@@ -26,7 +26,7 @@ module API
       #   /api/informs?page=1&per_page=15
       get do
         @informs = Inform.page(params[:page]).per(params[:per_page]||10)
-        present @informs, with: APIEntities::Inform
+        present @informs, with: APIEntities::Informs
       end
 
       # Get inform detail
