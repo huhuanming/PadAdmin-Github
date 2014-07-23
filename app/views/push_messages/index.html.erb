@@ -35,7 +35,6 @@
             <td><%= push_message.updated_at %></td>
             <td>
               <%= link_to '查看', push_message %> 
-              <%= link_to '编辑', edit_push_message_path(push_message) %>
               <%= link_to '删除', push_message, method: :delete, data: { confirm: '你确定要删除吗？' }%>
             </td>
           </tr>

@@ -40,6 +40,27 @@ module API
       end
     end
 
+    resource :products do
+      # Get product list
+      # params[:page]: default is 1
+      # params[:per_page]: default is 10
+      # Example
+      #   /api/products?page=1&per_page=15
+      get do
+        @products = Product.page(params[:page]).per(params[:per_page]||10)
+        present @products, with: APIEntities::Products
+      end
+
+      # Get product detail
+      # Example
+      #   /api/product/1
+      get ":id" do
+        @product = Product.find_by_id(params[:id])
+        error!("product not found", 404) if @product.blank?
+        present @product, with: APIEntities::Product
+      end
+    end
+
 
   end
 end

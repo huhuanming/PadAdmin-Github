@@ -1,34 +1,33 @@
 <% provide(:title, '新建推送信息')  %>
 <% if !notice.nil? %>
-  <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <%= notice %> 
-  </div>
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <%= notice %> 
+</div>
 <% end%>
 
 <div class="panel panel-default">
-   <div class="panel-heading">推送信息</div>
-      <div class="panel-body">
-        <div class="table-responsive">
-              <div class="time">
-                <strong>添加时间:</strong>
-                <%= @push_message.created_at %>
-              </div>
-              <div class="time">
-                <strong>修改时间:</strong>
-                <%= @push_message.updated_at %>
-              </div>
-              <div class="check_product">
-                  <strong>推送信息内容:</strong>
-                  <%= @push_message.message %>
-              </div>
-
-              <div class="button">
-                      <%= link_to '编辑', edit_push_message_path(@push_message), class:"btn btn-outline btn-primary" %> 
-                      <%= link_to '返回', push_messages_path, class:"btn btn-outline btn-primary" %>
-              </div>
-        </div>
-             <!-- /.table-responsive -->
+ <div class="panel-heading">推送信息</div>
+ <div class="panel-body">
+  <div class="table-responsive">
+    <div class="time">
+      <strong>添加时间:</strong>
+      <%= @push_message.created_at %>
     </div>
-     <!-- /.panel-body -->
+    <div class="time">
+      <strong>修改时间:</strong>
+      <%= @push_message.updated_at %>
+    </div>
+    <div class="check_product">
+      <strong>推送信息内容:</strong>
+      <%= @push_message.message %>
+    </div>
+
+    <div class="button">
+      <%= link_to '返回', push_messages_path, class:"btn btn-outline btn-primary" %>
+    </div>
+  </div>
+  <!-- /.table-responsive -->
+</div>
+<!-- /.panel-body -->
 </div>
