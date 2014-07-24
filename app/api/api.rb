@@ -4,18 +4,18 @@ require "helpers"
 module API
 	class Root < Grape::API
     prefix "api"
-	  format :json
+    format :json
 
-   helpers APIHelpers
+    helpers APIHelpers
 
    # get Qiniu uploadToken
-   	get "uploadToken" do
-   		authInfo = {             
-                'scope'      =>      "motor",
-                'deadline'  =>       Time.new.to_i+600,
-              }
-        present:token, Qiniu::Auth.generate_uptoken(authInfo)
-   	end
+   get "uploadToken" do
+     authInfo = {             
+      'scope'      =>      "motor",
+      'deadline'  =>       Time.new.to_i+600,
+    }
+    present:token, Qiniu::Auth.generate_uptoken(authInfo)
+  end
 
     # inform resource 
     resource :informs do
@@ -61,6 +61,23 @@ module API
       end
     end
 
+    #Create baidu_push detail
+    #param[:channel_id]: can't be blank
 
+    get 'chenhongshisb' do
+      params do
+        requires :channel_id, type: String
+        requires :push_id, type: String
+        requires :mac_address, type: String
+      end
+      pad = Pad.find_by(:Mac_address => params[:mac_address])
+      error!("pad not found", 404) if pad.blank?
+      @baidu_push = BaiduPush.new(
+        :channel_id => params[:channel_id],
+        :push_id => params[:push_id],
+        :pad_id => pad.id)
+      error!(@baidu_push.errors, 422) if !@baidu_push.save
+      present:status, "true"
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722013359) do
+ActiveRecord::Schema.define(version: 20140724082615) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 20140722013359) do
   end
 
   add_index "admin_users_roles", ["admin_user_id", "role_id"], name: "index_admin_users_roles_on_admin_user_id_and_role_id"
+
+  create_table "baidu_pushes", force: true do |t|
+    t.string   "channel_id"
+    t.string   "pad_id"
+    t.string   "push_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "companies", force: true do |t|
     t.string   "company_name"
