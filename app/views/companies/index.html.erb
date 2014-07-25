@@ -1,31 +1,31 @@
 <% provide(:title, '公司信息') %>
-
+<br>
 <% if !notice.nil? %>
-  <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <%= notice %> 
-  </div>
+<div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <%= notice %> 
+</div>
 <% end%>
 
 <div class="panel panel-default">
-   <div class="panel-heading">查看公司信息</div>
-      <div class="panel-body">
-        <div class="table-responsive">
-            <div class="show">
-                <strong>公司名称:</strong>
-                <%= @company.company_name %>
-            </div>
-
-            <div class="show">
-                <strong>公司地址:</strong>
-                <%= @company.company_address %>
-            </div>
-
-            <div class="show">
-                <strong>公司电话:</strong>
-                <%= @company.company_tel %>
-            </div>
-            <%= link_to '编辑', edit_company_path(@company), class:"btn btn-outline btn-primary"%>
+ <div class="panel-heading">查看公司信息</div>
+ <div class="panel-body">
+    <div class="table-responsive">
+        <div class="show">
+            <strong>公司名称:</strong>
+            <%= @company.company_name %>
         </div>
+
+        <div class="show">
+            <strong>公司地址:</strong>
+            <%= @company.company_address %>
+        </div>
+
+        <div class="show">
+            <strong>公司电话:</strong>
+            <%= @company.company_tel %>
+        </div>
+        <%= link_to '编辑', edit_company_path(@company), class:"btn btn-outline btn-primary"%>
     </div>
+</div>
 </div>

@@ -1,89 +1,95 @@
-<%= form_for(@admin_company, url: admin_companies_path, method: "post") do |f| %>
-  <% if @admin_company.errors.any? %>
-    <div class="alert alert-block alert-error">
+<br>
+<div class="panel panel-default">
+  <div class="panel-heading">新建公司</div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <%= form_for(@admin_company, url: admin_companies_path, method: "post") do |f| %>
+      <% if @admin_company.errors.any? %>
+      <div class="alert alert-block alert-error">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <p><strong>有 <%= @admin_company.errors.count %> 处问题导致无法提交:</strong></p>
         <ul>
-        <% @admin_company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
+          <% @admin_company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
         </ul>
-</div>
-  <% end %>
-  <% if @admin.errors.any? %>
-    <div class="alert alert-block alert-error">
+      </div>
+      <% end %>
+      <% if @admin.errors.any? %>
+      <div class="alert alert-block alert-error">
         <a class="close" data-dismiss="alert" href="#">×</a>
         <p><strong>有 <%= @admin.errors.count %> 处问题导致无法提交:</strong></p>
         <ul>
-        <% @admin.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
+          <% @admin.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
         </ul>
-</div>
-  <% end %>
-   <div class="field">
+      </div>
+      <% end %>
+      <div class="field">
 
-   <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">公司名字:</label>
-            <% else %>
-            <label>公司名字</label>
-            <% end %>
-   <%= f.text_field :company_name, class:(@admin_company.errors.any?) ? "form-control error" : "form-control",value: (@admin_company.company_name.nil?)? "" : @admin_company.company_name %>
-  </div>
-  <div class="field">
-   <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">公司地址:</label>
-            <% else %>
-            <label>公司地址</label>
-            <% end %>
-    <%= f.text_field :company_address, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.company_address.nil?)? "" : @admin_company.company_address %>
-  </div>
-  <div class="field">
+       <% if@admin_company.errors.any?%>
+       <label class="string required control-label error">公司名字:</label>
+       <% else %>
+       <label>公司名字</label>
+       <% end %>
+       <%= f.text_field :company_name, class:(@admin_company.errors.any?) ? "form-control error" : "form-control",value: (@admin_company.company_name.nil?)? "" : @admin_company.company_name %>
+     </div>
+     <div class="field">
+       <% if@admin_company.errors.any?%>
+       <label class="string required control-label error">公司地址:</label>
+       <% else %>
+       <label>公司地址</label>
+       <% end %>
+       <%= f.text_field :company_address, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.company_address.nil?)? "" : @admin_company.company_address %>
+     </div>
+     <div class="field">
 
-  <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">公司电话:</label>
-            <% else %>
-            <label>公司电话</label>
-            <% end %>
-    <%= f.text_field :company_tel, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.company_tel.nil?)? "" : @admin_company.company_tel%>
-  </div>
-<div class="field">
+      <% if@admin_company.errors.any?%>
+      <label class="string required control-label error">公司电话:</label>
+      <% else %>
+      <label>公司电话</label>
+      <% end %>
+      <%= f.text_field :company_tel, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.company_tel.nil?)? "" : @admin_company.company_tel%>
+    </div>
+    <div class="field">
 
-  <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">用户名</label>
-            <% else %>
-            <label>用户名</label>
-            <% end %>
-    <%= f.text_field :username, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.username.nil?)? "" : @admin_company.username%>
-  </div>
-  <div class="field">
+      <% if@admin_company.errors.any?%>
+      <label class="string required control-label error">用户名</label>
+      <% else %>
+      <label>用户名</label>
+      <% end %>
+      <%= f.text_field :username, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.username.nil?)? "" : @admin_company.username%>
+    </div>
+    <div class="field">
 
-  <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">邮箱</label>
-            <% else %>
-            <label>邮箱</label>
-            <% end %>
-    <%= f.text_field :email, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.email.nil?)? "" : @admin_company.email%>
-  </div>
-  <div class="field">
+      <% if@admin_company.errors.any?%>
+      <label class="string required control-label error">邮箱</label>
+      <% else %>
+      <label>邮箱</label>
+      <% end %>
+      <%= f.text_field :email, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.email.nil?)? "" : @admin_company.email%>
+    </div>
+    <div class="field">
 
-  <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">密码</label>
-            <% else %>
-            <label>密码</label>
-            <% end %>
-    <%= f.text_field :password, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.password.nil?)? "" : @admin_company.password%>
-  </div>
-  <div class="field">
+      <% if@admin_company.errors.any?%>
+      <label class="string required control-label error">密码</label>
+      <% else %>
+      <label>密码</label>
+      <% end %>
+      <%= f.text_field :password, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.password.nil?)? "" : @admin_company.password%>
+    </div>
+    <div class="field">
 
-  <% if@admin_company.errors.any?%>
-            <label class="string required control-label error">确认密码</label>
-            <% else %>
-            <label>确认密码</label>
-            <% end %>
-    <%= f.text_field :password_confirmation, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.password_confirmation.nil?)? "" : @admin_company.password_confirmation%>
-  </div>
-  <div class="actions">
-   <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
-  </div>
-<% end %>
+      <% if@admin_company.errors.any?%>
+      <label class="string required control-label error">确认密码</label>
+      <% else %>
+      <label>确认密码</label>
+      <% end %>
+      <%= f.text_field :password_confirmation, class:(@admin_company.errors.any?) ? "form-control error" : "form-control", value: (@admin_company.password_confirmation.nil?)? "" : @admin_company.password_confirmation%>
+    </div>
+    <div class="actions">
+     <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
+     <%= link_to '返回', admin_companies_path, class:"btn btn-outline btn-primary" %>
+   </div>
+   <% end %>

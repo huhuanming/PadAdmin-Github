@@ -1,6 +1,6 @@
   <br>
   <div class="panel panel-default">
-  	<div class="panel-heading">更改密码</div>
+  	<div class="panel-heading">修改密码</div>
   	<div class="panel-body">
   		<div class="table-responsive">
   			<%= form_for(@admin, url: admin_path(@admin)) do |f| %>
@@ -31,14 +31,6 @@
         <br>
         <input class="form-control error" id="admin_user_current_password" name="admin_user[current_password]" type="password" >
         <br>
-        <label class="string required control-label error" >用户名</label>
-        <br>
-        <%= f.text_field :username, class:"form-control error"  %>
-        <br>
-        <label class="string required control-label error" >邮箱</label>
-        <br>
-        <%= f.text_field :email, class:"form-control error" %>
-        <br>
         <label class="string required control-label error" >新密码</label>
         <br>
         <%= f.password_field :password, class:"form-control error" %>
@@ -50,14 +42,6 @@
         <label class="string required control-label" >管理员密码</label>
         <br>
         <input class="form-control" id="admin_user_current_password" name="admin_user[current_password]" type="password" >
-        <br>
-        <label class="string required control-label" >用户名</label>
-        <br>
-        <%= f.text_field :username, class:"form-control"  %>
-        <br>
-        <label class="string required control-label" >邮箱</label>
-        <br>
-        <%= f.text_field :email, class:"form-control" %>
         <br>
         <label class="string required control-label" >新密码</label>
         <br>
