@@ -17,11 +17,6 @@ module BPush
     self.send_notifications([n])
   end
 
-
-  def self.ping
-    return Time.new
-  end
-
   def self.push_msg(bpush_id,channel_id,messages)
       uri = URI.parse('http://channel.api.duapp.com/rest/2.0/channel/channel')
       message_hash = {
