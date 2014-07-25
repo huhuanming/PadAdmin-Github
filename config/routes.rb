@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   resources :informs
   resources :plugins, :only => [:index, :create, :destroy]
   resources :logs, :only => [:index]
+  # resources :admin_infos, :only => [:show, :edit, :update]
+  get '/admin_infos/:id', to: 'admin_infos#show'
+  get '/admin_infos/:id/edit', to: 'admin_infos#edit'
+  get '/admin_infos/:id/password', to: 'admin_infos#password'
+  patch 'admin_infos/:id/edit', to: 'admin_infos#update'
+  patch '/admin_infos/:id/password', to: 'admin_infos#update_password'
 
   resources :products  do
     post 'destroy_ids', on: :collection

@@ -28,7 +28,7 @@
               <td class="textstyle"><%= admin_user.email%></td>
               <td class="textstyle">
                 <%= link_to '查看', admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= link_to '编辑', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= link_to '修改密码', edit_admin_path(admin_user) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <%= link_to '删除', admin_path(admin_user), method: :delete, data: { confirm: '您确定要删除?' } %>
               </td>
             </tr>

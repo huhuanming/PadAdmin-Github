@@ -42,6 +42,17 @@ en:
         Mac_address: "MAC地址"
       push_message:
         message: "推送消息"
+      company:
+        company_name: "公司名字"
+        company_address: "公司地址"
+        company_tel: "公司电话"
+      inform:
+        title: "标题"
+        author: "作者"
+        brief: "摘要"
+      product:
+        product_name: "产品名字"
+        brief: "摘要"
   errors:
     models:
       admin_user: 管理员

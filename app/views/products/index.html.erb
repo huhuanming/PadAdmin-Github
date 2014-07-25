@@ -1,5 +1,5 @@
 <% provide(:title, '产品管理')  %>
-
+<br>
 <% if !notice.nil? %>
   <div class="alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -61,7 +61,7 @@
                             <td><%= product.updated_at %></td>
                             <td><%= link_to '查看', product %> 
                                 <%= link_to '编辑', edit_product_path(product) %>
-                                <%= link_to '删除', product, method: :delete %>
+                                <%= link_to '删除', product, method: :delete, data: { confirm: '您确定要删除?' }%>
                             </td>
                         </tr>
                    </tbody>

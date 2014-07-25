@@ -21,25 +21,25 @@
   <div id="wrapper">
 
     <nav >
-    <div class="navbar navbar-default navbar-fixed-top">
-      
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html">PadAdmin</a>
-      </div>
-      <!-- /.navbar-header -->
+      <div class="navbar navbar-default navbar-fixed-top">
 
-      <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-messages">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">PadAdmin</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+          <li class="dropdown">
+           <!--  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a> -->
+            <!--             <ul class="dropdown-menu dropdown-messages"> -->
             <!-- <li>
               <a href="#">
                 <div>
@@ -76,22 +76,22 @@
               </a>
             </li>
             <li class="divider"></li>
- -->            <li>
-              <a class="text-center">
-                <strong>没有消息</strong>
-                <!-- <i class="fa fa-angle-right"></i> -->
-              </a>
-            </li>
-          </ul>
-          <!-- /.dropdown-messages -->
+          -->   <!--          <li>
+          <a class="text-center">
+            <strong>没有消息</strong> -->
+            <!-- <i class="fa fa-angle-right"></i> -->
+      <!--     </a>
         </li>
-        <!-- /.dropdown -->
-        
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-alerts">
+      </ul> -->
+      <!-- /.dropdown-messages -->
+      <!--     </li> -->
+      <!-- /.dropdown -->
+<!-- 
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-alerts"> -->
            <!--  <li>
               <a href="#">
                 <div>
@@ -137,36 +137,36 @@
               </a>
             </li>
             <li class="divider"></li> -->
-            <li>
+   <!--          <li>
               <a class="text-center">
-                <strong>没有通知</strong>
+                <strong>没有通知</strong> -->
                 <!-- <i class="fa fa-angle-right"></i> -->
-              </a>
+             <!--  </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- /.dropdown-alerts -->
-        </li>
-        <!-- /.dropdown -->
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-user">
-            <li><a><i class="fa fa-user fa-fw"></i> <%= current_admin_user.username %></a>
-            </li>
-            <li><a><i class="fa fa-gear fa-fw"></i> 设置</a>
-            </li>
-            <li class="divider"></li>
-            <li><a data-method="delete" href="/admin_users/sign_out" rel="nofollow"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
-            </li>
-          </ul>
-          <!-- /.dropdown-user -->
-        </li>
-        <!-- /.dropdown -->
-      </ul>
-      <!-- /.navbar-top-links -->
-    </div>
-      
+          <!--         </li> -->
+          <!-- /.dropdown -->
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+              <li><a href="/admin_infos/<%= current_admin_user.id %>"><i class="fa fa-user fa-fw"></i> <%= current_admin_user.username %></a>
+              </li>
+              <li><a><i class="fa fa-gear fa-fw"></i> 设置</a>
+              </li>
+              <li class="divider"></li>
+              <li><a data-method="delete" href="/admin_users/sign_out" rel="nofollow"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+              </li>
+            </ul>
+            <!-- /.dropdown-user -->
+          </li>
+          <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+      </div>
+
 
       <div class="navbar-default navbar-static-side" role="navigation"  style="margin-top: 0px;">
         <div class="sidebar-collapse">
@@ -182,11 +182,16 @@
               </div>
               <!-- /input-group -->
             </li>
+            <% if current_admin_user.has_role? :root_admin %>
             <li>
-              <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+              <a href="/admin_companies"><i class="fa fa-bar-chart-o fa-fw"></i>公司管理</a>
+            </li>
+            <% else %>
+            <li>
+              <a href="/"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
             </li>
             <li>
-              <a href="/companies"><i class="fa fa-bar-chart-o fa-fw"></i> 公司信息</a>
+              <a href="/companies"><i class="fa fa-bar-chart-o fa-fw"></i>公司信息</a>
              <!--  <ul class="nav nav-second-level">
                 <li>
                   <a href="flot.html">Flot Charts</a>
@@ -197,6 +202,11 @@
               </ul> -->
               <!-- /.nav-second-level -->
             </li>
+            <% if current_admin_user.has_role? :admin %>
+            <li>
+              <a href="/admins"><i class="fa fa-group fa-fw"></i>管理员管理</a>
+            </li>
+            <% end %>
             <li>
               <a href="/informs"><i class="fa fa-file-text fa-fw"></i> 新闻管理</a>
             </li>
@@ -226,8 +236,9 @@
               </ul>
               <!-- /.nav-second-level -->
             </li>
-           
+
           </ul>
+          <% end -%>
           <!-- /#side-menu -->
         </div>
         <!-- /.sidebar-collapse -->
@@ -235,42 +246,42 @@
       <!-- /.navbar-static-side -->
     </nav>
 
-        <div id="page-wrapper">
-          <%= yield %>
-        </div>
-        <!-- /#page-wrapper -->
-
+    <div id="page-wrapper">
+      <%= yield %>
     </div>
-    <!-- /#wrapper -->
-    
+    <!-- /#page-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
   <script type="text/javascript">
-  jQuery(document).ready(function($){
-    $('#page-wrapper').backtotop({
-      topOffset: 500,
-      animationSpeed: 2000,
-      bckTopLinkTitle: '回顶部'
-    }); 
-  });
-      $(function() {
+    jQuery(document).ready(function($){
+      $('#page-wrapper').backtotop({
+        topOffset: 500,
+        animationSpeed: 2000,
+        bckTopLinkTitle: '回顶部'
+      }); 
+    });
+    $(function() {
 
-    $('#side-menu').metisMenu();
+      $('#side-menu').metisMenu();
 
-});
+    });
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 $(function() {
-    $(window).bind("load resize", function() {
-        width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
-        if (width < 768) {
-            $('div.sidebar-collapse').addClass('collapse')
-        } else {
-            $('div.sidebar-collapse').removeClass('collapse')
-        }
-    })
+  $(window).bind("load resize", function() {
+    width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
+    if (width < 768) {
+      $('div.sidebar-collapse').addClass('collapse')
+    } else {
+      $('div.sidebar-collapse').removeClass('collapse')
+    }
+  })
 })
 </script>
-  <%= yield :footer_js %>
+<%= yield :footer_js %>
 </body>
 
 </html>
