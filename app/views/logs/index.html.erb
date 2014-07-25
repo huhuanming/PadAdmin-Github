@@ -3,11 +3,11 @@
     <div class="panel-heading">
         <i class="fa fa-clock-o fa-fw"></i> 日志
     </div>
-    <% @logs.each do |log| %>
     <!-- /.panel-heading -->
     <div class="panel-body">
         <ul class="timeline">
-            <li>
+         <% @logs.each_with_index do |log, index| %>
+            <li class="<%= "timeline-inverted" if index.even?%>">
                 <div class="timeline-badge"><i class="fa fa-check"></i>
                 </div>
                 <div class="timeline-panel">
@@ -22,4 +22,4 @@
                     </div>
                 </div>
             </li>
-            <% end %>
+        <% end %>
