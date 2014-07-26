@@ -1,3 +1,4 @@
+require "BPush"
 class PushMessagesController < ApplicationController
   before_action :set_push_message, only: [:show, :edit, :update, :destroy]
 
@@ -31,7 +32,9 @@ class PushMessagesController < ApplicationController
     respond_to do |format|
       if @push_message.save
         params[:ids].split(",").each do | id |
-          PushTarget.create(pad_id: id, push_message_id: @push_message.id);
+          PushTarget.create(pad_id: id, push_message_id: @push_message.id)
+          baidu_push = BaiduPush.find_by(pad_id: id)
+          BPush.push_msg(baidu_push.push_id, baidu_push.channel_id, params[:message])
         end
         
         format.html { redirect_to @push_message, notice: '推送消息创建成功' }

@@ -58,6 +58,7 @@ if (ids.split(",").length > 1) {
   .done(function( data) {
     console.log(data);
     location.href = "/push_messages/" + data.id;//跳转网址
+
   })
   .fail(function ( jqXHR, textStatus, errorThrown ) {
     console.log(jqXHR.responseText);

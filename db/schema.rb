@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724082615) do
+ActiveRecord::Schema.define(version: 20140725112824) do
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140724082615) do
 
   create_table "baidu_pushes", force: true do |t|
     t.string   "channel_id"
-    t.string   "pad_id"
+    t.integer  "pad_id",     limit: 255
     t.string   "push_id"
     t.datetime "created_at"
     t.datetime "updated_at"
