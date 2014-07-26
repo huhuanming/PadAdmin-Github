@@ -53,17 +53,16 @@
       
       <div class="field">
         <label>内容</label>
-         <script id="editor1" type="text/plain" style="width:100%; height:500px;"></script>
+         <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
           </div>   
   
 
-<%= f.submit "提交", class:"btn btn-outline btn-primary ", id:"edit_button" %>
-<!-- <button id="edit_button" class="btn btn-outline btn-primary">提交</button> -->
   <% end %>
 
+<button class="btn btn-outline btn-primary", id="edit_button">提交</button>
 
 <script type="text/javascript">
-  var ue = UE.getEditor('editor1');
+  var ue = UE.getEditor('editor');
   ue.ready(function() {
      html = unescape("<%=@inform.context%>");  
     $('#ueditor_0').contents().find('body').append(html);
@@ -81,7 +80,7 @@
                     "inform[title]" :$("#inform_title").val(),
                     "inform[author]":$("#inform_author").val(),
                     "inform[brief]":$("#inform_brief").val(),
-                    "inform[context]" : escape(UE.getEditor('editor1').getAllHtml()),
+                    "inform[context]" : escape(UE.getEditor('editor').getAllHtml()),
                     "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
                     "utf8": $("input[name='utf8']").attr("value")
                   },
