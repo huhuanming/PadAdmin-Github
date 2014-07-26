@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     post 'destroy_ids', on: :collection
   end
 
-  resources :push_messages
+  resources :push_messages, :except => [:edit]
   resources :pads
   
   mount API::Root => '/'

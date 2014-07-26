@@ -38,28 +38,30 @@
     //   function(data) {
     //   console.log(data);
     // }, "json");
-$.ajax({
-  url: "/push_messages",
-  beforeSend: function(data){
-    $('#error-div').css("display","none");
-    $('#error-div').children().filter('li').remove();
-  },
-  dataType: "json",
-  type: "POST",
-  data: {
-    "push_message[message]" :$("#push_message_message").val(),
-    "ids" : ids,
-    "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
-    "utf8": $("input[name='utf8']").attr("value")
-  },
-})
-.done(function( data) {
-  console.log("done");
-
-})
-.fail(function ( jqXHR, textStatus, errorThrown ) {
-  console.log(jqXHR.responseText);
-  $("#error-div").css("display","block");
+if (ids.split(",").length > 1) {
+  console.log("test");
+  $.ajax({
+    url: "/push_messages",
+    beforeSend: function(data){
+      $('#error-div').css("display","none");
+      $('#error-div').children().filter('li').remove();
+    },
+    dataType: "json",
+    type: "POST",
+    data: {
+      "push_message[message]" :$("#push_message_message").val(),
+      "ids" : ids,
+      "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
+      "utf8": $("input[name='utf8']").attr("value")
+    },
+  })
+  .done(function( data) {
+    console.log(data);
+    location.href = "/push_messages/" + data.id;//跳转网址
+  })
+  .fail(function ( jqXHR, textStatus, errorThrown ) {
+    console.log(jqXHR.responseText);
+    $("#error-div").css("display","block");
     // for(error in JSON.parse(jqXHR.responseText).message){
     //   console.log(error);
     //   $('<li />').html(error).appendTo('#error-div');
@@ -70,10 +72,21 @@ $.ajax({
     };
     console.log(JSON.parse(jqXHR.responseText).message);
   })
-.always(function( data ) {
+  .always(function( data ) {
 
-})
+  })
 
+}else{
+  $('#error-div').css("display","none");
+  $('#error-div').children().filter('li').remove();
+  $("#error-div").css("display","block");
+    // for(error in JSON.parse(jqXHR.responseText).message){
+    //   console.log(error);
+    //   $('<li />').html(error).appendTo('#error-div');
+    // }
+    $("#error-p").html("<strong>发生了1个错误</strong>");
+    $('<li />').html("请勾选目标平板").appendTo('#error-div');
+  }
 });
   // $('<input />').attr('type', 'hidden')
   // .attr('name', "ids")
