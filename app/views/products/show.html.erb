@@ -40,15 +40,24 @@
      <!-- /.panel-body -->
 </div>
 
-
-              <script type="text/javascript">
-                  a = $('<iframe/>', {id: 'foo',})
+            <script type="text/javascript">
+              a = $('<iframe/>', {id: 'foo',scrolling:'no',onload:'iFrameHeight(this)',name:'foo', })
                   a.appendTo('#log');
                   a.css('width', '98%');
-                   a.css('min-height','1000px;');
                   a.css('border','0 none');
-                    html = unescape("<%= @product.context%>");
+                   html = unescape("<%= @product.context%>");
                     $('#foo').contents().find('body').append(html);
+              function setIframeHeight(iframe) {
+                  if (iframe) {
+                  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                  if (iframeWin.document.body) {
+                  iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+                       }
+                     }
+                  };
+                  window.onload = function () {
+                  setIframeHeight(document.getElementById('foo'));
+                  };
               </script>
 
              

@@ -35,15 +35,25 @@
 </div>
  <!-- /.row -->
   <script type="text/javascript">
-                  a = $('<iframe/>', {id: 'foo', })
+              a = $('<iframe/>', {id: 'foo',scrolling:'no',onload:'iFrameHeight(this)',name:'foo', })
                   a.appendTo('#log');
                   a.css('width', '98%');
-                  a.css('height','100%');
-                  a.css('scrolling','no');
-                  a.css('srcdoc','HTML_code');
                   a.css('border','0 none');
                     html = unescape("<%= @inform.context %>");
                     $('#foo').contents().find('body').append(html);
               </script>
 
 
+  <script type="text/javascript">
+              function setIframeHeight(iframe) {
+                  if (iframe) {
+                  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                  if (iframeWin.document.body) {
+                  iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+                  }
+                  }
+                  };
+                  window.onload = function () {
+                  setIframeHeight(document.getElementById('foo'));
+                  };
+              </script>
