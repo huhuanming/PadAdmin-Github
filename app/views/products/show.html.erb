@@ -45,7 +45,7 @@
                   a = $('<iframe/>', {id: 'foo',})
                   a.appendTo('#log');
                   a.css('width', '98%');
-                   a.css('height','100%');
+                   a.css('min-height','1000px;');
                   a.css('border','0 none');
                     html = unescape("<%= @product.context%>");
                     $('#foo').contents().find('body').append(html);

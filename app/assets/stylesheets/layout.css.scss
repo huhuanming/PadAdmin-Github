@@ -421,6 +421,22 @@ Created on:17 july .2014,10,17
 Document :company.css
 Created on:17 july .2014,10,47
 */
+// #foo{
+//     width:98%;
+//     height:100%;
+//     border:0px;
+//     // scrolling:no;
+
+//     //  a.css('width', '98%');
+//     //               a.css('height','100%');
+//     //               a.css('scrolling','no');
+//     //               a.css('srcdoc','HTML_code');
+//     //               a.css('border','0 none');
+// }
+.navbar-default{
+    position: absolute;
+    top: 0px;
+}
 .show{
     width: 60%;
     color:#544946;
@@ -486,9 +502,6 @@ Created on:17 july .2014,10,47
 .delete{
     padding:5px;
     margin-top: 18px;
-}
-#foo{
-    height: 100%;
 }
 .check_product{
     width: 100%;
