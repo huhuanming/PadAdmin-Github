@@ -1,59 +1,57 @@
 <% provide(:title, '新闻展示')  %>
 <br>
 <% if !notice.nil? %>
-  <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <%= notice %> 
-  </div>
-<% end%>
- <!-- /.row -->
- <div class="panel panel-default">
-   <div class="panel-heading">新闻展示</div>
-      <div class="panel-body">
-        <div class="table-responsive">
-                    <div class="check_product">
-                        <strong>标题</strong>
-                        <p><%= @inform.title %></p>
-                    </div>
-                <!-- /.col-lg-4 -->
-                    <div class="check_product">
-                        <strong>作者</strong>
-                        <p> <%= @inform.author %></p>
-                    </div>
-                    <div class="check_product">
-                        <strong>摘要</strong>
-                        <p> <%= @inform.brief %></p>
-                    </div>
-                <!-- /.col-lg-4 -->
-                    <div class="check_product" id="log">
-                        <strong>内容</strong>
-                    </div>
-             <%= link_to '编辑', edit_inform_path(@inform) ,class:"btn btn-outline btn-primary"%> 
-             <%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
-        </div>
-     </div>
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <%= notice %> 
 </div>
- <!-- /.row -->
-  <script type="text/javascript">
-              a = $('<iframe/>', {id: 'foo',scrolling:'no',onload:'iFrameHeight(this)',name:'foo', })
-                  a.appendTo('#log');
-                  a.css('width', '98%');
-                  a.css('border','0 none');
-                    html = unescape("<%= @inform.context %>");
-                    $('#foo').contents().find('body').append(html);
-              </script>
+<% end%>
+<!-- /.row -->
+<div class="panel panel-default">
+ <div class="panel-heading">新闻展示</div>
+ <div class="panel-body">
+  <div class="table-responsive">
+    <div class="check_product">
+      <strong>标题</strong>
+      <p><%= @inform.title %></p>
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="check_product">
+      <strong>作者</strong>
+      <p> <%= @inform.author %></p>
+    </div>
+    <div class="check_product">
+      <strong>摘要</strong>
+      <p> <%= @inform.brief %></p>
+    </div>
+    <!-- /.col-lg-4 -->
+    <div class="check_product" id="log">
+      <strong>内容</strong>
+     
+    </div>
+    <%= link_to '编辑', edit_inform_path(@inform) ,class:"btn btn-outline btn-primary"%> 
+    <%= link_to '返回', informs_path ,class:"btn btn-outline btn-primary"%>
+  </div>
+</div>
+</div>
+<!-- /.row -->
 
 
-  <script type="text/javascript">
-              function setIframeHeight(iframe) {
-                  if (iframe) {
-                  var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-                  if (iframeWin.document.body) {
-                  iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-                  }
-                  }
-                  };
-                  window.onload = function () {
-                  setIframeHeight(document.getElementById('foo'));
-                  };
-              </script>
+
+<script type="text/javascript">
+a = $('<iframe/>', {id: 'foo',scrolling:'no',onload:'iFrameHeight(this)',name:'foo'});
+  a.appendTo('#log');
+  a.css('width', '98%');
+  a.css('border','0 none');
+  html = unescape("<%= @inform.context %>");
+  $('#foo').contents().find('body').append(html);
+  function setIframeHeight(iframe) {
+    if (iframe) {
+      var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+      if (iframeWin.document.body) {
+        iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+      }
+    }
+  };
+  setIframeHeight(document.getElementById('foo'))
+</script>
