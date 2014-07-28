@@ -42,11 +42,8 @@
          <label>产品描述:</label>
         <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
         </div>
-
- 
-
-<%= f.submit "提交", class:"btn btn-outline btn-primary ", id:"edit_button" %>
      <% end %>
+    <button class="btn btn-outline btn-primary", id="edit_button">提交</button>
 
 
 <script type="text/javascript">
@@ -67,7 +64,8 @@
         dataType: "json",
         type: request_type,
         data: {
-          "product[product_name]" :$("#product_product_name").val(),
+          "product[product_name]" :$("#product_product_name").val(), 
+          "product[brief]" : $("#product_brief").val(), 
           "product[context]" : escape(UE.getEditor('editor').getAllHtml()),
           "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
           "utf8": $("input[name='utf8']").attr("value")
