@@ -21,33 +21,16 @@
               
               <div class="check_product">
                   <strong>产品名字:</strong>
-                  <%= @product.product_name %>
+                  <p><%= @product.product_name %></p>
               </div>
                <div class="check_product">
                   <strong>产品摘要:</strong>
-                  <%= @product.brief %>
+                  <p><%= @product.brief %></p>
               </div>
-              <div id="log"  class="check_product">
+              <div class="check_product" id="log" >
                 <strong>产品描述:</strong>
-
               </div>
-
-
-              <script type="text/javascript">
-                  a = $('<iframe/>', {
-                      id: 'foo',
-                  })
-                  a.appendTo('#log');
-                  a.css('width', '100%');
-                  a.css('height', '100%');
-                  a.css('border','0 none');
-
-
-                    html = unescape("<%= @product.context%>");
-                    $('#foo').contents().find('body').append(html);
-              </script>
-
-              <div class="button">
+               <div class="button">
                       <%= link_to '编辑', edit_product_path(@product), class:"btn btn-outline btn-primary" %> 
                       <%= link_to '返回', products_path, class:"btn btn-outline btn-primary" %>
               </div>
@@ -56,3 +39,16 @@
     </div>
      <!-- /.panel-body -->
 </div>
+
+
+              <script type="text/javascript">
+                  a = $('<iframe/>', {id: 'foo',})
+                  a.appendTo('#log');
+                  a.css('width', '98%');
+                   a.css('height','100%');
+                  a.css('border','0 none');
+                    html = unescape("<%= @product.context%>");
+                    $('#foo').contents().find('body').append(html);
+              </script>
+
+             

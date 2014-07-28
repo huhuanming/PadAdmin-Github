@@ -43,7 +43,13 @@
         <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
         </div>
      <% end %>
+
+
+
     <button class="btn btn-outline btn-primary", id="edit_button">提交</button>
+
+
+
 
 
 <script type="text/javascript">
@@ -57,7 +63,6 @@
 
 <script type="text/javascript">
   function form_send (url, request_type) {
-
     $("#edit_button").click(function () {
       $.ajax({
         url: url,
@@ -81,7 +86,6 @@
       .always(function( data ) {
        location.href = url
      })
-      
     });
   }
 </script>
