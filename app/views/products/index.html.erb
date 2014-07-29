@@ -59,7 +59,7 @@
                             </td>
                             <td><%= product.created_at %></td>
                             <td><%= product.updated_at %></td>
-                            <td><%= link_to '查看', product %> 
+                            <td><a href="/products/<%=product.id%>">查看</a> 
                                 <%= link_to '编辑', edit_product_path(product) %>
                                 <%= link_to '删除', product, method: :delete, data: { confirm: '您确定要删除?' }%>
                             </td>

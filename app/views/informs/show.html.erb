@@ -45,7 +45,6 @@ a = $('<iframe/>', {id: 'foo',scrolling:'no',onload:'iFrameHeight(this)',name:'f
   a.css('border','0 none');
   html = unescape("<%= @inform.context %>");
   $('#foo').contents().find('body').append(html);
-
     setIframeHeight(document.getElementById('foo'))
   function setIframeHeight(iframe) {
     if (iframe) {
