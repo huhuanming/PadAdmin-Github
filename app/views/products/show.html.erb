@@ -47,6 +47,9 @@
                   a.css('border','0 none');
                  html = unescape("<%= @product.context %>");
                   $('#foo').contents().find('body').append(html);
+
+                  
+                   setIframeHeight(document.getElementById('foo'))
                   function setIframeHeight(iframe) {
                     if (iframe) {
                       var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
@@ -55,5 +58,5 @@
                       }
                     }
                   };
-                  setIframeHeight(document.getElementById('foo'))
+                  // setIframeHeight(document.getElementById('foo'))
                 </script>
