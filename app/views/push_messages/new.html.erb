@@ -1,5 +1,4 @@
 <% provide(:title, '新建')  %>
-
 <div class="panel panel-default">
  <div class="panel-heading">新增推送信息</div>
  <div class="panel-body">
@@ -25,7 +24,7 @@
       <% @pads.each do |pad| %>
       <tbody>
         <tr>
-          <td><input type="checkbox" id="chckBox" name="<%= pad.id%>"></td>
+          <td><input type="checkbox" id="checkBox" name="<%= pad.id%>"></td>
           <td>
             <% if pad.pad_user.name.length >=10 %>
             <%= pad.pad_user.name.to_s[0,10]+'  ...' %>
@@ -41,20 +40,34 @@
       <% end %>
     </table>
   </div>
+  <script> 
+
+<script type="text/javascript">
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+    if(arr != null) return unescape(arr[2]);
+        return null;
+}
+var pageFresh = getCookie("pagefresh");
+if (pageFresh!="ok") {
+   document.cookie = 'pagefresh=ok';
+   window.location.href = window.location.href;
+}
+</script>
 
   <script type="text/javascript">
   console.log("fuck");
    $("#allSelected").change(function(event) {
     var checked = $(this).get(0).checked;
     $("#inverSelected").get(0).checked = false;
-    $("input[id = chckBox]").each(function(index, checkBox) {
+    $("input[id = checkBox]").each(function(index, checkBox) {
       checkBox.checked = checked;
     });
   });
 
    $("#inverSelected").change(function(event) {
      $("#allSelected").get(0).checked = false;
-     $("input[id = chckBox]").each(function(index, checkBox) {
+     $("input[id = checkBox]").each(function(index, checkBox) {
       checkBox.checked = !checkBox.checked;
     });
    });

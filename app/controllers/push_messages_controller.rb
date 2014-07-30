@@ -32,9 +32,9 @@ class PushMessagesController < ApplicationController
     respond_to do |format|
       if @push_message.save
         params[:ids].split(",").each do | id |
-          PushTarget.create(pad_id: id, push_message_id: @push_message.id)
-          baidu_push = BaiduPush.find_by(pad_id: id)
-          BPush.push_msg(baidu_push.push_id, baidu_push.channel_id, params[:message])
+          push_target = PushTarget.create(pad_id: id, push_message_id: @push_message.id)
+          # BPush.push_msg(baidu_push.push_id, baidu_push.channel_id, params[:message])
+          HardWorker.perform_async(push_target.id)
         end
         
         format.html { redirect_to @push_message, notice: '推送消息创建成功' }
@@ -84,3 +84,4 @@ class PushMessagesController < ApplicationController
       params.require(:push_message).permit(:message)
     end
   end
+

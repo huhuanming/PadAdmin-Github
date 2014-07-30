@@ -11,7 +11,9 @@ module PadAdmin
     
     config.autoload_paths += %W(#{config.root}/app/grape)
 
-    
+    config.eager_load = true
+    config.eager_load_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib)
     config.paths.add "lib/modules/*", glob: "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/lib/modules/*"]
     # Settings in config/environments/* take precedence over those specified here.
