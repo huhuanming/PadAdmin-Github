@@ -67,7 +67,8 @@
                                 <%= inform.brief%>
                                 <% end %>
                             </td>
-                            <td><a href="/informs/<%=inform.id%>">查看</a> 
+                            <td>
+                                <%= link_to '查看', inform %>
                                 <%= link_to '编辑', edit_inform_path(inform) %>
                                 <%= link_to '删除', inform, method: :delete, data: { confirm: '你确定要删除?' } %>
                             </td>            
