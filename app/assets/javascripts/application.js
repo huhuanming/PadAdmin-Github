@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require plugins/metisMenu/jquery.metisMenu
 //= require plugins/morris/raphael-2.1.0.min
