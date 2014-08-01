@@ -4,50 +4,38 @@
 <%= javascript_include_tag 'plugins/ueditor/ueditor.config', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'plugins/ueditor/ueditor.all.min', 'data-turbolinks-track' => true %>
 <% end %>
-
 <%= content_for :footer_js do %>
 <%= javascript_include_tag 'plugins/ueditor/ueditor','data-turbolinks-track' => true %>
 <% end %>
-<%= form_for(@product) do |f| %>
+
+
+  <%= form_for(@product) do |f| %>
       <% if @product.errors.any? %>
-      <div class="alert alert-block alert-error">
-        <a class="close" data-dismiss="alert" href="#">×</a>
-        <p><strong>有 <%= @product.errors.count %> 处问题导致无法提交:</strong></p>
-        <ul>
-        <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-        </ul>
+            <div class="alert alert-block alert-error" id="error-div" style="display:none">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <p><strong>有处问题导致无法提交:</strong></p>
+            <ul>
+            </ul>
+            <% end %>
+  </div>
+
+<div class="field" id="name">
+      <label>产品名字</label>
+      <%= f.text_field :product_name, class:"form-control" %>
 </div>
-      <% end %>
 
-        <div class="field">
-        <% if@product.errors.any?%>
-            <label class="string required control-label error">产品名字:</label>
-            <% else %>
-            <label>产品名字</label>
-            <% end %>
-          <%= f.text_field :product_name, class:(@product.errors.any?) ? "form-control error" : "form-control",value: (@product.product_name.nil?)? "" : @product.product_name %>
-        </div>
-        
-         <div class="field">
-         <% if@product.errors.any?%>
-            <label class="string required control-label error">摘要:</label>
-            <% else %>
-            <label>摘要</label>
-            <% end %>
-            <%= f.text_field :brief,  class:(@product.errors.any?) ? "form-control error" : "form-control",value: (@product.brief.nil?)? "" : @product.brief %>
-        </div>
-        <div class="field">
-         <label>产品描述:</label>
-        <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
-        </div>
-     <% end %>
+<div class="field" id="pro-brief">
+     <label>摘要</label>
+      <%= f.text_field :brief,  class:"form-control" %>
+</div>
 
+<div class="field">
+     <label>产品描述:</label>
+     <script id="editor" type="text/plain" style="width:100%; height:500px;"></script>
+    </div>  
+<% end %>
 
-
-    <button class="btn btn-outline btn-primary", id="edit_button">提交</button>
-
+<button class="btn btn-outline btn-primary", id="edit_button">提交</button>
 
 
 
@@ -61,10 +49,13 @@
  });
 </script>
 
+
 <script type="text/javascript">
   function form_send (url, request_type) {
     $("#edit_button").click(function () {
-      $.ajax({
+       if ($("#product_product_name").val().length !=0 && $("#product_brief").val() !=0){
+        console.log("ddd");
+       $.ajax({
         url: url,
         dataType: "json",
         type: request_type,
@@ -75,8 +66,10 @@
           "authenticity_token" : $("input[name='authenticity_token']").attr("value"),
           "utf8": $("input[name='utf8']").attr("value")
         },
-      })
+        })
+
       .done(function( data) {
+        console.log(data);
       })
       .fail(function ( jqXHR, textStatus, errorThrown ) {
         console.log(jqXHR);
@@ -86,6 +79,21 @@
       .always(function( data ) {
        location.href = url
      })
+    }else{
+       $('#error-div').css("display","none");
+       $('#error-div').children().filter('li').remove();
+       $("#error-div").css("display","block");
+   if ($("#product_product_name").val().length == 0) {
+       $('<li />').html("请填写产品名称").appendTo('#error-div');
+       $('#name').addClass("error");
+       $('#product_product_name').addClass("error");
+          };
+   if ($("#product_brief").val().length == 0) {
+       $('<li />').html("请填写产品名称").appendTo('#error-div');
+       $('#pro-brief').addClass("error");
+       $('#product_brief').addClass("error");
+       };
+        };                
     });
   }
 </script>

@@ -10,56 +10,39 @@
 <% end %>
 
 <%= form_for(@inform) do |f| %>
-  <% if @inform.errors.any? %>
-    <div class="alert alert-block alert-error">
+    <div class="alert alert-block alert-error" id="error-div" style="display:none">
         <a class="close" data-dismiss="alert" href="#">×</a>
-        <p><strong>有 <%= @inform.errors.count %> 处问题导致无法提交:</strong></p>
+        <p><strong>发生问题导致无法提交:</strong></p>
         <ul>
-        <% @inform.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
         </ul>
 </div>
-<% end %>
 
-
-      <div class="field">
-
-      <% if@inform.errors.any?%>
-            <label class="string required control-label error">标题:</label>
-            <% else %>
-           <label>标题</label> 
-            <% end %>
-        <%= f.text_field :title, class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.title.nil?)? "" : @inform.title %>
+      <div class="field" id="title">
+        <label>标题</label> 
+        <%= f.text_field :title, class:"form-control" %>
       </div>
-      <div class="field">
-        <% if@inform.errors.any?%>
-            <label class="string required control-label error">作者:</label>
-            <% else %>
-            <label>作者</label>
-            <% end %>
 
-        <%= f.text_field :author ,class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.author.nil?)? "" : @inform.author %>
+      <div class="field" id="author">
+        <label>作者</label>
+        <%= f.text_field :author ,class:"form-control" %>
       </div>
-      <div class="field">
-       <% if@inform.errors.any?%>
-            <label class="string required control-label error">摘要:</label>
-            <% else %>
-              <label>摘要</label>
-            <% end %>
-    
-      <%= f.text_field :brief,  class:(@inform.errors.any?) ? "form-control error" : "form-control",value: (@inform.brief.nil?)? "" : @inform.brief %>
+
+      <div class="field" id="brief">
+        <label>摘要</label>   
+      <%= f.text_field :brief,  class:"form-control" %>
       </div>
       
       <div class="field">
         <label>内容</label>
          <script id="editor" type="text/plain" style="width:100%; min-height:500px;"></script>
-          </div>   
-  
+          </div> 
 
+         
   <% end %>
 
-<button class="btn btn-outline btn-primary", id="edit_button">提交</button>
+   <button class="btn btn-outline btn-primary", id="edit_button">提交</button>  
+
+
 
 <script type="text/javascript">
   var ue = UE.getEditor('editor');
@@ -72,6 +55,8 @@
 <script type="text/javascript">
   function form_send (url, request_type) {
       $("#edit_button").click(function () {
+        if ($("#inform_title").val().length != 0 && $("#inform_author").val() != 0 && $("#inform_brief").val() != 0) {
+          console.log("ddd");
                 $.ajax({
                   url: url,
                   dataType: "json",
@@ -85,6 +70,7 @@
                     "utf8": $("input[name='utf8']").attr("value")
                   },
                 })
+
                 .done(function( data) {
                 })
                 .fail(function ( jqXHR, textStatus, errorThrown ) {
@@ -95,7 +81,29 @@
                 .always(function( data ) {
                    location.href = url
                 })
+        }else{
+          $('#error-div').css("display","none");
+          $('#error-div').children().filter('li').remove();
+          $("#error-div").css("display","block");
+      if ($("#inform_title").val().length == 0) {
+            $('<li />').html("请填写标题").appendTo('#error-div');
+            $('#title').addClass("error");
+            $('#inform_title').addClass("error");
+          };
+     if($("#inform_author").val().length == 0) {
+            $('<li />').html("请填写作者").appendTo('#error-div');
+            $('#author').addClass("error");
+            $('#inform_author').addClass("error");
+          };
+     if($("#inform_brief").val().length == 0) {
+            $('<li />').html("请填写摘要").appendTo('#error-div');
+            $('#brief').addClass("error");
+            $('#inform_brief').addClass("error");
+          };
+          
+        };
                 
-            });
+                
+    });
   }
 </script>

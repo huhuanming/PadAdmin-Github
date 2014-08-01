@@ -9,3 +9,5 @@ class Inform < ActiveRecord::Base
   validates_presence_of :brief
 
 end
+
+

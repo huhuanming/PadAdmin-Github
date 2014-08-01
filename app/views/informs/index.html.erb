@@ -98,7 +98,7 @@
                     checkBox.checked = !checkBox.checked;
                   });
          });
- 
+        
          $("#deleteIds").click(function(event) {
            var ids = new String();
            $("input[id = chckBox]").each(function(index, checkBox) {
@@ -106,10 +106,9 @@
                       ids = ids + checkBox.name + ",";
                     };
                   });
-          
-           $.post('/informs/destroy_ids', { ids: ids}, function(data) {
-                  location.reload();
-              
+             
+          $.post('/informs/destroy_ids', { ids: ids}, function(data){
+                  location.reload();   
             }, "json");
          });
 
