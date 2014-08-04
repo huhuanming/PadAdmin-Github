@@ -216,9 +216,15 @@
             <li>
               <a href="/pads"><i class="fa fa-tablet fa-fw"></i> 平板管理</a>
             </li>
+           
             <li>
               <a href="/push_messages"><i class="fa fa-archive fa-fw"></i> 推送消息管理</a>
             </li>
+            <% if plugin_was_added? %>
+            <li>
+              <a href="/ips"><i class="fa fa-archive fa-fw"></i> IP管理</a>
+            </li>
+            <% end %>
             <li>
               <a href="/logs"><i class="fa fa-edit fa-fw"></i> 操作历史</a>
             </li>

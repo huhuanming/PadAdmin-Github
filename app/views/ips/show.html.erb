@@ -1,0 +1,33 @@
+<% provide(:title, '插件IP展示')  %>
+<br>
+<% if !notice.nil? %>
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <%= notice %> 
+</div>
+<% end%>
+
+<!-- /.row -->
+<div class="panel panel-default">
+ <div class="panel-heading">插件IP</div>
+		 <div class="panel-body">
+		 	<div class="col-lg-4">
+				<div class="well">
+					<h4>用户名</h4>
+					<p><%= @ip.user_name %></p>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="well">
+					<h4>IP地址</h4>
+					<p><%= @ip.IP_address %></p>
+				</div>
+			</div>
+			<div class="IP_buttopn">
+	<%= link_to '编辑', edit_ip_path(@ip), class:"btn btn-outline btn-primary" %> 
+	<%= link_to '返回', ips_path, class:"btn btn-outline btn-primary" %>
+	</div>
+
+		</div>
+		</div>
+<!-- /.row -->                
