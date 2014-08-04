@@ -70,7 +70,7 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_pad
       @pad = Pad.find(params[:id])
-      if @pad.nil? || ( @pad.company_id != current_admin_user.company.id )
+      if  @pad.nil? || (@pad.company_id != current_admin_user.company.id )
         redirect_to pads_path  
       end
     end

@@ -74,7 +74,7 @@ class PushMessagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_push_message
       @push_message = PushMessage.find(params[:id])
-      if @push_message.nil? || ( @push_message.company_id != current_admin_user.company.id )
+      if @push_message.nil? || (@push_message.company_id != current_admin_user.company.id )
         redirect_to push_messages_path  
       end
     end

@@ -10,7 +10,6 @@ class InformsController < ApplicationController
     @informs = current_admin_user.company.informs.where(params[:type]+' LIKE ?',"%#{params[:search]}%").page(params[:page])
   end
 end
-
   # GET /informs/1
   # GET /informs/1.json
   def show
@@ -80,7 +79,7 @@ end
       end
     end
     respond_to do |format|
-      format.html { redirect_to products_url, notice: '成功删除产品信息！' }
+      format.html { redirect_to informs_url, notice: '成功删除产品信息！' }
       format.json { render json: params, status: :ok }
     end
   end
@@ -88,7 +87,7 @@ end
     # Use callbacks to share common setup or constraints between actions.
     def set_inform
       @inform = Inform.find_by_id(params[:id]) 
-      if @inform.nil? || ( @inform.company_id != current_admin_user.company.id )
+      if @inform.nil? || (@inform.company_id!= current_admin_user.company.id )
         redirect_to informs_path  
       end
     end
