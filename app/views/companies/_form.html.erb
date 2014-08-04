@@ -11,7 +11,6 @@
 </div>
   <% end %>
    <div class="field">
-
    <% if@company.errors.any?%>
             <label class="string required control-label error">公司名字:</label>
             <% else %>
@@ -19,6 +18,7 @@
             <% end %>
    <%= f.text_field :company_name, class:(@company.errors.any?) ? "form-control error" : "form-control",value: (@company.company_name.nil?)? "" : @company.company_name %>
   </div>
+
   <div class="field">
    <% if@company.errors.any?%>
             <label class="string required control-label error">公司地址:</label>

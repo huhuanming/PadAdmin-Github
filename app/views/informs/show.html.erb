@@ -11,6 +11,15 @@
  <div class="panel-heading">新闻展示</div>
  <div class="panel-body">
   <div class="table-responsive">
+        <div class="time">
+        <strong>添加时间:</strong>
+        <%= @inform.created_at %>
+        </div>
+        <div class="time">
+        <strong>修改时间:</strong>
+        <%= @inform.updated_at %>
+        </div>
+
     <div class="check_product">
       <strong>标题</strong>
       <p><%= @inform.title %></p>
