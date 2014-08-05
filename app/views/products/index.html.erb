@@ -57,8 +57,8 @@
                                          <%= product.brief%>
                                   <% end %>
                             </td>
-                            <td><%= product.created_at %></td>
-                            <td><%= product.updated_at %></td>
+                            <td><%= product.created_at.localtime.to_s(:db) %></td>
+                            <td><%= product.updated_at.localtime.to_s(:db) %></td>
                             <td><a href="/products/<%=product.id%>">查看</a> 
                                 <%= link_to '编辑', edit_product_path(product) %>
                                 <%= link_to '删除', product, method: :delete, data: { confirm: '您确定要删除?' }%>

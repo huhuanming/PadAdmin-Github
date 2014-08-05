@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :ips
+
   get 'inform/new'
 
   root 'home#index'

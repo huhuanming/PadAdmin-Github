@@ -39,6 +39,8 @@
                           <td>标题</td>
                           <td>作者</td>
                           <td>摘要</td>
+                          <td>添加时间</td>
+                          <td>修改时间</td>
                           <td>操作</td>
                           </tr>
                     </thead>
@@ -67,6 +69,8 @@
                                 <%= inform.brief%>
                                 <% end %>
                             </td>
+                            <td><%= inform.created_at.localtime.to_s(:db) %></td>
+                            <td><%= inform.updated_at.localtime.to_s(:db) %></td>
                             <td>
                                 <%= link_to '查看', inform %>
                                 <%= link_to '编辑', edit_inform_path(inform) %>
