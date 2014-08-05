@@ -1,6 +1,6 @@
 class IpsController < ApplicationController
   before_action :set_ip, only: [:show, :edit, :update, :destroy]
-
+  before_filter :plugin_was_added?
   # GET /ips
   # GET /ips.json
   def index
@@ -70,5 +70,11 @@ class IpsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def ip_params
       params.require(:ip).permit(:user_name, :IP_address)
+    end
+
+    def plugin_was_added?
+      if Plugin.find_by(name:"IP管理").company_plugin.find_by(company_id: current_admin_user.company.id).nil?
+        redirect_to root_path
+      end
     end
 end
