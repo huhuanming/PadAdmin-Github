@@ -64,7 +64,7 @@ module API
     #Create baidu_push detail
     #param[:channel_id]: can't be blank
 
-    get 'chenhongshisb' do
+    post 'uploadbaidupush' do
       params do
         requires :channel_id, type: String
         requires :push_id, type: String
@@ -72,10 +72,19 @@ module API
       end
       pad = Pad.find_by(:Mac_address => params[:mac_address])
       error!("pad not found", 404) if pad.blank?
+      push = BaiduPush.find_by(:pad_id => pad.id)
+      if push != nil
+        push.delete
+        @baidu_push = BaiduPush.new(
+        :channel_id => params[:channel_id],
+        :push_id => params[:push_id],
+        :pad_id => pad.id)
+      else
       @baidu_push = BaiduPush.new(
         :channel_id => params[:channel_id],
         :push_id => params[:push_id],
         :pad_id => pad.id)
+      end
       error!(@baidu_push.errors, 422) if !@baidu_push.save
       present:status, "true"
     end

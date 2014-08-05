@@ -41,9 +41,15 @@
         </tbody>
       <% end %>
       </table>
-      <%= link_to '新建推送', new_push_message_path ,class:"btn btn-outline btn-primary"%>
+      <button class="btn btn-outline btn-primary" id="new">新建推送</button>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#new").click(function(event) {
+      location.href = "/push_messages/new";//跳转网址
+    });
+    </script>
 
 
