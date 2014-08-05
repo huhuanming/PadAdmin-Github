@@ -14,9 +14,10 @@ div, ul, li{
 	position:relative;
 	list-style-type: none;
 } 
+@media screen and (min-width:250px){
 .card{
 	float: left;	
-	width: 31%;
+	width:358px;
 	margin: 0 1.1666% 2.3332%;
 	position: relative;
 	border-bottom: 1px solid #d4d4d4;
@@ -25,7 +26,7 @@ div, ul, li{
 	overflow: hidden;
 	display: list-item;
 	text-align: -webkit-match-parent;
-	
+	}
 } 
 .card:hover{
 	box-shadow: 0 1px 3px #aaa;
