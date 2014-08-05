@@ -53,6 +53,10 @@ en:
       product:
         product_name: "产品名字"
         brief: "摘要"
+      ip:
+        user_name: "IP名"
+        IP_address: "IP地址"
+
   errors:
     models:
       admin_user: 管理员
