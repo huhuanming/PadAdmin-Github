@@ -19,6 +19,8 @@
             <tr>
               <th class="textstyle">IP名</th>
               <th class="textstyle">IP地址</th>
+              <th class="textstyle">添加时间</th>
+              <th class="textstyle">修改时间</th>
               <th class="textstyle">操作</th>
             </tr>
           </thead>
@@ -28,6 +30,8 @@
             <tr>
               <td class="textstyle"><%= ip.user_name %></td>
               <td class="textstyle"><%= ip.IP_address %></td>
+              <td class="textstyle"><%= ip.created_at.localtime.to_s(:db) %></td>
+              <td class="textstyle"><%= ip.updated_at.localtime.to_s(:db) %></td>
               <td class="textstyle"><%= link_to '查看',ip %>
                 <%= link_to '编辑',edit_ip_path(ip) %>
                 <%= link_to '删除', ip, method: :delete, data: { confirm: '您确定要删除?' } %></td>
