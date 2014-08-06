@@ -12,11 +12,11 @@
         <div class="table-responsive">
               <div class="time">
                 <strong>添加时间:</strong>
-                <%= @product.created_at %>
+                <%= @product.created_at.localtime.to_s(:db) %>
               </div>
               <div class="time">
                 <strong>修改时间:</strong>
-                <%= @product.updated_at %>
+                <%= @product.updated_at.localtime.to_s(:db) %>
               </div>
               
               <div class="check_product">
