@@ -10,45 +10,25 @@
     <% @plugins.each do |plugin| %>
     <ul id="list"> 
       <li class="card">
-        <div class="icon-wrap">
+        <!-- <div class="icon-wrap">
           <img src="/a.png">
-        </div>
+        </div> -->
         <div class="app-desc">
           <p class="name"><%= plugin.name %></p>
           <div class="brief">
            <%= plugin.brief %>
          </div>
        </div>
-       <% if plugin.company_plugin.find_by_company_id(current_admin_user.company.id).nil? %>
-       <%= link_to '添加', { :id => plugin.id}, method: :post, class:"install-btn" %>
+        <% if plugin.company_plugin.find_by_company_id(current_admin_user.company.id).nil? %>
+       <%= link_to '添加', { :id => plugin.id}, method: :post, class:"delete-btn" %>
        <% else %>
-       <div class="installed-btn">已添加</div>
+      <!--  <div class="installed-btn">已添加</div> -->
        <%= link_to '删除', plugin_path(plugin), method: :delete, data: { confirm: '您确定要删除?' }, class:"delete-btn" %>
        <% end %>
      </li> 
-     <li class="card">
-      <div class="icon-wrap">
-        <img src="/b.png">
-      </div>
-      <div class="app-desc">
-        <p class="name">动动计步器</p>
-        <div class="brief">
-          动动计步器是世界排名前十的健康应用，可以让手机轻松实现全天自动计步，包含步数、卡路里、距离和体重的健康数据表，让你对自己的健康一目了然。
-        </div>
-      </div>
-    </li> 
-    <li class="card">
-      <div class="icon-wrap">
-        <img src="/c.png">
-      </div>
-      <div class="app-desc">
-        <p class="name">波斯王子影与火</p>
-        <div class="brief">
-          流传已久的流浪王子的传说，从放逐中回归，寻找消失了的过去，重新书写未来的路。
 
-        </div>
-      </div>
-    </li> 
+    
+
   </ul>  
   <% end %> 
 </div>

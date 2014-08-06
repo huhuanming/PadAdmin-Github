@@ -638,8 +638,8 @@ div, ul, li{
 @media screen and (min-width:250px){
 .card{
     float: left;    
-    width:358px;
-    margin: 0 1.1666% 2.3332%;
+    width:280px;
+    margin: 1% 3% 2.3332%;
     position: relative;
     border-bottom: 1px solid #d4d4d4;
     min-height: 48px;
@@ -647,6 +647,7 @@ div, ul, li{
     overflow: hidden;
     display: list-item;
     text-align: -webkit-match-parent;
+    border-radius: 10px;
     }
 } 
 .card:hover{
@@ -678,67 +679,26 @@ div, ul, li{
     overflow: hidden;
 }
 .card .app-desc{
-    margin: 15px 0 25px 88px;   
-}
-.card .icon-wrap{
-    float: left;
-    width: 68px;
-    margin: 15px 10px;
-}
-.card .icon-wrap img{
-    display: block;
-    border: 0;
-}
-.card .install-btn{
-    letter-spacing: 1px;
-    font-size: 1em;
-    position: absolute;
-    top: 12px;
-    right: 70px;
-    text-align: center;
-    width: 55px;
-    height: 26px;
-    line-height: 26px;
-    color: #fff;
-    background: #4cc9b6;
-    padding: 0px 0px;
-    display: block;
-}
-.card .installed-btn{
-    letter-spacing: 1px;
-    font-size: 1em;
-    position: absolute;
-    top: 12px;
-    right: 70px;
-    text-align: center;
-    width: 55px;
-    height: 26px;
-    line-height: 26px;
-    color: #fff;
-    background: #4cc9b6;
-    padding: 0px 0px;
-    display: block;
+    margin: 25px 0 25px 20px;   
 }
 .card .delete-btn{
     letter-spacing: 1px;
     font-size: 1em;
     position: absolute;
-    top: 12px;
-    right: 10px;
+    top: 25px;
+    right: 25px;
     text-align: center;
     width: 55px;
     height: 26px;
     line-height: 26px;
     color: #fff;
-    background: #4cc9b6;
+    background: #428bca;
     padding: 0px 0px;
     display: block;
-}
-.card .install-btn:hover{
-    text-decoration: none;
-    background: #4cc9ff;
+    border-radius: 4px;
 }
 .card .delete-btn:hover{
     text-decoration: none;
-    background: #4cc9ff;
+    background: #428bca;
+    opacity: 0.7;
 }
