@@ -1,0 +1,36 @@
+<%= form_for(@ip) do |f| %>
+  <% if @ip.errors.any? %>
+    <div class="alert alert-block alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <p><strong>有 <%= @ip.errors.count %> 处问题导致无法提交:</strong></p>
+        <ul>
+        <% @ip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+        </ul>
+</div>
+  <% end %>
+
+<div class="field">
+   <% if@ip.errors.any?%>
+            <label class="string required control-label error">IP名:</label>
+            <% else %>
+            <label>IP名:</label>
+            <% end %>
+   <%= f.text_field :user_name, class:(@ip.errors.any?) ? "form-control error" : "form-control",value: (@ip.user_name.nil?)? "" : @ip.user_name %>
+  </div>
+
+<div class="field">
+   <% if@ip.errors.any?%>
+            <label class="string required control-label error">IP地址:</label>
+            <% else %>
+            <label>IP地址:</label>
+            <% end %>
+   <%= f.text_field :IP_address, class:(@ip.errors.any?) ? "form-control error" : "form-control",value: (@ip.IP_address.nil?)? "" : @ip.IP_address %>
+  </div>
+
+    <div class="actions">
+   <%= f.submit "提交", class:"btn btn-outline btn-primary "%>
+  </div>
+<% end %>
+ 
