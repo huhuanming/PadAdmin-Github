@@ -4,8 +4,8 @@ module BPush
   require 'openssl'
   require 'json'
 
-  SecretKey = 'saPyIBDxUOInSkbvWttl4whih0xfHC3k'
-  APIKey = '07Wwhw3vfVWn4SIM0xVi4I4T'
+  SecretKey = 'cNGbmEGQ5S8GNoueU3ezU1XbmleRGR0s'
+  APIKey = 'd9bmjyP43KTqQQq9S9Yp2bSy'
   @pass = nil  
 
   class << self
